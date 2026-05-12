@@ -316,6 +316,31 @@
       .stars label { font-size: 28px; }
       .nps-wrap label { width: 38px; height: 38px; font-size: 13px; }
     }
+
+    /* ── SCORE WRAP (Q1-Q9: 1~10 buttons) ── */
+    .score-wrap {
+      display: flex; gap: 5px; justify-content: center;
+      flex-wrap: wrap; margin-top: 6px;
+    }
+    .score-wrap input[type="radio"] { display: none; }
+    .score-wrap label {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      border: 1.5px solid #D8E8DF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; margin: 0;
+      color: #2A5A44;
+      transition: all 0.15s;
+      background: white;
+    }
+    .score-wrap input[type="radio"]:checked + label {
+      background: var(--pine);
+      border-color: var(--pine);
+      color: white;
+      box-shadow: 0 2px 10px rgba(16,87,66,0.30);
+    }
+    .score-wrap label:hover { border-color: var(--pine); color: var(--pine); }
   </style>
 </head>
 <body>
@@ -395,123 +420,168 @@
     <!-- 서비스 만족도 -->
     <div class="card">
       <div class="section-title">서비스 만족도</div>
-      <p style="font-size:13px;color:#6B8F7A;margin-bottom:18px;">★ 1점 = 매우 불만족 &nbsp;·&nbsp; ★★★★★ 5점 = 매우 만족</p>
+      <p style="font-size:13px;color:#6B8F7A;margin-bottom:18px;">1점 = 매우 불만족 &nbsp;·&nbsp; 10점 = 매우 만족</p>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">1</span>인사 및 첫 응대 친절도</div>
         <div class="rating-sublabel">방문 시 밝고 친절하게 인사하였습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q1_5" name="q1_greeting" value="5" required><label for="q1_5">★</label>
-          <input type="radio" id="q1_4" name="q1_greeting" value="4"><label for="q1_4">★</label>
-          <input type="radio" id="q1_3" name="q1_greeting" value="3"><label for="q1_3">★</label>
-          <input type="radio" id="q1_2" name="q1_greeting" value="2"><label for="q1_2">★</label>
-          <input type="radio" id="q1_1" name="q1_greeting" value="1"><label for="q1_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q1_1" name="q1_greeting" value="1" required><label for="q1_1">1</label>
+          <input type="radio" id="q1_2" name="q1_greeting" value="2"><label for="q1_2">2</label>
+          <input type="radio" id="q1_3" name="q1_greeting" value="3"><label for="q1_3">3</label>
+          <input type="radio" id="q1_4" name="q1_greeting" value="4"><label for="q1_4">4</label>
+          <input type="radio" id="q1_5" name="q1_greeting" value="5"><label for="q1_5">5</label>
+          <input type="radio" id="q1_6" name="q1_greeting" value="6"><label for="q1_6">6</label>
+          <input type="radio" id="q1_7" name="q1_greeting" value="7"><label for="q1_7">7</label>
+          <input type="radio" id="q1_8" name="q1_greeting" value="8"><label for="q1_8">8</label>
+          <input type="radio" id="q1_9" name="q1_greeting" value="9"><label for="q1_9">9</label>
+          <input type="radio" id="q1_10" name="q1_greeting" value="10"><label for="q1_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">2</span>전문성 및 업무 능숙도</div>
         <div class="rating-sublabel">업무를 전문적이고 능숙하게 처리하였습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q2_5" name="q2_expertise" value="5" required><label for="q2_5">★</label>
-          <input type="radio" id="q2_4" name="q2_expertise" value="4"><label for="q2_4">★</label>
-          <input type="radio" id="q2_3" name="q2_expertise" value="3"><label for="q2_3">★</label>
-          <input type="radio" id="q2_2" name="q2_expertise" value="2"><label for="q2_2">★</label>
-          <input type="radio" id="q2_1" name="q2_expertise" value="1"><label for="q2_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q2_1" name="q2_expertise" value="1" required><label for="q2_1">1</label>
+          <input type="radio" id="q2_2" name="q2_expertise" value="2"><label for="q2_2">2</label>
+          <input type="radio" id="q2_3" name="q2_expertise" value="3"><label for="q2_3">3</label>
+          <input type="radio" id="q2_4" name="q2_expertise" value="4"><label for="q2_4">4</label>
+          <input type="radio" id="q2_5" name="q2_expertise" value="5"><label for="q2_5">5</label>
+          <input type="radio" id="q2_6" name="q2_expertise" value="6"><label for="q2_6">6</label>
+          <input type="radio" id="q2_7" name="q2_expertise" value="7"><label for="q2_7">7</label>
+          <input type="radio" id="q2_8" name="q2_expertise" value="8"><label for="q2_8">8</label>
+          <input type="radio" id="q2_9" name="q2_expertise" value="9"><label for="q2_9">9</label>
+          <input type="radio" id="q2_10" name="q2_expertise" value="10"><label for="q2_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">3</span>설명 및 소통 능력</div>
         <div class="rating-sublabel">필요한 사항을 알기 쉽게 설명해 주었습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q3_5" name="q3_communication" value="5" required><label for="q3_5">★</label>
-          <input type="radio" id="q3_4" name="q3_communication" value="4"><label for="q3_4">★</label>
-          <input type="radio" id="q3_3" name="q3_communication" value="3"><label for="q3_3">★</label>
-          <input type="radio" id="q3_2" name="q3_communication" value="2"><label for="q3_2">★</label>
-          <input type="radio" id="q3_1" name="q3_communication" value="1"><label for="q3_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q3_1" name="q3_communication" value="1" required><label for="q3_1">1</label>
+          <input type="radio" id="q3_2" name="q3_communication" value="2"><label for="q3_2">2</label>
+          <input type="radio" id="q3_3" name="q3_communication" value="3"><label for="q3_3">3</label>
+          <input type="radio" id="q3_4" name="q3_communication" value="4"><label for="q3_4">4</label>
+          <input type="radio" id="q3_5" name="q3_communication" value="5"><label for="q3_5">5</label>
+          <input type="radio" id="q3_6" name="q3_communication" value="6"><label for="q3_6">6</label>
+          <input type="radio" id="q3_7" name="q3_communication" value="7"><label for="q3_7">7</label>
+          <input type="radio" id="q3_8" name="q3_communication" value="8"><label for="q3_8">8</label>
+          <input type="radio" id="q3_9" name="q3_communication" value="9"><label for="q3_9">9</label>
+          <input type="radio" id="q3_10" name="q3_communication" value="10"><label for="q3_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">4</span>응대 신속성</div>
         <div class="rating-sublabel">요청이나 문의에 빠르게 응대해 주었습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q4_5" name="q4_speed" value="5" required><label for="q4_5">★</label>
-          <input type="radio" id="q4_4" name="q4_speed" value="4"><label for="q4_4">★</label>
-          <input type="radio" id="q4_3" name="q4_speed" value="3"><label for="q4_3">★</label>
-          <input type="radio" id="q4_2" name="q4_speed" value="2"><label for="q4_2">★</label>
-          <input type="radio" id="q4_1" name="q4_speed" value="1"><label for="q4_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q4_1" name="q4_speed" value="1" required><label for="q4_1">1</label>
+          <input type="radio" id="q4_2" name="q4_speed" value="2"><label for="q4_2">2</label>
+          <input type="radio" id="q4_3" name="q4_speed" value="3"><label for="q4_3">3</label>
+          <input type="radio" id="q4_4" name="q4_speed" value="4"><label for="q4_4">4</label>
+          <input type="radio" id="q4_5" name="q4_speed" value="5"><label for="q4_5">5</label>
+          <input type="radio" id="q4_6" name="q4_speed" value="6"><label for="q4_6">6</label>
+          <input type="radio" id="q4_7" name="q4_speed" value="7"><label for="q4_7">7</label>
+          <input type="radio" id="q4_8" name="q4_speed" value="8"><label for="q4_8">8</label>
+          <input type="radio" id="q4_9" name="q4_speed" value="9"><label for="q4_9">9</label>
+          <input type="radio" id="q4_10" name="q4_speed" value="10"><label for="q4_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">5</span>방문 일정 약속 이행</div>
         <div class="rating-sublabel">약속된 방문 일정을 잘 지켰습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q5_5" name="q5_punctuality" value="5" required><label for="q5_5">★</label>
-          <input type="radio" id="q5_4" name="q5_punctuality" value="4"><label for="q5_4">★</label>
-          <input type="radio" id="q5_3" name="q5_punctuality" value="3"><label for="q5_3">★</label>
-          <input type="radio" id="q5_2" name="q5_punctuality" value="2"><label for="q5_2">★</label>
-          <input type="radio" id="q5_1" name="q5_punctuality" value="1"><label for="q5_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q5_1" name="q5_punctuality" value="1" required><label for="q5_1">1</label>
+          <input type="radio" id="q5_2" name="q5_punctuality" value="2"><label for="q5_2">2</label>
+          <input type="radio" id="q5_3" name="q5_punctuality" value="3"><label for="q5_3">3</label>
+          <input type="radio" id="q5_4" name="q5_punctuality" value="4"><label for="q5_4">4</label>
+          <input type="radio" id="q5_5" name="q5_punctuality" value="5"><label for="q5_5">5</label>
+          <input type="radio" id="q5_6" name="q5_punctuality" value="6"><label for="q5_6">6</label>
+          <input type="radio" id="q5_7" name="q5_punctuality" value="7"><label for="q5_7">7</label>
+          <input type="radio" id="q5_8" name="q5_punctuality" value="8"><label for="q5_8">8</label>
+          <input type="radio" id="q5_9" name="q5_punctuality" value="9"><label for="q5_9">9</label>
+          <input type="radio" id="q5_10" name="q5_punctuality" value="10"><label for="q5_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">6</span>위생 및 복장 상태</div>
         <div class="rating-sublabel">직원의 복장과 위생 상태가 적절했습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q6_5" name="q6_hygiene" value="5" required><label for="q6_5">★</label>
-          <input type="radio" id="q6_4" name="q6_hygiene" value="4"><label for="q6_4">★</label>
-          <input type="radio" id="q6_3" name="q6_hygiene" value="3"><label for="q6_3">★</label>
-          <input type="radio" id="q6_2" name="q6_hygiene" value="2"><label for="q6_2">★</label>
-          <input type="radio" id="q6_1" name="q6_hygiene" value="1"><label for="q6_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q6_1" name="q6_hygiene" value="1" required><label for="q6_1">1</label>
+          <input type="radio" id="q6_2" name="q6_hygiene" value="2"><label for="q6_2">2</label>
+          <input type="radio" id="q6_3" name="q6_hygiene" value="3"><label for="q6_3">3</label>
+          <input type="radio" id="q6_4" name="q6_hygiene" value="4"><label for="q6_4">4</label>
+          <input type="radio" id="q6_5" name="q6_hygiene" value="5"><label for="q6_5">5</label>
+          <input type="radio" id="q6_6" name="q6_hygiene" value="6"><label for="q6_6">6</label>
+          <input type="radio" id="q6_7" name="q6_hygiene" value="7"><label for="q6_7">7</label>
+          <input type="radio" id="q6_8" name="q6_hygiene" value="8"><label for="q6_8">8</label>
+          <input type="radio" id="q6_9" name="q6_hygiene" value="9"><label for="q6_9">9</label>
+          <input type="radio" id="q6_10" name="q6_hygiene" value="10"><label for="q6_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">7</span>장비 및 소모품 관리</div>
         <div class="rating-sublabel">장비·소모품 관리 상태에 만족하십니까?</div>
-        <div class="stars">
-          <input type="radio" id="q7_5" name="q7_equipment" value="5" required><label for="q7_5">★</label>
-          <input type="radio" id="q7_4" name="q7_equipment" value="4"><label for="q7_4">★</label>
-          <input type="radio" id="q7_3" name="q7_equipment" value="3"><label for="q7_3">★</label>
-          <input type="radio" id="q7_2" name="q7_equipment" value="2"><label for="q7_2">★</label>
-          <input type="radio" id="q7_1" name="q7_equipment" value="1"><label for="q7_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q7_1" name="q7_equipment" value="1" required><label for="q7_1">1</label>
+          <input type="radio" id="q7_2" name="q7_equipment" value="2"><label for="q7_2">2</label>
+          <input type="radio" id="q7_3" name="q7_equipment" value="3"><label for="q7_3">3</label>
+          <input type="radio" id="q7_4" name="q7_equipment" value="4"><label for="q7_4">4</label>
+          <input type="radio" id="q7_5" name="q7_equipment" value="5"><label for="q7_5">5</label>
+          <input type="radio" id="q7_6" name="q7_equipment" value="6"><label for="q7_6">6</label>
+          <input type="radio" id="q7_7" name="q7_equipment" value="7"><label for="q7_7">7</label>
+          <input type="radio" id="q7_8" name="q7_equipment" value="8"><label for="q7_8">8</label>
+          <input type="radio" id="q7_9" name="q7_equipment" value="9"><label for="q7_9">9</label>
+          <input type="radio" id="q7_10" name="q7_equipment" value="10"><label for="q7_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">8</span>문제 해결 능력</div>
         <div class="rating-sublabel">불편 사항 발생 시 적절히 해결해 주었습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q8_5" name="q8_problem_solving" value="5" required><label for="q8_5">★</label>
-          <input type="radio" id="q8_4" name="q8_problem_solving" value="4"><label for="q8_4">★</label>
-          <input type="radio" id="q8_3" name="q8_problem_solving" value="3"><label for="q8_3">★</label>
-          <input type="radio" id="q8_2" name="q8_problem_solving" value="2"><label for="q8_2">★</label>
-          <input type="radio" id="q8_1" name="q8_problem_solving" value="1"><label for="q8_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q8_1" name="q8_problem_solving" value="1" required><label for="q8_1">1</label>
+          <input type="radio" id="q8_2" name="q8_problem_solving" value="2"><label for="q8_2">2</label>
+          <input type="radio" id="q8_3" name="q8_problem_solving" value="3"><label for="q8_3">3</label>
+          <input type="radio" id="q8_4" name="q8_problem_solving" value="4"><label for="q8_4">4</label>
+          <input type="radio" id="q8_5" name="q8_problem_solving" value="5"><label for="q8_5">5</label>
+          <input type="radio" id="q8_6" name="q8_problem_solving" value="6"><label for="q8_6">6</label>
+          <input type="radio" id="q8_7" name="q8_problem_solving" value="7"><label for="q8_7">7</label>
+          <input type="radio" id="q8_8" name="q8_problem_solving" value="8"><label for="q8_8">8</label>
+          <input type="radio" id="q8_9" name="q8_problem_solving" value="9"><label for="q8_9">9</label>
+          <input type="radio" id="q8_10" name="q8_problem_solving" value="10"><label for="q8_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
 
       <div class="rating-item">
         <div class="rating-label"><span class="num">9</span>고객 존중 및 배려</div>
         <div class="rating-sublabel">직원이 저희 병원을 소중히 여긴다고 느끼셨습니까?</div>
-        <div class="stars">
-          <input type="radio" id="q9_5" name="q9_respect" value="5" required><label for="q9_5">★</label>
-          <input type="radio" id="q9_4" name="q9_respect" value="4"><label for="q9_4">★</label>
-          <input type="radio" id="q9_3" name="q9_respect" value="3"><label for="q9_3">★</label>
-          <input type="radio" id="q9_2" name="q9_respect" value="2"><label for="q9_2">★</label>
-          <input type="radio" id="q9_1" name="q9_respect" value="1"><label for="q9_1">★</label>
+        <div class="score-wrap">
+          <input type="radio" id="q9_1" name="q9_respect" value="1" required><label for="q9_1">1</label>
+          <input type="radio" id="q9_2" name="q9_respect" value="2"><label for="q9_2">2</label>
+          <input type="radio" id="q9_3" name="q9_respect" value="3"><label for="q9_3">3</label>
+          <input type="radio" id="q9_4" name="q9_respect" value="4"><label for="q9_4">4</label>
+          <input type="radio" id="q9_5" name="q9_respect" value="5"><label for="q9_5">5</label>
+          <input type="radio" id="q9_6" name="q9_respect" value="6"><label for="q9_6">6</label>
+          <input type="radio" id="q9_7" name="q9_respect" value="7"><label for="q9_7">7</label>
+          <input type="radio" id="q9_8" name="q9_respect" value="8"><label for="q9_8">8</label>
+          <input type="radio" id="q9_9" name="q9_respect" value="9"><label for="q9_9">9</label>
+          <input type="radio" id="q9_10" name="q9_respect" value="10"><label for="q9_10">10</label>
         </div>
-        <div class="scale-labels"><span>매우 불만족</span><span>매우 만족</span></div>
+        <div class="scale-labels"><span>1 = 매우 불만족</span><span>10 = 매우 만족</span></div>
       </div>
     </div>
 

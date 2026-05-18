@@ -465,21 +465,21 @@
       <div class="form-row">
         <div class="form-group">
           <label>거래처명 <span class="req">*</span></label>
-          <input type="text" name="거래처명" placeholder="예: ○○병원 신장내과" required />
+          <input type="text" name="customer_name" placeholder="예: ○○병원 신장내과" required />
         </div>
         <div class="form-group">
           <label>점검 일자 <span class="req">*</span></label>
-          <input type="date" name="점검일자" id="inspDate" required />
+          <input type="date" name="inspection_date" id="inspDate" required />
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label>점검 담당자 <span class="req">*</span></label>
-          <input type="text" name="점검담당자" placeholder="성명" required />
+          <input type="text" name="inspector_name" placeholder="성명" required />
         </div>
         <div class="form-group">
           <label>연락처</label>
-          <input type="tel" name="연락처" placeholder="010-0000-0000" />
+          <input type="tel" name="contact" placeholder="010-0000-0000" />
         </div>
       </div>
     </div>
@@ -513,9 +513,9 @@
           </div>
         </div>
         <div class="check-item-note" id="note-1">
-          <input type="text" name="비고_1" placeholder="부적합 내용을 간략히 기재해 주세요" />
+          <input type="text" name="note_1" placeholder="부적합 내용을 간략히 기재해 주세요" />
         </div>
-        <input type="hidden" name="결과_배수배관외부상태" id="val-1" />
+        <input type="hidden" name="result_drain_pipe" id="val-1" />
       </div>
 
       <!-- 항목 2 -->
@@ -529,9 +529,9 @@
           </div>
         </div>
         <div class="check-item-note" id="note-2">
-          <input type="text" name="비고_2" placeholder="부적합 내용을 간략히 기재해 주세요" />
+          <input type="text" name="note_2" placeholder="부적합 내용을 간략히 기재해 주세요" />
         </div>
-        <input type="hidden" name="결과_호스연결상태" id="val-2" />
+        <input type="hidden" name="result_hose_connection" id="val-2" />
       </div>
 
       <!-- 항목 3 -->
@@ -545,9 +545,9 @@
           </div>
         </div>
         <div class="check-item-note" id="note-3">
-          <input type="text" name="비고_3" placeholder="부적합 내용을 간략히 기재해 주세요" />
+          <input type="text" name="note_3" placeholder="부적합 내용을 간략히 기재해 주세요" />
         </div>
-        <input type="hidden" name="결과_케이블타이호스고정" id="val-3" />
+        <input type="hidden" name="result_cable_tie" id="val-3" />
       </div>
     </div>
 
@@ -559,17 +559,17 @@
         <label>종합 점검 결과 <span class="req">*</span></label>
         <div class="result-grid">
           <label class="result-opt" id="ro-ok" style="--icon-color:#6CA07A" onclick="selectResult('ok')">
-            <input type="radio" name="종합결과" value="이상없음" />
+            <input type="radio" name="overall_result" value="이상없음" />
             <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 11l3 3 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <span class="opt-text">이상 없음</span>
           </label>
           <label class="result-opt" id="ro-warn" onclick="selectResult('warn')">
-            <input type="radio" name="종합결과" value="일부주의" />
+            <input type="radio" name="overall_result" value="일부주의" />
             <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 3L20.5 19H1.5L11 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><line x1="11" y1="9" x2="11" y2="13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="16" r="0.9" fill="currentColor"/></svg></div>
             <span class="opt-text">일부 주의</span>
           </label>
           <label class="result-opt" id="ro-bad" onclick="selectResult('bad')">
-            <input type="radio" name="종합결과" value="즉시조치필요" />
+            <input type="radio" name="overall_result" value="즉시조치필요" />
             <div class="opt-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 7.5l7 7M14.5 7.5l-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
             <span class="opt-text">즉시 조치 필요</span>
           </label>
@@ -578,7 +578,7 @@
 
       <div class="form-group" style="margin-bottom:18px;">
         <label>특이사항 / 개선 의견</label>
-        <textarea name="특이사항" placeholder="부적합 항목 상세 내용, 조치 필요사항, 기타 의견을 자유롭게 작성해 주세요." rows="3"></textarea>
+        <textarea name="special_notes" placeholder="부적합 항목 상세 내용, 조치 필요사항, 기타 의견을 자유롭게 작성해 주세요." rows="3"></textarea>
       </div>
 
       <div class="form-group">
@@ -586,7 +586,7 @@
         <div style="border:2px dashed #C8DDD5;border-radius:10px;padding:18px;text-align:center;cursor:pointer;background:#F7FBF9;transition:all 0.2s;"
              onclick="document.getElementById('photoInp').click()"
              onmouseover="this.style.borderColor='var(--pine)'" onmouseout="this.style.borderColor='#C8DDD5'">
-          <input type="file" id="photoInp" name="현장사진" multiple accept="image/*" style="display:none;" onchange="showFiles(this)" />
+          <input type="file" id="photoInp" name="site_photos" multiple accept="image/*" style="display:none;" onchange="showFiles(this)" />
           <div style="margin-bottom:2px;"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="9" width="26" height="18" rx="3" stroke="#6CA07A" stroke-width="1.8"/><circle cx="16" cy="18" r="5" stroke="#6CA07A" stroke-width="1.8"/><path d="M11 9l2-4h6l2 4" stroke="#6CA07A" stroke-width="1.8" stroke-linejoin="round"/><circle cx="25" cy="13" r="1.2" fill="#6CA07A"/></svg></div>
           <div style="font-size:13px;color:#6B8F7A;margin-top:5px;"><strong style="color:var(--pine)">클릭하여 사진 선택</strong></div>
         </div>
@@ -597,7 +597,7 @@
     <!-- ⑤ 확인 & 제출 -->
     <div class="card" style="padding:18px 22px;">
       <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
-        <input type="checkbox" name="점검자확인" value="확인완료" required
+        <input type="checkbox" name="inspector_confirm" value="확인완료" required
                style="width:18px;height:18px;accent-color:var(--pine);margin-top:2px;flex-shrink:0;" />
         <span style="font-size:13px;font-weight:600;color:#1A4035;line-height:1.5;">
           위 내용은 실제 현장 점검 결과와 일치함을 확인합니다
@@ -682,7 +682,7 @@
     ['ok','warn','bad'].forEach(t => document.getElementById('ro-' + t).classList.remove('ok','warn','bad'));
     document.getElementById('ro-' + type).classList.add(type);
     const map = { ok:'이상없음', warn:'일부주의', bad:'즉시조치필요' };
-    document.querySelector('input[name="종합결과"][value="' + map[type] + '"]').checked = true;
+    document.querySelector('input[name="overall_result"][value="' + map[type] + '"]').checked = true;
   }
 
   function showFiles(inp) {

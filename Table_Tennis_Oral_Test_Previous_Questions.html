@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탁구 구술시험 기출 Q&A — 생활스포츠지도사 2급</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+/* ─── Claude Brand Tokens (domain-migration design system) ─── */
+.theme-light {
+  --bg:            #FBF8F4;
+  --surface:       #FFFFFF;
+  --surface-warm:  #FEF6EE;
+  --surface-hover: #FDF0E8;
+  --border:        rgba(212,99,58,0.11);
+  --border-soft:   rgba(212,99,58,0.06);
+  --text:          #1E1008;
+  --text-secondary:#7A4A35;
+  --text-muted:    #B08070;
+  --accent:        #D4633A;
+  --accent-deep:   #B8502D;
+  --accent-soft:   #E8896A;
+  --accent-pale:   #F5D5C8;
+  --accent-ultra:  rgba(212,99,58,0.06);
+  --accent-secondary: #E8896A;
+  --positive:      #2e7d52;
+  --negative:      #c0392b;
+  --warning:       #b86a00;
+  --green:         #2e7d52;
+  --green-bg:      #e6f4ea;
+  --red:           #c0392b;
+  --red-bg:        #fdecea;
+  --amber:         #b86a00;
+  --amber-bg:      #fef3e2;
+  --blue:          #2563a8;
+  --blue-bg:       #e3f0fb;
+}
+.theme-dark {
+  --bg:            #150D07;
+  --surface:       #1E1208;
+  --surface-warm:  #261608;
+  --surface-hover: #2A1A0F;
+  --border:        rgba(212,99,58,0.18);
+  --border-soft:   rgba(212,99,58,0.08);
+  --text:          #F5EDE5;
+  --text-secondary:#C49A80;
+  --text-muted:    #8B6550;
+  --accent:        #E8896A;
+  --accent-deep:   #D4633A;
+  --accent-soft:   #F0A882;
+  --accent-pale:   rgba(212,99,58,0.18);
+  --accent-ultra:  rgba(212,99,58,0.06);
+  --accent-secondary: #F0A882;
+  --positive:      #7DAE80;
+  --negative:      #D47070;
+  --warning:       #D4A850;
+  --green:         #7DAE80;
+  --green-bg:      rgba(46,125,82,0.15);
+  --red:           #D47070;
+  --red-bg:        rgba(192,57,43,0.15);
+  --amber:         #D4A850;
+  --amber-bg:      rgba(184,106,0,0.15);
+  --blue:          #5A90D9;
+  --blue-bg:       rgba(37,99,168,0.15);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR','Inter',sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.65;font-size:1rem;min-height:100vh;
+  transition:background .25s,color .25s;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 10%,rgba(212,99,58,.05) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 85%,rgba(184,80,45,.04) 0%,transparent 55%);
+}
+
+/* ── Menu ── */
+.viz-menu{position:fixed;top:16px;right:16px;z-index:9000}
+.viz-menu-toggle{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(212,99,58,.1);transition:background .2s,box-shadow .2s;
+}
+.viz-menu-toggle:hover{background:var(--surface-hover);box-shadow:0 4px 16px rgba(212,99,58,.18)}
+.viz-menu-toggle svg{stroke:var(--text-secondary)}
+.viz-menu-dropdown{
+  position:absolute;top:48px;right:0;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:6px;min-width:190px;
+  box-shadow:0 8px 32px rgba(30,16,8,.14);display:none;
+}
+.viz-menu-dropdown.open{display:block}
+.viz-menu-item{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:8px;cursor:pointer;font-size:.875rem;
+  color:var(--text-secondary);border:none;background:none;
+  width:100%;text-align:left;transition:background .15s,color .15s;
+  font-family:'Noto Sans KR','Inter',sans-serif;
+}
+.viz-menu-item:hover{background:var(--surface-hover);color:var(--text)}
+
+/* ── Layout ── */
+.container{max-width:980px;margin:0 auto;padding:48px 24px 100px;position:relative;z-index:1}
+
+/* ── Hero ── */
+.hero{padding:60px 0 52px;border-bottom:1px solid var(--border);margin-bottom:64px;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent-pale);border:1px solid rgba(212,99,58,.22);
+  border-radius:100px;padding:6px 16px;
+  font-size:.76rem;font-weight:600;color:var(--accent);
+  font-family:'Inter',sans-serif;letter-spacing:.04em;margin-bottom:24px;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.hero h1{
+  font-size:2.75rem;font-weight:800;letter-spacing:-.03em;
+  color:var(--text);line-height:1.18;margin-bottom:12px;
+}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero-sub{font-size:.92rem;color:var(--text-secondary);margin-bottom:38px;line-height:1.7}
+.hero-kpi{display:flex;justify-content:center;gap:52px;flex-wrap:wrap}
+.kpi{text-align:center}
+.kpi-val{
+  font-size:2.4rem;font-weight:900;color:var(--accent);
+  font-family:'Inter',sans-serif;line-height:1;
+}
+.kpi-label{
+  font-size:.72rem;font-weight:600;color:var(--text-muted);
+  margin-top:5px;font-family:'Inter',sans-serif;
+  letter-spacing:.07em;text-transform:uppercase;
+}
+
+/* ── Search ── */
+.search-wrap{
+  position:relative;margin-bottom:32px;
+}
+.search-input{
+  width:100%;padding:12px 44px 12px 16px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;color:var(--text);
+  font-size:.9rem;font-family:'Noto Sans KR','Inter',sans-serif;
+  outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.search-input::placeholder{color:var(--text-muted)}
+.search-input:focus{
+  border-color:rgba(212,99,58,.35);
+  box-shadow:0 0 0 3px rgba(212,99,58,.08);
+}
+.search-icon{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  color:var(--text-muted);pointer-events:none;
+}
+
+/* ── Tab nav ── */
+.tab-nav{
+  display:flex;gap:0;border-bottom:1px solid var(--border);
+  margin-bottom:48px;overflow-x:auto;
+}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{
+  flex-shrink:0;padding:12px 22px;
+  font-size:.84rem;font-weight:600;
+  color:var(--text-muted);border:none;background:none;
+  cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;
+  transition:color .15s,border-color .15s;white-space:nowrap;
+  font-family:'Noto Sans KR','Inter',sans-serif;
+}
+.tab-btn:hover{color:var(--text-secondary)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ── Section label / title ── */
+.sec-label{
+  font-size:.69rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);
+  font-family:'Inter',sans-serif;margin-bottom:5px;
+}
+.sec-title{font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:26px;letter-spacing:-.02em}
+
+section{margin-bottom:72px}
+.section-content{display:none}
+.section-content.active{display:block}
+
+/* ── Card ── */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:28px;transition:box-shadow .2s;
+}
+.card:hover{box-shadow:0 4px 24px rgba(212,99,58,.08)}
+
+/* ── Progress bar ── */
+.progress-wrap{margin-bottom:0}
+.progress-label{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;
+}
+.progress-text{font-size:.88rem;font-weight:600;color:var(--text)}
+.progress-pct{font-size:1.5rem;font-weight:900;color:var(--accent);font-family:'Inter',sans-serif}
+.progress-track{
+  height:10px;background:var(--accent-pale);border-radius:6px;
+  overflow:hidden;margin-bottom:8px;
+}
+.progress-fill{
+  height:100%;border-radius:6px;
+  background:linear-gradient(90deg,var(--accent-deep),var(--accent),var(--accent-soft));
+  transition:width 1s cubic-bezier(.4,0,.2,1);
+}
+.progress-sub{font-size:.76rem;color:var(--text-muted)}
+
+/* ── Info box (출제 경향) ── */
+.info-bar{
+  background:var(--surface-warm);border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:0 12px 12px 0;padding:16px 20px;
+  margin-bottom:24px;font-size:.86rem;
+  color:var(--text-secondary);line-height:1.75;
+}
+.info-bar strong{color:var(--text);font-weight:700}
+
+/* ── Section actions ── */
+.sec-actions{display:flex;justify-content:flex-end;gap:8px;margin-bottom:16px}
+.btn-sm{
+  padding:6px 14px;border-radius:7px;
+  border:1px solid var(--border);background:var(--surface);
+  color:var(--text-secondary);font-size:.78rem;
+  font-family:'Noto Sans KR','Inter',sans-serif;
+  cursor:pointer;transition:all .15s;
+}
+.btn-sm:hover{background:var(--surface-hover);color:var(--text);border-color:rgba(212,99,58,.25)}
+
+/* ── Q&A Card (precheck-card adapted) ── */
+.qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.qa-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:0;
+  transition:box-shadow .2s,border-color .2s;overflow:hidden;
+  cursor:pointer;
+}
+.qa-card:hover{box-shadow:0 4px 20px rgba(212,99,58,.1);border-color:rgba(212,99,58,.22)}
+.qa-card.open{border-color:rgba(212,99,58,.3);box-shadow:0 4px 24px rgba(212,99,58,.12)}
+.qa-card::before{
+  content:'';display:block;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-soft));
+  opacity:0;transition:opacity .2s;
+}
+.qa-card.open::before,.qa-card:hover::before{opacity:1}
+.qa-header{padding:20px;display:flex;align-items:flex-start;gap:12px}
+.q-num{
+  width:30px;height:30px;border-radius:8px;flex-shrink:0;
+  background:var(--accent-pale);color:var(--accent);
+  font-size:.75rem;font-weight:800;font-family:'Inter',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;
+}
+.qa-card.open .q-num,.qa-card:hover .q-num{
+  background:var(--accent);color:#fff;
+}
+.qa-q-text{
+  flex:1;font-size:.9rem;font-weight:700;color:var(--text);
+  line-height:1.5;padding-top:4px;
+}
+.qa-arrow{
+  flex-shrink:0;width:22px;height:22px;border-radius:5px;
+  background:var(--surface-warm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--text-muted);
+  transition:transform .25s,background .15s;margin-top:4px;
+}
+.qa-card.open .qa-arrow{transform:rotate(180deg);background:var(--accent-pale);color:var(--accent)}
+
+.qa-body{display:none;padding:0 20px 20px;border-top:1px solid var(--border-soft)}
+.qa-card.open .qa-body{display:block}
+.a-label{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.68rem;font-weight:700;letter-spacing:1.2px;
+  color:var(--accent);margin:14px 0 10px;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
+}
+.a-label::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.qa-body p,.qa-body li{font-size:.85rem;color:var(--text-secondary);line-height:1.8}
+.qa-body ul,.qa-body ol{padding-left:18px;margin-bottom:10px}
+.qa-body li{margin-bottom:5px}
+.qa-body strong{color:var(--text);font-weight:600}
+.qa-body p{margin-bottom:8px}
+
+/* Tip box (precheck-action adapted) */
+.tip-box{
+  font-size:.8rem;font-weight:500;color:var(--accent-deep);
+  background:var(--accent-ultra);padding:10px 14px;
+  border-radius:8px;border-left:3px solid var(--accent);
+  line-height:1.65;margin-top:12px;
+}
+.theme-dark .tip-box{color:var(--accent-soft)}
+.tip-box strong{
+  display:block;margin-bottom:4px;font-size:.7rem;
+  letter-spacing:.7px;color:var(--accent);text-transform:uppercase;
+  font-family:'Inter',sans-serif;font-weight:700;
+}
+
+/* ── Table (region-list style) ── */
+.rule-table-wrap{overflow-x:auto;margin:10px 0}
+.rule-table{
+  width:100%;border-collapse:collapse;
+  font-size:.83rem;
+}
+.rule-table th{
+  background:var(--surface-warm);color:var(--text);
+  padding:9px 14px;text-align:left;font-weight:700;
+  border-bottom:2px solid rgba(212,99,58,.15);font-size:.78rem;
+  letter-spacing:.02em;
+}
+.rule-table td{
+  padding:9px 14px;border-bottom:1px solid var(--border-soft);
+  color:var(--text-secondary);line-height:1.65;vertical-align:top;
+}
+.rule-table tr:last-child td{border-bottom:none}
+.rule-table tr:hover td{background:var(--surface-warm)}
+
+/* ── Key message ── */
+.key-msg{
+  background:var(--accent);border-radius:16px;padding:32px 36px;
+  position:relative;overflow:hidden;margin-top:32px;
+}
+.theme-dark .key-msg{
+  background:rgba(212,99,58,.14);
+  border:1px solid rgba(212,99,58,.28);
+}
+.key-msg-quote{
+  position:absolute;top:-16px;left:20px;
+  font-size:7rem;font-weight:900;color:rgba(255,255,255,.1);
+  font-family:'Inter',sans-serif;line-height:1;user-select:none;
+}
+.theme-dark .key-msg-quote{color:rgba(212,99,58,.12)}
+.key-msg-text{
+  font-size:1rem;font-weight:500;color:#fff;
+  line-height:1.75;position:relative;z-index:1;
+}
+.theme-dark .key-msg-text{color:var(--text)}
+.key-msg-text strong{color:rgba(255,255,255,.95);font-weight:800}
+.theme-dark .key-msg-text strong{color:var(--accent)}
+
+/* ── Alert bar ── */
+.alert-bar{
+  background:var(--amber-bg);border:1px solid rgba(184,106,0,.18);
+  border-radius:10px;padding:12px 16px;
+  display:flex;align-items:flex-start;gap:10px;margin-top:16px;
+}
+.alert-text{font-size:.82rem;color:var(--amber);font-weight:500;line-height:1.55}
+.alert-text strong{font-weight:700}
+
+/* ── No results ── */
+.no-results{text-align:center;padding:48px 20px;color:var(--text-muted);font-size:.9rem;display:none}
+
+/* ── Animations ── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.animate{animation:fadeInUp .5s ease both}
+.delay-1{animation-delay:.07s}.delay-2{animation-delay:.14s}
+.delay-3{animation-delay:.21s}.delay-4{animation-delay:.28s}.delay-5{animation-delay:.35s}
+[data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+[data-reveal].visible{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .hero-kpi{gap:28px}
+  .qa-grid{grid-template-columns:1fr}
+  .container{padding:32px 20px 80px}
+}
+@media(max-width:375px){
+  body{overflow-x:hidden}
+  .container{padding:24px 14px 64px}
+  .hero h1{font-size:1.75rem}
+  .hero{padding:40px 0 36px}
+  .kpi-val{font-size:2rem}
+}
+@media print{
+  .viz-menu,.tab-nav,.sec-actions,.search-wrap{display:none}
+  body::before{display:none}
+  [data-reveal]{opacity:1!important;transform:none!important}
+  .section-content{display:block!important}
+  .qa-body{display:block!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" style="position:absolute;top:-40px;left:0;padding:8px 16px;background:var(--accent);color:#fff;z-index:9999;text-decoration:none;border-radius:0 0 4px 0;font-size:.85rem">본문으로 이동</a>
+
+<!-- Menu -->
+<nav class="viz-menu" role="navigation" aria-label="메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-expanded="false">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button class="viz-menu-item" onclick="cycleTheme()" role="menuitem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      테마 변경
+    </button>
+    <button class="viz-menu-item" onclick="downloadImage()" role="menuitem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      PNG 저장
+    </button>
+    <button class="viz-menu-item" onclick="window.print()" role="menuitem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      인쇄 / PDF
+    </button>
+  </div>
+</nav>
+
+<main id="main-content">
+<div class="container">
+
+  <!-- ── Hero ── -->
+  <section aria-label="문서 제목">
+    <div class="hero animate">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        시험 대비 자료 &nbsp;·&nbsp; 기출 중심 Q&amp;A &nbsp;·&nbsp; 4개 영역 완전 정리
+      </div>
+      <h1>생활스포츠지도사 2급<br><em>탁구</em> 구술시험 기출 Q&amp;A</h1>
+      <p class="hero-sub">기출 중심 문제와 모범 답변 정리 | 합격기준 : 만점의 70% 이상 득점</p>
+      <div class="hero-kpi">
+        <div class="kpi">
+          <div class="kpi-val animate delay-1" data-count="4" data-suffix="개">—</div>
+          <div class="kpi-label">시험 영역</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val animate delay-2" data-count="28" data-suffix="문">—</div>
+          <div class="kpi-label">기출 문제</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val animate delay-3" data-count="70" data-suffix="%">—</div>
+          <div class="kpi-label">합격 기준</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Search + Tab nav ── -->
+  <section aria-label="탐색">
+    <div class="search-wrap animate delay-4">
+      <input type="search" class="search-input" id="searchInput" placeholder="문제 검색 (예: 그립, 서브, 렛…)" oninput="filterCards()" aria-label="기출 문제 검색"/>
+      <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </div>
+    <nav class="tab-nav" id="tabNav" aria-label="시험 영역 탭">
+      <button class="tab-btn active" onclick="showTab('tab1',this)">① 생활체육 전반</button>
+      <button class="tab-btn" onclick="showTab('tab2',this)">② 탁구 기술 지도법</button>
+      <button class="tab-btn" onclick="showTab('tab3',this)">③ 탁구 규정</button>
+      <button class="tab-btn" onclick="showTab('tab4',this)">④ 탁구 역사</button>
+    </nav>
+  </section>
+
+  <!-- ════════ TAB 1 : 생활체육 전반 ════════ -->
+  <div id="tab1" class="section-content active">
+
+    <section aria-labelledby="t1-title">
+      <div data-reveal>
+        <p class="sec-label">Section 01</p>
+        <h2 class="sec-title" id="t1-title">생활체육 전반</h2>
+      </div>
+
+      <div class="card" style="margin-bottom:24px" data-reveal>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span class="progress-text">학습 진도</span>
+            <span class="progress-pct" id="pct-tab1">0/6</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="fill-tab1" style="width:0%"></div></div>
+          <div class="progress-sub">스포츠지도자 역할 · 지도 방법론 · 프로그램 기획</div>
+        </div>
+      </div>
+
+      <div class="info-bar animate" data-reveal>
+        <strong>📌 출제 경향</strong><br>
+        생활체육 개념, 지도자의 역할과 목적, 개인/그룹 지도방법 비교, 프로그램 기획 원리 등이 주로 출제됩니다. 교과서적 답변에 현장 경험을 연결하면 좋은 점수를 받을 수 있습니다.
+      </div>
+
+      <div class="sec-actions">
+        <button class="btn-sm" onclick="expandAll('tab1')">모두 열기</button>
+        <button class="btn-sm" onclick="collapseAll('tab1')">모두 닫기</button>
+      </div>
+
+      <div class="qa-grid" data-reveal>
+
+        <div class="qa-card" data-tab="tab1" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q1</div>
+            <div class="qa-q-text">생활체육(생활스포츠)의 개념과 목적을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p><strong>개념:</strong> 국민이 일상생활 속에서 자발적으로 참여하여 건강 증진, 여가 선용, 체력 향상을 목적으로 행하는 스포츠 활동 전반을 말합니다.</p>
+            <p><strong>목적:</strong></p>
+            <ul>
+              <li>신체적 건강 증진 및 체력 향상</li>
+              <li>정신적 스트레스 해소 및 심리적 안정</li>
+              <li>사회적 유대감 형성과 공동체 의식 함양</li>
+              <li>건전한 여가 문화 정착 및 삶의 질 향상</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>"엘리트 전문 스포츠와 달리, 모든 국민이 평생에 걸쳐 참여할 수 있는 생활 밀착형 스포츠"라는 점을 강조하세요.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab1" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q2</div>
+            <div class="qa-q-text">생활스포츠지도자의 역할과 목적을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>지도자 역할:</strong> 전문 기술을 안전하게 가르치고 수준별 프로그램 제공</li>
+              <li><strong>상담자 역할:</strong> 건강 상태·목표 파악 후 맞춤형 조언 제공</li>
+              <li><strong>조직자 역할:</strong> 프로그램 기획·운영·관리</li>
+              <li><strong>모범자 역할:</strong> 페어플레이, 예절 등 스포츠 정신 실천</li>
+              <li><strong>촉진자 역할:</strong> 참여자 스스로 즐길 수 있도록 동기 부여</li>
+            </ul>
+            <p><strong>목적:</strong> 국민의 건강하고 활동적인 생활을 지원하며 스포츠 참여 저변을 확대합니다.</p>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab1" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q3</div>
+            <div class="qa-q-text">스포츠지도자의 종류를 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p>국민체육진흥법에 따른 체육지도자 구분:</p>
+            <div class="rule-table-wrap">
+              <table class="rule-table">
+                <thead><tr><th>종류</th><th>지도 대상</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>전문스포츠지도사 1·2급</strong></td><td>선수 경기력 향상 목적 지도</td></tr>
+                  <tr><td><strong>생활스포츠지도사 1·2급</strong></td><td>일반 국민 생활체육 참여 지도</td></tr>
+                  <tr><td><strong>유소년스포츠지도사</strong></td><td>만 3세 ~ 중학교 취학 전 어린이</td></tr>
+                  <tr><td><strong>노인스포츠지도사</strong></td><td>노인 신체 특성 고려 지도</td></tr>
+                  <tr><td><strong>장애인스포츠지도사 1·2급</strong></td><td>장애 유형별 맞춤 지도</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab1" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q4</div>
+            <div class="qa-q-text">개인 지도방법과 그룹 지도방법의 장단점을 비교하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <div class="rule-table-wrap">
+              <table class="rule-table">
+                <thead><tr><th>구분</th><th>개인 지도</th><th>그룹 지도</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>장점</strong></td><td>맞춤 지도·즉각 피드백<br>빠른 기술 향상</td><td>사회성 발달·동기 부여<br>경제적 효율성</td></tr>
+                  <tr><td><strong>단점</strong></td><td>비용 부담·상호작용 부족</td><td>세밀 지도 어려움<br>소외 위험</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>초급자 → 개인 지도로 기본기, 중급 이후 → 그룹 지도로 게임 감각을 연결하면 좋습니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab1" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q5</div>
+            <div class="qa-q-text">생활체육 프로그램 기획의 원리를 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>지역사회 요구 반영:</strong> 참여자와 지역 주민의 필요와 흥미를 먼저 파악</li>
+              <li><strong>목표 명확화:</strong> 건강 증진, 사교 등 구체적 목표 설정</li>
+              <li><strong>단계적 구성:</strong> 초급 → 중급 → 고급 단계별 성장감 제공</li>
+              <li><strong>다양성:</strong> 연령·성별·수준이 다른 참여자 수용</li>
+              <li><strong>안전:</strong> 준비운동·정리운동 포함, 시설·장비 안전 확보</li>
+              <li><strong>지속성:</strong> 정기적·지속적 참여 환경 조성</li>
+              <li><strong>평가·피드백:</strong> 성과 평가 후 개선에 반영</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab1" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q6</div>
+            <div class="qa-q-text">경기력 향상을 위해 지도자가 해야 할 일을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>현재 수준 분석:</strong> 기술 수준·체력·약점 파악</li>
+              <li><strong>목표 설정:</strong> 단기·장기 목표를 참여자와 함께 설정</li>
+              <li><strong>체계적 훈련 계획:</strong> 기초 → 응용 → 전술 단계적 수립</li>
+              <li><strong>비디오 분석:</strong> 경기 영상으로 상대 분석·폼 교정</li>
+              <li><strong>심리적 지원:</strong> 긍정적 피드백, 슬럼프 극복 지원</li>
+              <li><strong>체력 훈련 병행:</strong> 순발력·민첩성·집중력 훈련</li>
+              <li><strong>실전 경험 제공:</strong> 대회 참가·모의 게임으로 경기 감각 유지</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /qa-grid -->
+    </section>
+  </div>
+
+  <!-- ════════ TAB 2 : 탁구 기술 지도법 ════════ -->
+  <div id="tab2" class="section-content">
+    <section aria-labelledby="t2-title">
+      <div data-reveal>
+        <p class="sec-label">Section 02</p>
+        <h2 class="sec-title" id="t2-title">탁구 기술 지도법</h2>
+      </div>
+
+      <div class="card" style="margin-bottom:24px" data-reveal>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span class="progress-text">학습 진도</span>
+            <span class="progress-pct" id="pct-tab2">0/6</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="fill-tab2" style="width:0%"></div></div>
+          <div class="progress-sub">그립 · 스트로크 · 서브 · 리시브 지도 방법</div>
+        </div>
+      </div>
+
+      <div class="sec-actions">
+        <button class="btn-sm" onclick="expandAll('tab2')">모두 열기</button>
+        <button class="btn-sm" onclick="collapseAll('tab2')">모두 닫기</button>
+      </div>
+
+      <div class="qa-grid" data-reveal>
+
+        <div class="qa-card" data-tab="tab2" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q1</div>
+            <div class="qa-q-text">쉐이크핸드 그립(Shakehand Grip)을 초보자에게 어떻게 설명하겠습니까?</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p>악수하듯이 라켓을 쥐는 방법입니다.</p>
+            <ol>
+              <li><strong>라켓 놓기:</strong> 라켓을 탁자 위에 수직으로 세워 놓습니다.</li>
+              <li><strong>악수하기:</strong> 엄지·검지가 라켓 면 양쪽을 자연스럽게 감싸도록 잡습니다.</li>
+              <li><strong>검지 위치:</strong> 검지는 뒷면 러버에 살짝 걸치고, 엄지는 앞면을 받칩니다.</li>
+              <li><strong>나머지 손가락:</strong> 중지·약지·소지는 손잡이를 감싸 쥡니다.</li>
+              <li><strong>힘 조절:</strong> 달걀을 쥐듯 부드럽게 잡도록 안내합니다.</li>
+            </ol>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>"라켓과 팔이 자연스럽게 연결된 느낌"이 들어야 하고, 손목이 자유롭게 움직여야 합니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab2" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q2</div>
+            <div class="qa-q-text">펜홀더 그립과 쉐이크핸드 그립의 장단점을 비교하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <div class="rule-table-wrap">
+              <table class="rule-table">
+                <thead><tr><th>구분</th><th>펜홀더</th><th>쉐이크핸드</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>장점</strong></td><td>포핸드 강한 손목·앞 공격 유리</td><td>포·백핸드 모두 공격 가능<br>넓은 코트 커버</td></tr>
+                  <tr><td><strong>단점</strong></td><td>백핸드 제한·백핸드 코너 방어 약함</td><td>손목 사용 제한·미들 약점</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>현대 탁구에서는 쉐이크핸드가 세계적 주류이며, 생활체육 초보자에게도 쉐이크핸드를 권장합니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab2" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q3</div>
+            <div class="qa-q-text">포핸드 스트로크(드라이브) 지도 방법을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ol>
+              <li><strong>스탠스:</strong> 발 어깨너비, 왼발 약간 앞, 무릎 살짝 굽혀 중심 낮춤</li>
+              <li><strong>백스윙:</strong> 라켓을 허리 오른쪽 뒤로 당기고 허리를 오른쪽으로 틉니다.</li>
+              <li><strong>임팩트:</strong> 공 정점 직전~정점에서 타구. 라켓 면 약간 닫고 아래→위로 스윙</li>
+              <li><strong>팔로우스루:</strong> 라켓이 왼쪽 어깨 앞까지 자연스럽게 따라 올라오도록</li>
+              <li><strong>복귀:</strong> 타구 후 즉시 준비자세로 돌아옵니다.</li>
+            </ol>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>팔만 움직이지 않고 허리 회전을 이용, 공을 "쓸어 올리는 느낌"으로 지도합니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab2" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q4</div>
+            <div class="qa-q-text">백핸드 스트로크 지도 방법을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ol>
+              <li><strong>준비자세:</strong> 두 발 거의 평행, 상체 약간 앞으로 숙입니다.</li>
+              <li><strong>백스윙:</strong> 팔꿈치를 배꼽 앞에 고정, 전완을 안쪽으로 당깁니다.</li>
+              <li><strong>임팩트:</strong> 팔꿈치를 축으로 전완을 앞으로 밀어 올리며 타구</li>
+              <li><strong>팔로우스루:</strong> 라켓이 이마 높이까지 올라오며 마무리</li>
+              <li><strong>복귀:</strong> 즉시 준비자세로 복귀</li>
+            </ol>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>"팔꿈치는 고정, 전완만 움직인다" — 포핸드보다 스윙이 작고 컴팩트합니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab2" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q5</div>
+            <div class="qa-q-text">초보자에게 서브 리시브를 지도하는 방법을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ol>
+              <li><strong>공의 회전 이해:</strong> 탑스핀·백스핀·사이드스핀의 세 가지를 시범으로 설명</li>
+              <li><strong>서버 관찰 훈련:</strong> 라켓 각도·스윙 방향·접촉음으로 회전을 읽도록 훈련</li>
+              <li><strong>쇼트(짧게 받기):</strong> 짧은 서브 → 라켓 면 살짝 세워 짧게 밀어 넣기</li>
+              <li><strong>푸시(길게 밀기):</strong> 역회전 서브 → 라켓 열고 아래에서 위로 밀어내기</li>
+              <li><strong>플릭(튕기기):</strong> 익숙해지면 손목으로 공격적으로 튕겨 치는 플릭 지도</li>
+            </ol>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>우선 "역회전 → 라켓 열기, 앞회전 → 라켓 닫기"의 간단한 원칙부터 익히게 합니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab2" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q6</div>
+            <div class="qa-q-text">너클 서브(무회전 서브)의 요령을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>라켓 접촉:</strong> 면 정중앙으로 가볍게 밀어내듯 접촉. "스치지 말고 밀어준다"는 느낌</li>
+              <li><strong>팔로우스루를 크게:</strong> 회전 서브처럼 스윙 동작을 크게 해 상대를 착각하게 만듦</li>
+              <li><strong>낮은 탄도:</strong> 낮고 짧게 넣어 상대의 공격 기회를 줄임</li>
+              <li><strong>착각 유도:</strong> 역회전 서브 모션을 취하면 상대가 라켓을 열어 받다가 공이 밖으로 나감</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ════════ TAB 3 : 탁구 규정 ════════ -->
+  <div id="tab3" class="section-content">
+    <section aria-labelledby="t3-title">
+      <div data-reveal>
+        <p class="sec-label">Section 03</p>
+        <h2 class="sec-title" id="t3-title">탁구 규정</h2>
+      </div>
+
+      <div class="card" style="margin-bottom:24px" data-reveal>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span class="progress-text">학습 진도</span>
+            <span class="progress-pct" id="pct-tab3">0/9</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="fill-tab3" style="width:0%"></div></div>
+          <div class="progress-sub">ITTF 공식 규정 기반 · 경기장/장비/경기 규칙</div>
+        </div>
+      </div>
+
+      <div class="sec-actions">
+        <button class="btn-sm" onclick="expandAll('tab3')">모두 열기</button>
+        <button class="btn-sm" onclick="collapseAll('tab3')">모두 닫기</button>
+      </div>
+
+      <div class="qa-grid" data-reveal>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q1</div>
+            <div class="qa-q-text">탁구 경기장 및 테이블 규격을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <div class="rule-table-wrap">
+              <table class="rule-table">
+                <thead><tr><th>항목</th><th>규격</th></tr></thead>
+                <tbody>
+                  <tr><td>테이블 길이</td><td>274cm (9피트)</td></tr>
+                  <tr><td>테이블 너비</td><td>152.5cm (5피트)</td></tr>
+                  <tr><td>테이블 높이</td><td>바닥으로부터 76cm</td></tr>
+                  <tr><td>네트 높이</td><td>테이블 위 15.25cm</td></tr>
+                  <tr><td>테이블 색상</td><td>짙은 색 (무광, 암녹색 또는 청색)</td></tr>
+                  <tr><td>경기 공간</td><td>길이 14m × 너비 7m × 높이 5m (국제대회)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q2</div>
+            <div class="qa-q-text">탁구 경기장의 조명 규정을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li>경기 테이블 위 1m 높이에서 측정, <strong>최소 600럭스(lux) 이상</strong></li>
+              <li>경기 구역 주변 조명: <strong>약 400럭스</strong> 수준 (경기대 조명의 절반 이하)</li>
+              <li>광원 하단이 <strong>바닥으로부터 최소 5m 이상</strong></li>
+              <li>배경은 어두운 색으로 공이 잘 보이도록 합니다.</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>"600럭스 이상"과 "광원 5m 이상" 두 수치를 반드시 함께 답변하세요.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q3</div>
+            <div class="qa-q-text">네트 어셈블리(Net Assembly)에 대해 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p>네트(net), 현수줄(suspension), 지지대(support posts), 고정 클램프로 구성됩니다.</p>
+            <ul>
+              <li><strong>네트 높이:</strong> 테이블 상면으로부터 15.25cm</li>
+              <li><strong>네트 길이:</strong> 양쪽 옆으로 각 15.25cm 넘어가야 함 (총 약 183cm)</li>
+              <li><strong>지지대:</strong> 사이드라인에서 바깥으로 15.25cm 지점</li>
+              <li><strong>네트 하단:</strong> 테이블 면에 밀착</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q4</div>
+            <div class="qa-q-text">올바른 서비스(서브)의 조건 3가지를 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ol>
+              <li><strong>손바닥에서 수직 토스:</strong> 펼친 손바닥에 공을 올려 거의 수직으로 <strong>최소 16cm 이상</strong> 띄웁니다.</li>
+              <li><strong>서버 코트 먼저 바운드:</strong> 서버 자신의 코트 → 네트 넘어 수신자 코트 순서로 바운드</li>
+              <li><strong>공이 보이도록 유지:</strong> 시작부터 타구까지 항상 네트 높이 이상에서 보여야 합니다.</li>
+            </ol>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>복식에서는 오른쪽 코트 → 상대 오른쪽 코트로 대각선 서브가 필수입니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q5</div>
+            <div class="qa-q-text">득점이 되는 상황과 실점이 되는 상황을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p><strong>상대가 다음을 하면 내가 득점합니다:</strong></p>
+            <ul>
+              <li>서비스 또는 리턴 실패</li>
+              <li>타구한 공이 네트나 지지대에 닿고 넘어가지 않은 경우</li>
+              <li>공이 상대 코트 외부로 나간 경우</li>
+              <li>경기 중 공을 두 번 연속으로 친 경우 (더블히트)</li>
+              <li>라켓 손이 아닌 신체 부위로 공을 친 경우</li>
+              <li>공이 경기자의 코트에 두 번 바운드된 경우</li>
+              <li>복식에서 순서를 지키지 않고 타구한 경우</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>테이블 <strong>에지(모서리) → 유효</strong>, <strong>사이드(옆면) → 아웃</strong>을 반드시 언급하세요.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q6</div>
+            <div class="qa-q-text">렛(Let)이 선언되는 경우를 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p>렛은 랠리를 무효로 하고 재경기를 실시하는 것입니다.</p>
+            <ul>
+              <li><strong>네트인 서브:</strong> 서비스 공이 네트를 스쳐 상대 코트로 넘어간 경우 (리턴은 렛 없음)</li>
+              <li><strong>수신자 준비 미완료:</strong> 준비되지 않은 상태에서 서비스가 이루어진 경우</li>
+              <li><strong>외부 방해:</strong> 갑작스러운 소음, 다른 코트의 공 침범 등</li>
+              <li><strong>심판 판단:</strong> 심판 또는 부심이 경기 중단이 필요하다고 판단하는 경우</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q7</div>
+            <div class="qa-q-text">인터벌(휴식 시간) 규정을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>게임 간 휴식:</strong> 각 게임 사이에 <strong>1분</strong> 휴식 허용</li>
+              <li><strong>타월 사용:</strong> <strong>6포인트마다</strong> 1회 타월로 땀 닦기 가능</li>
+              <li><strong>음료 섭취:</strong> 각 게임 사이에만 허용 (게임 중 불가)</li>
+              <li><strong>코칭:</strong> 단식: 게임 간만 허용 / 팀 경기: 지정 코치가 게임 사이에 코칭 가능</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>"<strong>6포인트마다 타월 사용 가능</strong>"은 자주 출제되는 세부 규정입니다.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q8</div>
+            <div class="qa-q-text">촉진 제도(Expedite System)에 대해 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>발동 조건:</strong> 한 게임 시작 후 <strong>10분 경과</strong>, 합산 점수 <strong>18점 미만</strong>이면 자동 적용</li>
+              <li><strong>규칙 변경:</strong> 서비스권이 매 <strong>1포인트마다 교대</strong> (원래는 2포인트)</li>
+              <li><strong>수신자 조건:</strong> 수신자가 <strong>13번 이상</strong> 합법적으로 리턴하면 득점</li>
+              <li><strong>목적:</strong> 수비 위주의 지루한 경기 방지, 역동성 유지</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 키워드</strong>10분 · 합산 18점 미만 · 1포인트마다 교대 · 13번 리턴 시 득점</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab3" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q9</div>
+            <div class="qa-q-text">러버(Rubber)와 블레이드(Blade)에 대해 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <p><strong>블레이드:</strong> 라켓의 나무 본체. 전체 두께의 85% 이상이 천연 목재이어야 합니다.</p>
+            <p><strong>러버:</strong></p>
+            <ul>
+              <li>블레이드 양면에 부착하는 고무 시트 (ITTF 공인 러버만 사용 가능)</li>
+              <li><strong>두께:</strong> 스펀지 포함 최대 4mm 이하</li>
+              <li><strong>색상:</strong> 한 면 <strong>적색(빨강)</strong>, 다른 면 <strong>흑색(검정)</strong> 필수</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>"한 면 빨강, 다른 면 검정"은 반드시 암기해야 하는 규정입니다.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ════════ TAB 4 : 탁구 역사 ════════ -->
+  <div id="tab4" class="section-content">
+    <section aria-labelledby="t4-title">
+      <div data-reveal>
+        <p class="sec-label">Section 04</p>
+        <h2 class="sec-title" id="t4-title">탁구의 역사</h2>
+      </div>
+
+      <div class="card" style="margin-bottom:24px" data-reveal>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span class="progress-text">학습 진도</span>
+            <span class="progress-pct" id="pct-tab4">0/5</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="fill-tab4" style="width:0%"></div></div>
+          <div class="progress-sub">탁구 유래 · 한국 탁구 도입 · 주요 국제 성과</div>
+        </div>
+      </div>
+
+      <div class="sec-actions">
+        <button class="btn-sm" onclick="expandAll('tab4')">모두 열기</button>
+        <button class="btn-sm" onclick="collapseAll('tab4')">모두 닫기</button>
+      </div>
+
+      <div class="qa-grid" data-reveal>
+
+        <div class="qa-card" data-tab="tab4" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q1</div>
+            <div class="qa-q-text">탁구의 유래를 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>기원:</strong> 1880년대 영국 상류층이 실내에서 테니스를 흉내 낸 놀이에서 비롯</li>
+              <li><strong>명칭 유래:</strong> 공을 치고 받을 때 나는 소리에서 '핑퐁(Ping-Pong)' → 1900년경 J. Jaques 사가 상표 등록</li>
+              <li><strong>국제화:</strong> 1926년 베를린에서 제1회 세계탁구선수권대회 개최 + <strong>ITTF 창설</strong></li>
+              <li><strong>올림픽 채택:</strong> <strong>1988년 서울 올림픽</strong>부터 정식 종목</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab4" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q2</div>
+            <div class="qa-q-text">우리나라에 탁구가 어떻게 도입되고 기틀을 마련했는지 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>도입:</strong> <strong>1924년경</strong> 일제강점기에 일본을 통해 전해짐. 당시 '핑퐁'으로 불림</li>
+              <li><strong>첫 경기:</strong> 1924년 서울 YMCA에서 최초의 탁구 경기 개최</li>
+              <li><strong>기틀 마련:</strong> 1947년 <strong>대한탁구협회</strong> 정식 창설로 체계적 기반 마련</li>
+              <li><strong>국제 가입:</strong> 1952년 ITTF 가입</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab4" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q3</div>
+            <div class="qa-q-text">한국탁구 첫 세계대회 출전과 첫 금메달 대회를 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>첫 세계대회 출전:</strong> <strong>1956년 제23회 세계선수권대회</strong> (도쿄, 일본)</li>
+              <li><strong>첫 세계선수권 금메달:</strong> <strong>1973년 제32회 (사라예보, 유고슬라비아)</strong><br>이에리사·정현숙 선수 — 여자복식 금메달</li>
+              <li><strong>올림픽 첫 금메달:</strong> <strong>1988년 서울 올림픽</strong><br>유남규(남자단식), 현정화·양영자(여자복식)</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 포인트</strong>이에리사·정현숙(1973), 유남규·현정화(1988) — 이름과 대회명을 함께 암기하세요.</div>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab4" onclick="toggleCard(this)">
+          <div class="qa-header">
+            <div class="q-num">Q4</div>
+            <div class="qa-q-text">국제탁구연맹(ITTF)의 설립과 역할을 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>설립:</strong> <strong>1926년 독일 베를린</strong>. 창설 당시 9개국 (영국·독일·헝가리 등)</li>
+              <li><strong>역할:</strong>
+                <ul>
+                  <li>탁구 세계 규정 제정 및 개정</li>
+                  <li>세계탁구선수권대회·ITTF 월드투어 주관</li>
+                  <li>공인 장비 (공·러버·테이블) 인증</li>
+                  <li>탁구의 세계적 보급과 발전 촉진</li>
+                </ul>
+              </li>
+              <li><strong>세계선수권대회:</strong> 1926년 제1회 → 매 2년마다 개최</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="qa-card" data-tab="tab4" onclick="toggleCard(this)" style="grid-column: span 2">
+          <div class="qa-header">
+            <div class="q-num">Q5</div>
+            <div class="qa-q-text">탁구공의 규격 변화(38mm → 40mm)에 대해 설명하시오.</div>
+            <div class="qa-arrow">▼</div>
+          </div>
+          <div class="qa-body">
+            <div class="a-label">모범 답변</div>
+            <ul>
+              <li><strong>기존 규격:</strong> 직경 <strong>38mm</strong> (오랜 기간 사용)</li>
+              <li><strong>2000년 변경:</strong> ITTF가 관람 가치 향상을 위해 <strong>40mm</strong>로 확대. 공이 커지면 속도·회전이 줄어 랠리가 길어집니다.</li>
+              <li><strong>2015년 추가 변화:</strong> 재질을 <strong>셀룰로이드 → 플라스틱(ABS 소재, 40+mm)</strong>으로 변경. 인화성·환경 문제 해결</li>
+            </ul>
+            <div class="tip-box"><strong>💡 핵심 키워드</strong>38mm → 40mm (2000년) · 셀룰로이드 → 플라스틱 (2015년, 40+mm)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Key message -->
+      <div class="key-msg" data-reveal>
+        <div class="key-msg-quote">"</div>
+        <div class="key-msg-text">
+          구술시험은 내용보다 <strong>전달력</strong>이 중요합니다.<br>
+          모범 답변을 그대로 외우기보다, 핵심 키워드 중심으로 자신의 언어로 말하는 연습을 하세요.<br>
+          특히 <strong>숫자 (16cm, 15.25cm, 600럭스, 10분, 13번)</strong>는 반드시 정확하게 말할 수 있어야 합니다.
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- No results -->
+  <div class="no-results" id="noResults" role="status" aria-live="polite">검색 결과가 없습니다.</div>
+
+</div>
+</main>
+
+<script>
+/* ── Theme ── */
+var THEMES = ['light','dark'];
+var currentTheme = localStorage.getItem('viz-theme') ||
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+function applyTheme(t) {
+  document.documentElement.className = 'theme-' + t;
+  currentTheme = t;
+  localStorage.setItem('viz-theme', t);
+}
+function cycleTheme() {
+  applyTheme(THEMES[(THEMES.indexOf(currentTheme) + 1) % THEMES.length]);
+  var d = document.getElementById('vizMenuDropdown');
+  if (d) d.classList.remove('open');
+}
+applyTheme(currentTheme);
+
+/* ── Menu ── */
+function toggleMenu() {
+  var d = document.getElementById('vizMenuDropdown');
+  var t = document.querySelector('.viz-menu-toggle');
+  var open = d.classList.toggle('open');
+  if (t) t.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click', function(e) {
+  var d = document.getElementById('vizMenuDropdown');
+  if (d && !e.target.closest('.viz-menu')) d.classList.remove('open');
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var d = document.getElementById('vizMenuDropdown');
+    if (d) d.classList.remove('open');
+  }
+});
+
+/* ── Download ── */
+function downloadImage() {
+  var d = document.getElementById('vizMenuDropdown');
+  if (d) d.classList.remove('open');
+  if (typeof htmlToImage === 'undefined') { window.print(); return; }
+  htmlToImage.toPng(document.getElementById('main-content'), {quality: 0.95})
+    .then(function(url) {
+      var a = document.createElement('a');
+      a.download = '탁구-구술시험-QA.png';
+      a.href = url; a.click();
+    });
+}
+
+/* ── Scroll reveal ── */
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-reveal]').forEach(function(el) { obs.observe(el); });
+
+/* ── Number counter ── */
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(function(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    var target = parseFloat(el.dataset.count);
+    var suffix = el.dataset.suffix || '';
+    var start = performance.now(), dur = 1200;
+    (function tick(now) {
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  });
+}
+var firstCtr = document.querySelector('[data-count]');
+if (firstCtr) {
+  var cObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } });
+  }, { threshold: 0.3 });
+  cObs.observe(firstCtr);
+}
+
+/* ── Progress bar animate on load ── */
+function animateProgressBar(tabId) {
+  var fill = document.getElementById('fill-' + tabId);
+  if (!fill) return;
+  setTimeout(function() { updateProgress(tabId, true); }, 400);
+}
+
+/* ── Tab logic ── */
+function showTab(tabId, btn) {
+  document.querySelectorAll('.section-content').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  // Clear search
+  var si = document.getElementById('searchInput');
+  if (si) { si.value = ''; filterCards(); }
+  // Animate progress bar for this tab
+  animateProgressBar(tabId);
+  updateProgress(tabId);
+}
+
+/* ── Toggle Q&A card ── */
+function toggleCard(card) {
+  card.classList.toggle('open');
+  var tab = card.dataset.tab;
+  if (tab) updateProgress(tab);
+}
+
+/* ── Expand / Collapse all ── */
+function expandAll(tabId) {
+  document.querySelectorAll('#' + tabId + ' .qa-card').forEach(function(c) { c.classList.add('open'); });
+  updateProgress(tabId);
+}
+function collapseAll(tabId) {
+  document.querySelectorAll('#' + tabId + ' .qa-card').forEach(function(c) { c.classList.remove('open'); });
+  updateProgress(tabId);
+}
+
+/* ── Progress update ── */
+function updateProgress(tabId) {
+  var all = document.querySelectorAll('#' + tabId + ' .qa-card:not([style*="none"])');
+  var opened = document.querySelectorAll('#' + tabId + ' .qa-card.open:not([style*="none"])');
+  var total = all.length;
+  var done = opened.length;
+  var fill = document.getElementById('fill-' + tabId);
+  var pct = document.getElementById('pct-' + tabId);
+  if (fill) fill.style.width = total > 0 ? (done / total * 100) + '%' : '0%';
+  if (pct) pct.textContent = done + '/' + total;
+}
+
+/* ── Search / filter ── */
+function filterCards() {
+  var q = document.getElementById('searchInput').value.toLowerCase().trim();
+  var cards = document.querySelectorAll('.qa-card');
+  var any = false;
+
+  // When searching, show all tabs
+  if (q) {
+    document.querySelectorAll('.section-content').forEach(function(s) {
+      var hasMatch = false;
+      s.querySelectorAll('.qa-card').forEach(function(c) {
+        var match = c.textContent.toLowerCase().includes(q);
+        c.style.display = match ? '' : 'none';
+        if (match) hasMatch = true;
+      });
+      s.classList.toggle('active', hasMatch);
+      if (hasMatch) any = true;
+    });
+    // Hide tab nav during search
+    document.getElementById('tabNav').style.opacity = '0.4';
+  } else {
+    // Restore active tab
+    cards.forEach(function(c) { c.style.display = ''; });
+    document.getElementById('tabNav').style.opacity = '1';
+    var activeBtn = document.querySelector('.tab-btn.active');
+    document.querySelectorAll('.section-content').forEach(function(s) { s.classList.remove('active'); });
+    if (activeBtn) {
+      var fn = activeBtn.getAttribute('onclick') || '';
+      var m = fn.match(/tab\d/);
+      if (m) document.getElementById(m[0]).classList.add('active');
+    } else {
+      document.getElementById('tab1').classList.add('active');
+    }
+    any = true;
+  }
+
+  document.getElementById('noResults').style.display = any ? 'none' : 'block';
+  ['tab1','tab2','tab3','tab4'].forEach(function(t) { updateProgress(t); });
+}
+
+/* ── Init ── */
+setTimeout(function() { animateProgressBar('tab1'); }, 600);
+</script>
+</body>
+</html>

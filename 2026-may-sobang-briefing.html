@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 May 소방병원 기기 설치 진행 일정</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+/* ─── Claude Brand Color System ─── */
+:root {
+  --claude-coral:      #D4633A;
+  --claude-coral-deep: #B8502D;
+  --claude-coral-soft: #E8896A;
+  --claude-coral-pale: #F5D5C8;
+  --claude-warm:       #C96442;
+  --claude-sand:       #E8C9A0;
+  --claude-cream:      #FBF8F4;
+  --claude-parchment:  #F5EFE6;
+  --claude-brown:      #7A4A35;
+  --claude-dark:       #1E1008;
+  --claude-charcoal:   #2D1A0E;
+}
+
+.theme-light {
+  --bg:              #FBF8F4;
+  --surface:         #FFFFFF;
+  --surface-hover:   #FDF3EC;
+  --surface-warm:    #FEF6EE;
+  --border:          rgba(212,99,58,0.12);
+  --border-soft:     rgba(212,99,58,0.07);
+  --text:            #1E1008;
+  --text-secondary:  #8B5E4A;
+  --text-muted:      #B08070;
+  --accent:          #D4633A;
+  --accent-hover:    #B8502D;
+  --accent-secondary:#E8896A;
+  --accent-pale:     #F5D5C8;
+  --positive:        #5B8A5E;
+  --negative:        #B85050;
+  --warning:         #C48A2E;
+  --highlight:       #C96442;
+}
+
+.theme-dark {
+  --bg:              #150D07;
+  --surface:         #1E1208;
+  --surface-hover:   #2A1A0F;
+  --surface-warm:    #261608;
+  --border:          rgba(212,99,58,0.18);
+  --border-soft:     rgba(212,99,58,0.08);
+  --text:            #F5EDE5;
+  --text-secondary:  #C49A80;
+  --text-muted:      #8B6550;
+  --accent:          #E8896A;
+  --accent-hover:    #D4633A;
+  --accent-secondary:#F0A882;
+  --accent-pale:     rgba(212,99,58,0.18);
+  --positive:        #7DAE80;
+  --negative:        #D47070;
+  --warning:         #D4A850;
+  --highlight:       #E8896A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 1rem;
+  min-height: 100vh;
+  transition: background 0.25s, color 0.25s;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(212,99,58,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(200,80,50,0.03) 0%, transparent 50%);
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -40px; left: 0; padding: 8px 16px;
+  background: var(--accent); color: #fff; z-index: 9999;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Menu ── */
+.viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9000; }
+.viz-menu-toggle {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px rgba(212,99,58,0.1);
+  transition: background 0.2s, box-shadow 0.2s;
+  color: var(--text);
+}
+.viz-menu-toggle:hover { background: var(--surface-hover); box-shadow: 0 4px 16px rgba(212,99,58,0.18); }
+.viz-menu-dropdown {
+  position: absolute; top: 48px; right: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 6px; min-width: 190px;
+  box-shadow: 0 8px 32px rgba(30,16,8,0.14);
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: all 0.2s;
+}
+.viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.viz-menu-dropdown button {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  border-radius: 8px; cursor: pointer; font-size: 0.875rem;
+  color: var(--text-secondary); border: none; background: none;
+  width: 100%; text-align: left; transition: background 0.15s, color 0.15s;
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+}
+.viz-menu-dropdown button:hover { background: var(--surface-hover); color: var(--text); }
+
+/* ── Layout ── */
+.container { max-width: 880px; margin: 0 auto; padding: 48px 24px 100px; position: relative; z-index: 1; }
+
+/* ── Hero ── */
+.hero {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-pale); border: 1px solid rgba(212,99,58,0.2);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 0.75rem; font-weight: 600; color: var(--accent);
+  font-family: 'Inter', sans-serif; letter-spacing: 0.04em;
+  margin-bottom: 24px; text-transform: uppercase;
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.hero h1 {
+  font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em;
+  color: var(--text); line-height: 1.2; margin-bottom: 12px;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-sub { font-size: 0.92rem; color: var(--text-secondary); }
+
+/* ── KPI Row ── */
+.kpi-row {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px;
+}
+.kpi-card {
+  flex: 1; min-width: 160px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px 20px;
+  text-align: center;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  position: relative; overflow: hidden;
+}
+.kpi-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  opacity: 0; transition: opacity 0.2s;
+}
+.kpi-card:hover { box-shadow: 0 6px 24px rgba(212,99,58,0.1); border-color: rgba(212,99,58,0.25); }
+.kpi-card:hover::after { opacity: 1; }
+.kpi-value {
+  font-size: 2.2rem; font-weight: 900; color: var(--accent);
+  font-family: 'Inter', sans-serif; line-height: 1; margin-bottom: 6px;
+}
+.kpi-label {
+  font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+  letter-spacing: 0.07em; text-transform: uppercase; font-family: 'Inter', sans-serif;
+}
+
+/* ── Section ── */
+section { margin-bottom: 64px; }
+.section-label {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+  font-family: 'Inter', sans-serif; margin-bottom: 4px;
+}
+.section-title {
+  font-size: 1.35rem; font-weight: 700; color: var(--text);
+  margin-bottom: 24px; letter-spacing: -0.02em;
+}
+
+/* ── Equipment Card ── */
+.equipment-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  position: relative; overflow: hidden;
+}
+.equipment-card::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
+  border-radius: 4px 0 0 4px;
+}
+.equipment-card:hover { box-shadow: 0 8px 32px rgba(212,99,58,0.1); border-color: rgba(212,99,58,0.22); }
+
+.eq-header {
+  display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;
+}
+.eq-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--accent-pale);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.eq-icon svg { stroke: var(--accent); }
+.eq-title {
+  font-size: 1.1rem; font-weight: 700; color: var(--text);
+  letter-spacing: -0.01em; line-height: 1.3;
+}
+.eq-subtitle {
+  font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px;
+}
+
+/* ── Timeline items ── */
+.timeline { display: flex; flex-direction: column; gap: 12px; }
+.tl-item {
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.tl-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+.tl-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.tl-dot.done { background: var(--positive); }
+.tl-dot.pending { background: var(--warning); border: 2px solid var(--warning); background: transparent; }
+.tl-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; min-height: 12px; }
+.tl-content { flex: 1; padding-bottom: 4px; }
+.tl-date {
+  font-size: 0.72rem; font-weight: 700; color: var(--accent);
+  font-family: 'Inter', sans-serif; letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+.tl-text { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+
+/* ── Status badge ── */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 100px;
+  font-size: 0.72rem; font-weight: 600; font-family: 'Inter', sans-serif;
+}
+.badge-done { background: rgba(91,138,94,0.12); color: var(--positive); }
+.badge-pending { background: rgba(196,138,46,0.12); color: var(--warning); }
+.badge-scheduled { background: var(--accent-pale); color: var(--accent); }
+
+/* ── Notice box ── */
+.notice-box {
+  background: var(--surface-warm); border: 1px solid rgba(212,99,58,0.18);
+  border-radius: 14px; padding: 20px 24px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.notice-icon { flex-shrink: 0; margin-top: 2px; }
+.notice-icon svg { stroke: var(--warning); }
+.notice-text { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+.notice-text strong { color: var(--text); font-weight: 600; }
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate { animation: fadeInUp 0.55s ease-out both; }
+.animate.delay-1 { animation-delay: 0.08s; }
+.animate.delay-2 { animation-delay: 0.16s; }
+.animate.delay-3 { animation-delay: 0.24s; }
+.animate.delay-4 { animation-delay: 0.32s; }
+.animate.delay-5 { animation-delay: 0.40s; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ── Print ── */
+@media print {
+  body { background: white !important; color: black !important; }
+  body::before { display: none; }
+  .viz-menu { display: none; }
+  .equipment-card { break-inside: avoid; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+@page { margin: 0.8in; }
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.7rem; }
+  .kpi-row { gap: 10px; }
+  .kpi-card { min-width: 130px; }
+  .equipment-card { padding: 22px 18px; }
+  .container { padding: 32px 16px 80px; }
+}
+@media (max-width: 375px) {
+  body { overflow-x: hidden; }
+  .hero h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">콘텐츠로 이동</a>
+
+<!-- Menu -->
+<div class="viz-menu" role="navigation" aria-label="도구 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="5" x2="17" y2="5"/>
+      <line x1="3" y1="10" x2="17" y2="10"/>
+      <line x1="3" y1="15" x2="17" y2="15"/>
+    </svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown">
+    <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">라이트 모드</span></button>
+    <button onclick="downloadImage()"><span>📥</span><span>PNG 다운로드</span></button>
+    <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+  </div>
+</div>
+
+<main id="main-content">
+<div class="container">
+
+  <!-- Hero -->
+  <header class="hero animate">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      현장 브리핑 · 2026. 05. 26
+    </div>
+    <h1>2026 May<em>_</em><br>소방병원 기기 설치 진행 일정</h1>
+    <p class="hero-sub">투석기기 및 정수시스템 설치 현황 요약 보고</p>
+  </header>
+
+  <!-- KPI -->
+  <section aria-label="현황 요약" class="animate delay-1">
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-value" data-count="30" data-suffix="대">30대</div>
+        <div class="kpi-label">AK98 총 투석기기</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value" data-count="5" data-suffix="대">5대</div>
+        <div class="kpi-label">5/28 1차 설치 예정</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value" data-count="25" data-suffix="대">25대</div>
+        <div class="kpi-label">7~8월 2차 설치</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">3종</div>
+        <div class="kpi-label">설치 장비 구분</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AK98 -->
+  <section aria-labelledby="ak98-title" data-reveal>
+    <div class="section-label">투석기기</div>
+    <h2 class="section-title" id="ak98-title">AK98 설치 일정</h2>
+
+    <div class="equipment-card">
+      <div class="eq-header">
+        <div class="eq-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div>
+          <div class="eq-title">AK98 혈액투석기 <span class="status-badge badge-scheduled">설치 예정</span></div>
+          <div class="eq-subtitle">소방병원 인공신장실 · 총 30대 도입</div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">5월 28일</div>
+            <div class="tl-text">AK98 <strong>5대 1차 설치</strong> 진행</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">6월 1일</div>
+            <div class="tl-text">AK98 <strong>5대 운용 목표</strong>로 일정 진행</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">7~8월 중</div>
+            <div class="tl-text">잔여 <strong>25대 2차 설치</strong> 예정</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRO300H -->
+  <section aria-labelledby="wro-title" data-reveal>
+    <div class="section-label">소형 정수기</div>
+    <h2 class="section-title" id="wro-title">WRO300H — 투석기기용 소형 정수기</h2>
+
+    <div class="equipment-card">
+      <div class="eq-header">
+        <div class="eq-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6 9 4 13 4 15.5a8 8 0 0 0 16 0C20 13 18 9 12 2z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="eq-title">WRO300H <span class="status-badge badge-done">테스트 완료</span></div>
+          <div class="eq-subtitle">투석기기 1기 사용 용도 소형 정수기</div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot done"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">5월 18일 완료</div>
+            <div class="tl-text">투석기기 <strong>연결 및 가동 테스트 완료</strong></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot pending"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">향후 지속</div>
+            <div class="tl-text"><strong>정기적인 소독 관리</strong> 필요</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CWP106H -->
+  <section aria-labelledby="cwp-title" data-reveal>
+    <div class="section-label">대형 정수기</div>
+    <h2 class="section-title" id="cwp-title">CWP106H — 인공신장실용 대형 정수기</h2>
+
+    <div class="equipment-card">
+      <div class="eq-header">
+        <div class="eq-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="eq-title">CWP106H <span class="status-badge badge-pending">수도 연결 대기</span></div>
+          <div class="eq-subtitle">인공신장실 전용 대형 정수시스템</div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot done"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">4월 16일 완료</div>
+            <div class="tl-text"><strong>정수시스템 설치 완료</strong> — 수도시설만 미연결 상태</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot pending"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">현재 진행 중</div>
+            <div class="tl-text">병원 신장실 정수실 내 <strong>수도 시설 보강 완료</strong></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">5월 28일 예정</div>
+            <div class="tl-text"><strong>최종 연결 가동 테스트</strong> 예정</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-date">사전 예정</div>
+            <div class="tl-text"><strong>미세물질검사</strong> 시행 예정</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notice -->
+  <section aria-label="주의사항" data-reveal>
+    <div class="notice-box">
+      <div class="notice-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div class="notice-text">
+        <strong>핵심 체크포인트</strong> — AK98 6/1 운용 목표 달성을 위해 일정 차질 없이 진행 확인.
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<script>
+// === Menu ===
+function toggleMenu() {
+  var dropdown = document.getElementById('vizMenuDropdown');
+  if (dropdown) dropdown.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.viz-menu')) {
+    var dropdown = document.getElementById('vizMenuDropdown');
+    if (dropdown) dropdown.classList.remove('open');
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var dropdown = document.getElementById('vizMenuDropdown');
+    if (dropdown) dropdown.classList.remove('open');
+  }
+});
+
+// === Theme ===
+var savedTheme = localStorage.getItem('viz-theme');
+var currentTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+function applyTheme(t) {
+  document.documentElement.className = 'theme-' + t;
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  if (icon) icon.textContent = t === 'dark' ? '🌙' : '☀️';
+  if (label) label.textContent = t === 'dark' ? '다크 모드' : '라이트 모드';
+  localStorage.setItem('viz-theme', t);
+  currentTheme = t;
+  if (typeof onThemeChange === 'function') onThemeChange();
+}
+function cycleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
+applyTheme(currentTheme);
+
+// === Scroll Reveal ===
+document.querySelectorAll('[data-reveal]').forEach(function(el) { el.classList.add('reveal'); });
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+// === Number Counter ===
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(function(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    var target = parseFloat(el.dataset.count);
+    var suffix = el.dataset.suffix || '';
+    var start = performance.now(), duration = 1000;
+    (function tick(now) {
+      var p = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  });
+}
+var counterEl = document.querySelector('[data-count]');
+if (counterEl) {
+  var cObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } });
+  }, { threshold: 0.3 });
+  cObs.observe(counterEl);
+}
+
+// === Download PNG ===
+async function downloadImage() {
+  var menu = document.querySelector('.viz-menu');
+  if (menu) menu.style.display = 'none';
+  try {
+    var url = await htmlToImage.toPng(document.body, { quality: 1, pixelRatio: 2 });
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = '2026-may-sobang-briefing.png';
+    a.click();
+  } catch(e) { console.error('Download failed:', e); }
+  if (menu) menu.style.display = '';
+}
+</script>
+</body>
+</html>

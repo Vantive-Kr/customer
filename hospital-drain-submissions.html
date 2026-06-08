@@ -275,6 +275,28 @@
     .fse-card.daon-card{border-color:rgba(91,138,94,.18);}
     .fse-card.daon-card .prog-bar{background:linear-gradient(90deg,var(--pos),#7DAE80);}
 
+    /* ── Overall Progress Banner ── */
+    .ovr-progress{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:14px;padding:20px 24px 18px;margin-bottom:18px;
+    }
+    .ovr-top{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+    .ovr-label{font-size:.71rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+    .ovr-count{font-size:1.7rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;}
+    .ovr-count span{font-size:1rem;font-weight:500;color:var(--text-secondary);margin-left:4px;}
+    .ovr-pct{font-size:2.2rem;font-weight:800;color:var(--accent);letter-spacing:-.05em;line-height:1;}
+    .ovr-bar-wrap{height:10px;background:var(--border);border-radius:100px;overflow:hidden;margin-bottom:12px;}
+    .ovr-bar-fill{height:100%;border-radius:100px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      transition:width .8s cubic-bezier(.4,0,.2,1);
+    }
+    .ovr-region-row{display:flex;gap:20px;flex-wrap:wrap;}
+    .ovr-region-item{display:flex;align-items:center;gap:8px;}
+    .ovr-region-bar-wrap{width:110px;height:6px;background:var(--border);border-radius:100px;overflow:hidden;}
+    .ovr-region-bar{height:100%;border-radius:100px;}
+    .ovr-region-label{font-size:.78rem;color:var(--text-secondary);font-weight:600;white-space:nowrap;}
+    .ovr-region-num{font-size:.78rem;color:var(--text-muted);white-space:nowrap;}
+
     /* ── Leave Chart Section ── */
     .leave-chart-row{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin-bottom:28px;}
     @media(max-width:760px){.leave-chart-row{grid-template-columns:1fr;}}
@@ -425,6 +447,35 @@
 
         <!-- ALL -->
         <div class="tab-panel active" id="tab-all">
+          <!-- 전체 점검 진행율 -->
+          <div class="ovr-progress">
+            <div class="ovr-top">
+              <div>
+                <div class="ovr-label">전체 점검 진행 현황</div>
+                <div class="ovr-count">22 <span>/ 86곳 점검 완료</span></div>
+              </div>
+              <div class="ovr-pct">25.6%</div>
+            </div>
+            <div class="ovr-bar-wrap">
+              <div class="ovr-bar-fill" style="width:25.6%"></div>
+            </div>
+            <div class="ovr-region-row">
+              <div class="ovr-region-item">
+                <div class="ovr-region-label">광주</div>
+                <div class="ovr-region-bar-wrap">
+                  <div class="ovr-region-bar" style="width:24.4%;background:linear-gradient(90deg,#7DAE80,#A8CCA9)"></div>
+                </div>
+                <div class="ovr-region-num">11 / 45 · 24.4%</div>
+              </div>
+              <div class="ovr-region-item">
+                <div class="ovr-region-label">대전</div>
+                <div class="ovr-region-bar-wrap">
+                  <div class="ovr-region-bar" style="width:26.8%;background:linear-gradient(90deg,#D4633A,#E8896A)"></div>
+                </div>
+                <div class="ovr-region-num">11 / 41 · 26.8%</div>
+              </div>
+            </div>
+          </div>
           <div class="controls">
             <div class="search-wrap">
               <svg class="s-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>

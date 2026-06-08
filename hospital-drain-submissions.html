@@ -275,6 +275,22 @@
     .fse-card.daon-card{border-color:rgba(91,138,94,.18);}
     .fse-card.daon-card .prog-bar{background:linear-gradient(90deg,var(--pos),#7DAE80);}
 
+    /* ── Leave Chart Section ── */
+    .leave-chart-row{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin-bottom:28px;}
+    @media(max-width:760px){.leave-chart-row{grid-template-columns:1fr;}}
+    .leave-chart-card{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:14px;padding:20px 18px 14px;
+    }
+    .leave-chart-head{margin-bottom:14px;}
+    .leave-chart-title{font-size:.93rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+    .leave-chart-sub{font-size:.72rem;color:var(--text-muted);}
+    .leave-legend{display:flex;gap:14px;margin-bottom:10px;}
+    .leave-legend-item{display:inline-flex;align-items:center;gap:5px;font-size:.71rem;color:var(--text-secondary);}
+    .leave-legend-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+    .lchart-wrap{width:100%;overflow:hidden;}
+    .lchart-wrap svg{display:block;width:100%;height:auto;}
+
     .fse-card{
       background:var(--surface);border:1px solid var(--border);
       border-radius:14px;overflow:hidden;transition:box-shadow .2s;
@@ -401,7 +417,7 @@
         <p class="section-sub" data-reveal>항목 클릭 시 세부 내용이 펼쳐집니다.</p>
 
         <div class="main-tabs" data-reveal>
-          <button class="main-tab active" onclick="switchMain('all',this)">전체 <span class="tab-badge">21</span></button>
+          <button class="main-tab active" onclick="switchMain('all',this)">전체 <span class="tab-badge">22</span></button>
           <button class="main-tab" onclick="switchMain('gwangju',this)">광주 <span class="tab-badge">11</span></button>
           <button class="main-tab" onclick="switchMain('daejeon',this)">대전 <span class="tab-badge">11</span></button>
           <button class="main-tab" onclick="switchMain('progress',this)">개인별 거래처 현황 <span class="tab-badge-rect" id="progBadge">—</span></button>
@@ -488,6 +504,29 @@
               <button class="rtgl" onclick="setRegion('daejeon',this)">대전</button>
             </div>
           </div>
+          <!-- 연차 사용 현황 차트 -->
+          <div class="leave-chart-row">
+            <div class="leave-chart-card">
+              <div class="leave-chart-head">
+                <div class="leave-chart-title">개인별 배관·드레인 점검 현황</div>
+                <div class="leave-chart-sub">점검완료 건수 vs 미점검 건수 &middot; 막대 위: 완료/전체 거래처</div>
+              </div>
+              <div class="leave-legend">
+                <span class="leave-legend-item"><span class="leave-legend-swatch" style="background:rgba(212,99,58,.82)"></span>점검완료</span>
+                <span class="leave-legend-item"><span class="leave-legend-swatch" style="background:rgba(184,80,80,.7)"></span>조치필요</span>
+                <span class="leave-legend-item"><span class="leave-legend-swatch" style="background:rgba(91,138,94,.25)"></span>미점검</span>
+              </div>
+              <div class="lchart-wrap" id="leaveBarWrap"></div>
+            </div>
+            <div class="leave-chart-card">
+              <div class="leave-chart-head">
+                <div class="leave-chart-title">개인별 배관·드레인 점검율 (%)</div>
+                <div class="leave-chart-sub">담당 거래처 대비 점검 완료 비율 &middot; 기준선: 50%</div>
+              </div>
+              <div class="lchart-wrap" id="leaveRateWrap"></div>
+            </div>
+          </div>
+
           <div class="fse-grid" id="fseGrid"></div>
         </div>
 
@@ -576,15 +615,15 @@ var FSE_DATA = [
   },
   {
     region:'daejeon', name:'조정우', type:'direct',
-    accounts:['임채남내과','보령아산병원','충남대병원','대전선병원','홍성수내과','건양대병원','웰니스요양병원','한국병원','대청병원','곽상혁내과']
+    accounts:['임채남내과','보령아산병원','충남대병원','대전선병원','홍성수내과','웰니스요양병원','곽상혁내과']
   },
   {
     region:'daejeon', name:'김정훈', type:'direct',
-    accounts:['소신내과','장동석내과','송창헌내과','아산충무병원','청주성모병원','첼로병원','김민옥내과','순천향대천안병원','이상주내과','서산중앙병원','충남대병원(세종)']
+    accounts:['소신내과','장동석내과','송창헌내과','아산충무병원','청주성모병원','첼로병원','김민옥내과','순천향대천안병원','이상주내과','충남대병원(세종)']
   },
   {
     region:'daejeon', name:'송원진', type:'direct',
-    accounts:['건국대충주병원','충주의료원','윤병국내과','본투비내과','화병원','소방병원','인곡자애병원','참편한365내과','대전성모병원','유성선병원']
+    accounts:['건국대충주병원','충주의료원','윤병국내과','본투비내과','소방병원','인곡자애병원','참편한365내과','대전성모병원','유성선병원']
   },
   {
     region:'daejeon', name:'신상학', type:'daon',
@@ -592,12 +631,12 @@ var FSE_DATA = [
   },
   {
     region:'daejeon', name:'윤성효', type:'daon',
-    accounts:['엄재호내과','충북대병원','단국대병원','서연석내과','베스티안오송병원','최지욱내과','청주의료원','청주하나병원','효성병원','충북대산학협력단(동물병원)']
+    accounts:['엄재호내과','충북대병원','단국대병원','서연석내과','최지욱내과','청주의료원','청주하나병원','효성병원']
   },
   // ─── 광주 팀 ───
   {
     region:'gwangju', name:'김유철', type:'direct',
-    accounts:['노벨플러스의원','광주 보훈병원','연세요양병원','나주병원','대송의료재단무안병원','목포한국병원','목포중앙병원','목포더조은내과','남악온누리내과','목포기독병원','광주기독병원','(의)해민의료재단','첨단선병원','서광병원']
+    accounts:['노벨플러스의원','연세요양병원','나주병원','대송의료재단무안병원','목포한국병원','목포중앙병원','목포더조은내과','남악온누리내과','목포기독병원']
   },
   {
     region:'gwangju', name:'문창식', type:'direct',
@@ -613,7 +652,7 @@ var FSE_DATA = [
   },
   {
     region:'gwangju', name:'권민욱', type:'direct',
-    accounts:['전북대병원','더맑은내과','윤일용내과','전주병원','전내과','지공군산의료원','논산백제병원','나방주내과','예수병원','김정화내과의원','늘편한내과','임진한내과']
+    accounts:['전북대병원','더맑은내과','윤일용내과','전내과','지공군산의료원','논산백제병원','나방주내과','예수병원','김정화내과의원','늘편한내과','임진한내과']
   }
 ];
 
@@ -741,6 +780,7 @@ function setRegion(r,btn){
   document.querySelectorAll('.rtgl').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderFSE();
+  renderInspCharts(r);
 }
 
 function buildFseCard(fse, extraClass) {
@@ -848,6 +888,120 @@ function updateProgBadge(){
 }
 
 /* ════════════════════════════════
+   배관·드레인 점검 현황 CHART
+════════════════════════════════ */
+function getInspStats(fse){
+  var total=fse.accounts.length;
+  var done=0, issue=0, pending=0;
+  fse.accounts.forEach(function(acc){
+    var st=getInspStatus(acc);
+    if(st==='done'||st==='action') done++;
+    else if(st==='issue') issue++;
+  });
+  var uninspected=total-done-issue;
+  var rate=total?Math.round((done+issue)/total*100):0;
+  return {name:fse.name, region:fse.region, type:fse.type,
+          total:total, done:done, issue:issue, uninspected:uninspected, rate:rate};
+}
+
+function renderInspCharts(region){
+  var src=region==='all'?FSE_DATA:FSE_DATA.filter(function(f){return f.region===region;});
+  var data=src.filter(function(f){return f.type==='direct';}).map(getInspStats);
+  drawInspBar(data);
+  drawInspRate(data);
+}
+
+function drawInspBar(data){
+  var wrap=document.getElementById('leaveBarWrap');
+  if(!wrap||!data.length){if(wrap)wrap.innerHTML='';return;}
+  var maxTotal=Math.max.apply(null,data.map(function(d){return d.total;}));
+  var maxY=Math.ceil(maxTotal/5)*5+2;
+  var VW=520, VH=270;
+  var pL=44, pR=16, pT=42, pB=50;
+  var cW=VW-pL-pR, cH=VH-pT-pB;
+  var n=data.length;
+  var slot=cW/n;
+  var bW=Math.max(14,Math.min(34,slot*0.55));
+  var p=[];
+
+  // Y grid + labels
+  for(var g=0;g<=maxY;g+=2){
+    var gy=pT+cH-(g/maxY)*cH;
+    p.push('<line x1="'+pL+'" x2="'+(pL+cW)+'" y1="'+gy.toFixed(1)+'" y2="'+gy.toFixed(1)+'" stroke="rgba(212,99,58,.08)" stroke-width="1"/>');
+    if(g%4===0) p.push('<text x="'+(pL-5)+'" y="'+(gy+4).toFixed(1)+'" text-anchor="end" font-size="10" fill="#B08070">'+g+'건</text>');
+  }
+  p.push('<line x1="'+pL+'" x2="'+(pL+cW)+'" y1="'+(pT+cH)+'" y2="'+(pT+cH)+'" stroke="rgba(212,99,58,.22)" stroke-width="1.2"/>');
+
+  data.forEach(function(d,i){
+    var cx=pL+slot*i+slot/2;
+    var bx=(cx-bW/2).toFixed(1);
+    var baseY=pT+cH;
+    var doneH=(d.done/maxY)*cH;
+    var issH=(d.issue/maxY)*cH;
+    var unH=(d.uninspected/maxY)*cH;
+    var totalH=(d.total/maxY)*cH;
+    var topY=baseY-totalH;
+
+    // Uninspected (light sage) — top
+    if(unH>0.3){
+      p.push('<rect x="'+bx+'" y="'+(baseY-totalH).toFixed(1)+'" width="'+bW+'" height="'+unH.toFixed(1)+'" fill="rgba(91,138,94,.22)"/>');
+    }
+    // Issue (red) — middle
+    if(issH>0.3){
+      p.push('<rect x="'+bx+'" y="'+(baseY-doneH-issH).toFixed(1)+'" width="'+bW+'" height="'+issH.toFixed(1)+'" fill="rgba(184,80,80,.7)"/>');
+    }
+    // Done (orange) — bottom
+    if(doneH>0.3){
+      p.push('<rect x="'+bx+'" y="'+(baseY-doneH).toFixed(1)+'" width="'+bW+'" height="'+doneH.toFixed(1)+'" fill="rgba(212,99,58,.82)"/>');
+    }
+    // Top cap
+    var capFill=unH>0.3?'rgba(91,138,94,.22)':(issH>0.3?'rgba(184,80,80,.7)':'rgba(212,99,58,.82)');
+    p.push('<rect x="'+bx+'" y="'+topY.toFixed(1)+'" width="'+bW+'" height="3" rx="1.5" fill="'+capFill+'"/>');
+
+    // Label: done건/total건
+    p.push('<text x="'+cx.toFixed(1)+'" y="'+(topY-5).toFixed(1)+'" text-anchor="middle" font-size="9" font-weight="600" fill="#8B5E4A">'+d.done+'건/'+d.total+'건</text>');
+    // Name
+    p.push('<text x="'+cx.toFixed(1)+'" y="'+(baseY+15).toFixed(1)+'" text-anchor="middle" font-size="11" font-weight="500" fill="#5A3020">'+d.name+'</text>');
+  });
+
+  wrap.innerHTML='<svg viewBox="0 0 '+VW+' '+VH+'" xmlns="http://www.w3.org/2000/svg">'+p.join('')+'</svg>';
+}
+
+function drawInspRate(data){
+  var wrap=document.getElementById('leaveRateWrap');
+  if(!wrap||!data.length){if(wrap)wrap.innerHTML='';return;}
+  var VW=380;
+  var rowH=30, pL=68, pR=48, pT=10, pB=28;
+  var VH=pT+data.length*rowH+pB;
+  var cW=VW-pL-pR;
+  var maxP=110;
+  var p=[];
+
+  [0,20,40,60,80,100].forEach(function(pct){
+    var gx=(pL+(pct/maxP)*cW).toFixed(1);
+    p.push('<line x1="'+gx+'" x2="'+gx+'" y1="'+pT+'" y2="'+(pT+data.length*rowH)+'" stroke="rgba(212,99,58,.07)" stroke-width="1"/>');
+    p.push('<text x="'+gx+'" y="'+(VH-9)+'" text-anchor="middle" font-size="9.5" fill="#B08070">'+pct+'%</text>');
+  });
+  var x50=(pL+(50/maxP)*cW).toFixed(1);
+  p.push('<line x1="'+x50+'" x2="'+x50+'" y1="'+pT+'" y2="'+(pT+data.length*rowH)+'" stroke="rgba(212,99,58,.38)" stroke-width="1.2" stroke-dasharray="4,3"/>');
+
+  data.forEach(function(d,i){
+    var ry=pT+i*rowH;
+    var bH=15;
+    var bY=(ry+(rowH-bH)/2).toFixed(1);
+    var bW=((d.rate/maxP)*cW).toFixed(1);
+    var isHigh=d.rate>=80;
+    var barColor=isHigh?'rgba(91,138,94,.72)':'rgba(212,99,58,.72)';
+    var textColor=isHigh?'#5B8A5E':'#D4633A';
+    p.push('<text x="'+(pL-7)+'" y="'+(parseFloat(bY)+11).toFixed(1)+'" text-anchor="end" font-size="11.5" font-weight="500" fill="#5A3020">'+d.name+'</text>');
+    p.push('<rect x="'+pL+'" y="'+bY+'" width="'+bW+'" height="'+bH+'" rx="3" fill="'+barColor+'"/>');
+    p.push('<text x="'+(pL+parseFloat(bW)+5).toFixed(1)+'" y="'+(parseFloat(bY)+11).toFixed(1)+'" font-size="11" font-weight="700" fill="'+textColor+'">'+d.rate+'%</text>');
+  });
+
+  wrap.innerHTML='<svg viewBox="0 0 '+VW+' '+VH+'" xmlns="http://www.w3.org/2000/svg">'+p.join('')+'</svg>';
+}
+
+/* ════════════════════════════════
    TABS & FILTERS
 ════════════════════════════════ */
 function switchMain(tab,btn){
@@ -905,6 +1059,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
 renderInspections();
 renderFSE();
 updateProgBadge();
+renderInspCharts('all');
 </script>
 </body>
 </html>

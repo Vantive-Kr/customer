@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>투석 정수 시스템 물 사용량 안내 — CWP106H | 을지대학교병원</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>if (typeof Chart !== 'undefined') Chart.defaults.animation = false;</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { interpolate-size: allow-keywords; }
+
+    html.theme-dark {
+      --bg: #0c1117; --surface: #141b24; --surface-hover: #1c2733;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8edf2; --text-secondary: #7a8fa6;
+      --accent: #0ea5e9; --accent-secondary: #06b6d4;
+      --positive: #10b981; --negative: #f43f5e; --warning: #f59e0b;
+      --teal: #0d9488; --teal-light: rgba(13,148,136,0.12);
+      --blue: #0369a1; --blue-light: rgba(3,105,161,0.12);
+      --hero-bg: linear-gradient(135deg, #0c1a2e 0%, #0a2540 50%, #0c1a2e 100%);
+      --hosp-bg: linear-gradient(135deg, #0d2b1a 0%, #0a3d2b 100%);
+    }
+    html.theme-light {
+      --bg: #f0f6fc; --surface: #ffffff; --surface-hover: #f0f6fc;
+      --border: rgba(0,0,0,0.07);
+      --text: #0f1f2e; --text-secondary: #5a7080;
+      --accent: #0284c7; --accent-secondary: #0891b2;
+      --positive: #059669; --negative: #e11d48; --warning: #d97706;
+      --teal: #0d9488; --teal-light: rgba(13,148,136,0.08);
+      --blue: #0369a1; --blue-light: rgba(3,105,161,0.08);
+      --hero-bg: linear-gradient(135deg, #0c3b6e 0%, #0369a1 50%, #0891b2 100%);
+      --hosp-bg: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+      scrollbar-gutter: stable;
+    }
+    h1, h2, h3, h4 { font-family: 'Noto Sans KR', 'Inter', sans-serif; color: var(--text); letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance; }
+    h1 { font-weight: 800; font-size: 2.8rem; }
+    h2 { font-weight: 700; font-size: 1.75rem; }
+    h3 { font-weight: 600; font-size: 1.25rem; }
+    p, li, td, th, span { color: var(--text); }
+    .text-secondary { color: var(--text-secondary); }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      background: var(--hero-bg);
+      padding: 56px 24px 52px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: rgba(255,255,255,0.04); pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 0.75rem; font-weight: 600; color: #e0f2fe;
+      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero h1 { color: #ffffff; font-size: 2.4rem; margin-bottom: 10px; }
+    .hero p { color: rgba(255,255,255,0.75); font-size: 1rem; max-width: 620px; line-height: 1.7; }
+    .hero-meta { margin-top: 32px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .hero-stat { display: flex; flex-direction: column; gap: 4px; }
+    .hero-stat-value { font-size: 2rem; font-weight: 800; color: #7dd3fc; letter-spacing: -0.03em; }
+    .hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    /* Hospital highlight band */
+    .hospital-band {
+      background: var(--hosp-bg);
+      padding: 32px 24px;
+    }
+    .hospital-band-inner { max-width: 960px; margin: 0 auto; }
+    .hospital-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px; padding: 4px 12px;
+      font-size: 0.7rem; font-weight: 700; color: #a7f3d0;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .hospital-band h2 { color: #ffffff; font-size: 1.5rem; margin-bottom: 6px; }
+    .hospital-band p { color: rgba(255,255,255,0.7); font-size: 0.88rem; }
+    .hosp-stats { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px; }
+    .hosp-stat-card {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px; padding: 14px 20px;
+      display: flex; flex-direction: column; gap: 4px; min-width: 140px;
+    }
+    .hosp-stat-value { font-size: 1.6rem; font-weight: 800; color: #6ee7b7; letter-spacing: -0.03em; }
+    .hosp-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.6); font-weight: 600; }
+    .hosp-stat-sub { font-size: 0.7rem; color: rgba(255,255,255,0.45); }
+    .hosp-result-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(110,231,183,0.2); border: 1px solid rgba(110,231,183,0.4);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 0.78rem; font-weight: 700; color: #6ee7b7;
+      margin-top: 4px; align-self: flex-start;
+    }
+
+    /* Section */
+    section { padding: 52px 24px; }
+    section:nth-child(even) { background: var(--surface); }
+    .section-header { margin-bottom: 28px; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal-light); color: var(--teal); border-radius: 100px;
+      padding: 4px 12px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .section-tag.blue { background: var(--blue-light); color: var(--blue); }
+    .section-tag.warn { background: rgba(245,158,11,0.1); color: #b45309; }
+    .section-tag.green { background: rgba(5,150,105,0.1); color: #059669; }
+    .section-header h2 { margin-bottom: 6px; }
+    .section-header p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.7; }
+
+    /* Cards */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover { box-shadow: 0 0 0 1px var(--border), 0 8px 20px rgba(0,0,0,0.07); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+    /* KPI */
+    .kpi-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .kpi-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.03em; }
+    .kpi-value { font-size: 1.85rem; font-weight: 800; letter-spacing: -0.04em; color: var(--accent); }
+    .kpi-sub { font-size: 0.78rem; color: var(--text-secondary); }
+
+    /* Tables */
+    .data-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead tr { background: var(--bg); }
+    thead th {
+      padding: 11px 14px; text-align: center;
+      font-size: 0.72rem; font-weight: 700; color: var(--text-secondary);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    thead th:first-child { text-align: left; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface-hover); }
+    tbody td { padding: 12px 14px; text-align: center; font-weight: 500; }
+    tbody td:first-child { text-align: left; font-weight: 600; color: var(--text-secondary); font-size: 0.83rem; }
+    .td-highlight { font-weight: 700; font-size: 1rem; color: var(--accent); }
+    .td-hosp { font-weight: 800; color: #059669; background: rgba(5,150,105,0.06); }
+    tr.hosp-row { background: rgba(5,150,105,0.04); }
+    tr.hosp-row:hover { background: rgba(5,150,105,0.08); }
+    .badge {
+      display: inline-block; padding: 3px 10px; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 700;
+    }
+    .badge-green { background: rgba(5,150,105,0.12); color: #059669; }
+    .badge-yellow { background: rgba(217,119,6,0.12); color: #b45309; }
+    .badge-red { background: rgba(225,29,72,0.12); color: #e11d48; }
+    .badge-blue { background: rgba(2,132,199,0.12); color: #0284c7; }
+
+    /* Info box */
+    .info-box {
+      border-radius: 12px; padding: 18px 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .info-box.warn { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); }
+    .info-box.info { background: var(--blue-light); border: 1px solid rgba(3,105,161,0.15); }
+    .info-box.success { background: rgba(5,150,105,0.07); border: 1px solid rgba(5,150,105,0.18); }
+    .info-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+    .info-box-title { font-size: 0.86rem; font-weight: 700; margin-bottom: 4px; }
+    .info-box.warn .info-box-title { color: #b45309; }
+    .info-box.info .info-box-title { color: var(--blue); }
+    .info-box.success .info-box-title { color: #059669; }
+    .info-box p { font-size: 0.855rem; line-height: 1.65; color: var(--text-secondary); }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; }
+    .step { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+      background: var(--teal-light); color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 800;
+    }
+    .step-content h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; }
+    .step-content p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Feature grid */
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .feature-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .feature-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--teal-light); display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg { width: 20px; height: 20px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-icon.blue { background: var(--blue-light); }
+    .feature-icon.blue svg { stroke: var(--blue); }
+    .feature-title { font-size: 0.88rem; font-weight: 700; }
+    .feature-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Capacity bar */
+    .capacity-bar-section { display: flex; flex-direction: column; gap: 14px; }
+    .cap-row { display: flex; flex-direction: column; gap: 5px; }
+    .cap-label { display: flex; justify-content: space-between; align-items: center; }
+    .cap-label-text { font-size: 0.83rem; font-weight: 600; }
+    .cap-label-num { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); }
+    .cap-track { height: 10px; border-radius: 100px; background: var(--border); overflow: hidden; }
+    .cap-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(0.34,1.56,0.64,1); width: 0%; }
+    .cap-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+    .cap-fill.teal { background: linear-gradient(90deg, #0d9488, #2dd4bf); }
+    .cap-fill.yellow { background: linear-gradient(90deg, #f59e0b, #fcd34d); }
+    .cap-fill.red { background: linear-gradient(90deg, #e11d48, #fb7185); }
+    .cap-divider { border: none; border-top: 1px dashed var(--border); margin: 4px 0; }
+
+    /* Parallel badge */
+    .parallel-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(5,150,105,0.1); border: 1px solid rgba(5,150,105,0.25);
+      border-radius: 8px; padding: 6px 12px;
+      font-size: 0.78rem; font-weight: 700; color: #059669;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .animate { animation: fadeInUp 0.6s ease-out both; }
+    .animate.delay-1 { animation-delay: 0.1s; }
+    .animate.delay-2 { animation-delay: 0.2s; }
+    .animate.delay-3 { animation-delay: 0.3s; }
+    .animate.delay-4 { animation-delay: 0.4s; }
+    .animate.delay-5 { animation-delay: 0.5s; }
+    .animate.delay-6 { animation-delay: 0.6s; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Menu */
+    .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+    .viz-menu-toggle {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .viz-menu-toggle:hover { background: var(--surface-hover); }
+    .viz-menu-dropdown {
+      position: absolute; top: 52px; right: 0; min-width: 190px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 8px;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: all 0.2s; backdrop-filter: blur(16px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .viz-menu-dropdown button {
+      width: 100%; padding: 10px 14px; border: none; border-radius: 8px;
+      background: transparent; color: var(--text); font-size: 14px;
+      font-family: inherit; cursor: pointer; text-align: left;
+      display: flex; align-items: center; gap: 10px; transition: background 0.15s;
+    }
+    .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+
+    /* Print */
+    @media print {
+      body { background: white !important; color: black !important; }
+      .viz-menu { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; }
+      .hero, .hospital-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    @page { margin: 0.7in; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.35rem; }
+      .hero { padding: 44px 20px 40px; }
+      .hero-meta { gap: 18px; }
+      .hero-stat-value { font-size: 1.6rem; }
+      .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      section { padding: 36px 20px; }
+      .hosp-stats { gap: 12px; }
+    }
+    @media (max-width: 375px) {
+      body { overflow-x: hidden; }
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu -->
+  <div class="viz-menu">
+    <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+      </svg>
+    </button>
+    <div class="viz-menu-dropdown" id="vizMenuDropdown">
+      <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">라이트 모드</span></button>
+      <button onclick="downloadImage()"><span>📥</span><span>PNG 저장</span></button>
+      <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+    </div>
+  </div>
+
+  <a href="#main-content" style="position:absolute;left:-9999px;">본문 바로가기</a>
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="헤더">
+      <div class="hero-inner">
+        <div class="hero-badge animate">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+          고객 안내용 자료
+        </div>
+        <h1 class="animate delay-1">투석 정수 시스템<br>물 사용량 &amp; 단수 대응 안내</h1>
+        <p class="animate delay-2">CWP106H (WRO H) 기반 역삼투 정수 시스템의 물 소비 특성과 단수 상황별 대처 방안을 안내합니다.</p>
+        <div class="hero-meta">
+          <div class="hero-stat animate delay-3">
+            <span class="hero-stat-value">18 L/min</span>
+            <span class="hero-stat-label">30대 기준 분당 물 소모량</span>
+          </div>
+          <div class="hero-stat animate delay-4">
+            <span class="hero-stat-value">35 L/min</span>
+            <span class="hero-stat-label">CWP106H 1대 정수 용량</span>
+          </div>
+          <div class="hero-stat animate delay-5">
+            <span class="hero-stat-value">70 L/min</span>
+            <span class="hero-stat-label">CWP106H 2대 병렬 총 용량</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOSPITAL BAND -->
+    <div class="hospital-band" aria-label="을지대학교병원 운용 현황">
+      <div class="hospital-band-inner">
+        <div class="hospital-label animate">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          병원 운용 현황
+        </div>
+        <h2 class="animate delay-1">을지대학교병원 신장실 — CWP106H 운용 현황</h2>
+        <p class="animate delay-2">CWP106H 2대 병렬 운용으로 57대 투석기에 충분한 정수를 공급하고 있습니다.</p>
+        <div class="hosp-stats">
+          <div class="hosp-stat-card animate delay-2">
+            <span class="hosp-stat-value">63대</span>
+            <span class="hosp-stat-label">신장실 총 투석기</span>
+            <span class="hosp-stat-sub">전체 보유 대수</span>
+          </div>
+          <div class="hosp-stat-card animate delay-3">
+            <span class="hosp-stat-value">57대</span>
+            <span class="hosp-stat-label">실제 가동 투석기</span>
+            <span class="hosp-stat-sub">실 사용 대수</span>
+          </div>
+          <div class="hosp-stat-card animate delay-4">
+            <span class="hosp-stat-value">34.2 L/min</span>
+            <span class="hosp-stat-label">필요 정수량</span>
+            <span class="hosp-stat-sub">57대 × 0.6 L/min</span>
+          </div>
+          <div class="hosp-stat-card animate delay-5">
+            <span class="hosp-stat-value">70 L/min</span>
+            <span class="hosp-stat-label">공급 가능 정수량</span>
+            <span class="hosp-stat-sub">CWP106H × 2대 병렬</span>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;">
+            <div class="hosp-result-pill animate delay-6">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              공급 여유 +35.8 L/min (51% 여유) — 충분
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Per-minute usage -->
+    <section aria-label="분당 물 소모량">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">분당 물 소모량 계산</div>
+          <h2>분당 물 소모량 — 기준값 계산</h2>
+          <p>투석기 1대당 분당 물 사용량 <strong>600 mL/min</strong>을 기준으로 계산합니다.</p>
+        </div>
+
+        <div class="card reveal" style="margin-bottom:18px; background:var(--teal-light); border-color:rgba(13,148,136,0.2);">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; font-size:0.93rem;">
+            <span style="font-weight:700;color:var(--teal);">계산식</span>
+            <span style="color:var(--text-secondary);">투석기 1대</span>
+            <span style="font-weight:800;font-size:1.05rem;color:var(--teal);">× 0.6 L/min</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span style="color:var(--text-secondary);">30대 기준</span>
+            <span style="font-weight:800;font-size:1.05rem;color:var(--teal);">= 18 L/min</span>
+            <span style="color:var(--text-secondary); margin-left:8px;">│</span>
+            <span style="color:var(--text-secondary);">57대(을지대)</span>
+            <span style="font-weight:800;font-size:1.05rem;color:#059669);">= 34.2 L/min</span>
+          </div>
+        </div>
+
+        <div class="grid-4 reveal">
+          <div class="kpi-card">
+            <div class="kpi-label">분당 소모량 (30대)</div>
+            <div class="kpi-value" style="color:var(--teal);">18 L</div>
+            <div class="kpi-sub">30 × 0.6 L/min</div>
+          </div>
+          <div class="kpi-card" style="border-color:rgba(5,150,105,0.3); background:rgba(5,150,105,0.04);">
+            <div class="kpi-label">분당 소모량 (57대·을지대)</div>
+            <div class="kpi-value" style="color:#059669;" data-count="34" data-suffix=".2 L">34.2 L</div>
+            <div class="kpi-sub">57 × 0.6 L/min</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">10분 소모량 (57대)</div>
+            <div class="kpi-value">205 L</div>
+            <div class="kpi-sub">34.2 L/min × 10분</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">1시간 소모량 (57대)</div>
+            <div class="kpi-value" style="color:var(--accent);">2,052 L</div>
+            <div class="kpi-sub">34.2 L/min × 60분</div>
+          </div>
+        </div>
+
+        <div class="data-table-wrap reveal" style="margin-top:20px;">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>30대</th>
+                <th style="background:rgba(5,150,105,0.06);">57대 ★을지대</th>
+                <th>55대</th>
+                <th>60대</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>분당 소모량</td>
+                <td class="td-highlight">18 L/min</td>
+                <td class="td-hosp">34.2 L/min</td>
+                <td>33 L/min</td>
+                <td>36 L/min</td>
+              </tr>
+              <tr>
+                <td>10분 소모량</td>
+                <td class="td-highlight">180 L</td>
+                <td class="td-hosp">342 L</td>
+                <td>330 L</td>
+                <td>360 L</td>
+              </tr>
+              <tr>
+                <td>1시간 소모량</td>
+                <td class="td-highlight">1,080 L</td>
+                <td class="td-hosp">2,052 L</td>
+                <td>1,980 L</td>
+                <td>2,160 L</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Capacity -->
+    <section aria-label="CWP106H 용량 비교">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag blue">용량 분석</div>
+          <h2>CWP106H 정수 용량 비교</h2>
+          <p>을지대학교병원은 CWP106H <strong>2대 병렬</strong> 운용으로 총 <strong>70 L/min</strong>을 공급, 57대(34.2 L/min)에 충분한 여유 용량을 확보합니다.</p>
+        </div>
+
+        <div class="grid-2 reveal">
+          <div>
+            <div class="data-table-wrap" style="margin-bottom:14px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>투석기 대수</th>
+                    <th>필요 용량</th>
+                    <th>시스템 용량</th>
+                    <th>결과</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>30대</td>
+                    <td>18 L/min</td>
+                    <td>35 L/min</td>
+                    <td><span class="badge badge-green">✓ 적합</span></td>
+                  </tr>
+                  <tr class="hosp-row">
+                    <td><strong>57대 ★을지대</strong></td>
+                    <td style="font-weight:700;color:#059669;">34.2 L/min</td>
+                    <td style="font-weight:700;color:#059669;">70 L/min<br><small style="font-size:0.68rem;font-weight:500;color:var(--text-secondary);">2대 병렬</small></td>
+                    <td><span class="badge badge-green">✓ 충분</span></td>
+                  </tr>
+                  <tr>
+                    <td>55대</td>
+                    <td>33 L/min</td>
+                    <td>35 L/min</td>
+                    <td><span class="badge badge-yellow">△ 한계</span></td>
+                  </tr>
+                  <tr>
+                    <td>60대</td>
+                    <td>36 L/min</td>
+                    <td>35 L/min</td>
+                    <td><span class="badge badge-red">✕ 초과</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="info-box success">
+              <span class="info-icon">✅</span>
+              <div>
+                <div class="info-box-title">을지대학교병원 — 2대 병렬로 충분한 여유</div>
+                <p>필요 용량 34.2 L/min 대비 공급 가능 용량 70 L/min, <strong>약 35.8 L/min(51%) 여유</strong>가 있습니다. 안정적 운용이 보장됩니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:24px;">
+            <div style="margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div style="font-size:0.75rem;font-weight:700;color:var(--text-secondary);">최대 공급 용량 (2대 병렬)</div>
+                <div style="font-size:2.2rem;font-weight:800;color:#059669;letter-spacing:-0.04em;">70 L/min</div>
+              </div>
+              <div class="parallel-badge">CWP106H × 2대</div>
+            </div>
+            <div class="capacity-bar-section" id="capBars">
+              <div class="cap-row">
+                <div class="cap-label">
+                  <span class="cap-label-text" style="color:#059669;font-weight:700;">57대 필요량 (을지대)</span>
+                  <span class="cap-label-num">34.2 / 70 L/min</span>
+                </div>
+                <div class="cap-track">
+                  <div class="cap-fill teal" id="barHosp" style="width:0%"></div>
+                </div>
+              </div>
+              <hr class="cap-divider">
+              <div style="font-size:0.7rem;color:var(--text-secondary);margin:-4px 0 2px;">단일 기기(35 L/min) 기준</div>
+              <div class="cap-row">
+                <div class="cap-label">
+                  <span class="cap-label-text">30대 필요량</span>
+                  <span class="cap-label-num">18 / 35 L/min</span>
+                </div>
+                <div class="cap-track">
+                  <div class="cap-fill green" id="bar30" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">
+                  <span class="cap-label-text">55대 필요량</span>
+                  <span class="cap-label-num">33 / 35 L/min</span>
+                </div>
+                <div class="cap-track">
+                  <div class="cap-fill yellow" id="bar55" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">
+                  <span class="cap-label-text">60대 필요량</span>
+                  <span class="cap-label-num">36 L/min (초과)</span>
+                </div>
+                <div class="cap-track">
+                  <div class="cap-fill red" id="bar60" style="width:0%"></div>
+                </div>
+              </div>
+              <div style="border-top:1px solid var(--border);margin-top:6px;padding-top:8px;font-size:0.72rem;color:var(--text-secondary);">
+                ▲ 상단 바: 2대 병렬(70 L/min) 기준 / 하단 바: 단일 기기(35 L/min) 기준
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Water interruption -->
+    <section aria-label="단수 시 대응">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag warn">단수 시나리오</div>
+          <h2>단수 발생 시 대응 안내</h2>
+          <p>저장 탱크 유무에 따라 단수 대응 방식이 달라집니다. CWP106H는 저장 탱크 없이 운용되므로 단수 시 즉각 대응이 필요합니다.</p>
+        </div>
+
+        <div class="grid-2 reveal" style="margin-bottom:20px;">
+          <div class="card" style="border-top:3px solid var(--warning);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:34px;height:34px;border-radius:8px;background:rgba(245,158,11,0.12);display:flex;align-items:center;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div>
+                <div style="font-size:0.68rem;font-weight:700;color:var(--warning);letter-spacing:0.04em;text-transform:uppercase;">저장 탱크 방식 (기존)</div>
+                <div style="font-weight:700;font-size:0.95rem;">탱크 탑재 R.O. 시스템</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:18px;margin-bottom:14px;">
+              <div>
+                <div style="font-size:0.7rem;color:var(--text-secondary);font-weight:600;">탱크 실용량</div>
+                <div style="font-size:1.5rem;font-weight:800;color:var(--warning);">~900 L</div>
+              </div>
+              <div>
+                <div style="font-size:0.7rem;color:var(--text-secondary);font-weight:600;">30대 기준 운용 가능 시간</div>
+                <div style="font-size:1.5rem;font-weight:800;color:var(--warning);">~40분</div>
+              </div>
+            </div>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" style="background:rgba(245,158,11,0.1);color:#d97706;">1</div>
+                <div class="step-content">
+                  <h4>단수 직후 (~40분)</h4>
+                  <p>탱크 잔여 물(약 900 L)로 투석 기기 계속 사용 가능</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:rgba(245,158,11,0.1);color:#d97706;">2</div>
+                <div class="step-content">
+                  <h4>40분 경과 후</h4>
+                  <p>수위 저하 → 투석 기기 운용 불가, 환자 치료 중단 필요</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:rgba(225,29,72,0.1);color:#e11d48;">!</div>
+                <div class="step-content">
+                  <h4>주의</h4>
+                  <p>초기 탱크 수위가 낮으면 40분보다 더 짧아질 수 있음</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="border-top:3px solid var(--teal);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l3 3"/></svg>
+              </div>
+              <div>
+                <div style="font-size:0.68rem;font-weight:700;color:var(--teal);letter-spacing:0.04em;text-transform:uppercase;">저장 탱크 없음</div>
+                <div style="font-weight:700;font-size:0.95rem;">CWP106H (가열식 R.O.) — 을지대학교병원</div>
+              </div>
+            </div>
+            <div style="margin-bottom:14px;">
+              <div style="font-size:0.7rem;color:var(--text-secondary);font-weight:600;">저장 탱크</div>
+              <div style="font-size:1.2rem;font-weight:800;color:var(--teal);">없음 (탱크 미사용)</div>
+            </div>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h4>단수 즉시</h4>
+                  <p>정수 공급 중단 → 투석기에서 환자 분리 필요 (저장 물 없음)</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h4>잠시 단수의 경우</h4>
+                  <p>투석기 알람(alarm) clear 후 수압 회복 시 즉시 재사용 가능</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:var(--teal-light);color:var(--teal);">✓</div>
+                <div class="step-content">
+                  <h4>장점</h4>
+                  <p>저장수 없으므로 수질 오염 리스크 없음. 수압 복구 즉시 재가동</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box warn reveal">
+          <span class="info-icon">⚠️</span>
+          <div>
+            <div class="info-box-title">단수 대응 핵심 사항</div>
+            <p>탱크 방식은 약 <strong>40분의 대응 시간</strong>이 있으나 탱크 수위에 따라 단축될 수 있습니다. CWP106H(을지대학교병원)는 저장 탱크 없이 운용되므로 단수 즉시 공급이 중단되지만, 수압 회복 시 즉각 재가동이 가능합니다. 장시간 단수 시 양쪽 모두 환자를 투석기에서 분리해야 합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CWP106H Features -->
+    <section aria-label="CWP106H 특장점">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag green">CWP106H 특장점</div>
+          <h2>CWP106H — 가열식 R.O. 시스템 주요 기능</h2>
+          <p>Heating System 기반으로 동작하며 저장 탱크 없이 운용되는 고급 투석 정수 시스템입니다.</p>
+        </div>
+
+        <div class="feature-grid reveal">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C9.3 2 7 4.3 7 7c0 2.4 1.5 4.4 3.5 5.3V21h3v-8.7c2-1 3.5-3 3.5-5.3 0-2.7-2.3-5-5-5z"/></svg>
+            </div>
+            <div class="feature-title">자동 열소독 (주 1회)</div>
+            <div class="feature-desc">일주일에 한 번 전체 배관을 자동 열소독하여 미생물 발생을 거의 완벽하게 차단합니다. 수질 기준 이상 유지가 용이합니다.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon blue">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="feature-title">물 절약 자동 조절</div>
+            <div class="feature-desc">실시간 물 소비량 변화를 모니터링하여 배출 유량을 자동으로 조정, 불필요한 물 낭비를 최소화합니다.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="feature-title">탱크 없는 설계</div>
+            <div class="feature-desc">저장 탱크 없이 직접 공급 방식으로 운용됩니다. 탱크 내 오염 리스크가 없으며 수질 관리가 간편합니다.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon blue">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="feature-title">높은 수질 보증</div>
+            <div class="feature-desc">총 용존 염분 &gt;95%, 세균 및 내독소 &gt;99% 제거율 보장. 환자 투석에 사용되는 정제수의 품질을 지속적으로 수질 기준 이상으로 유지합니다.</div>
+          </div>
+        </div>
+
+        <div class="card reveal" style="margin-top:20px; padding:24px 28px;">
+          <div style="display:flex; gap:32px; flex-wrap:wrap; align-items:flex-start;">
+            <div style="flex:1; min-width:200px;">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--text-secondary);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:12px;">WRO 106H 핵심 사양</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-secondary);">단일 정수 생산 용량</div>
+                  <div style="font-weight:700;color:var(--teal);">35 L/min</div>
+                </div>
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-secondary);">2대 병렬 생산 용량</div>
+                  <div style="font-weight:700;color:#059669;">70 L/min</div>
+                </div>
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-secondary);">가열 탱크 용량</div>
+                  <div style="font-weight:700;">330 L</div>
+                </div>
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-secondary);">열소독 주기</div>
+                  <div style="font-weight:700;">주 1회 자동</div>
+                </div>
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-secondary);">수질 변환율</div>
+                  <div style="font-weight:700;">최대 75%</div>
+                </div>
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-secondary);">을지대 현재 구성</div>
+                  <div style="font-weight:700;color:#059669;">2대 병렬</div>
+                </div>
+              </div>
+            </div>
+            <div class="info-box info" style="flex:2;min-width:240px;margin:0;">
+              <span class="info-icon">💡</span>
+              <div>
+                <div class="info-box-title">을지대학교병원 운용 권장 사항</div>
+                <p>현재 CWP106H 2대 병렬(70 L/min) 운용으로 57대(34.2 L/min) 투석기에 충분한 여유 용량을 확보하고 있습니다. 단수 발생 시 잠시 단수라면 투석기 알람 clear 후 즉시 재가동이 가능하며, 장시간 단수 시에는 환자를 투석기에서 분리해야 합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background:var(--surface);border-top:1px solid var(--border);padding:24px;text-align:center;">
+    <div class="container">
+      <p style="font-size:0.78rem;color:var(--text-secondary);line-height:1.7;">
+        본 자료는 고객 안내 목적으로 작성되었습니다. 투석 기기 1대당 물 사용량 600 mL/min 기준 계산값입니다.<br>
+        실제 운용 환경에 따라 수치는 달라질 수 있으며, 정확한 사항은 담당 엔지니어에게 문의하세요.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var d = document.getElementById('vizMenuDropdown');
+      if (d) d.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.viz-menu')) {
+        var d = document.getElementById('vizMenuDropdown');
+        if (d) d.classList.remove('open');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var d = document.getElementById('vizMenuDropdown');
+        if (d) d.classList.remove('open');
+      }
+    });
+
+    var savedTheme = localStorage.getItem('viz-theme');
+    var currentTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    function applyTheme(t) {
+      document.documentElement.className = 'theme-' + t;
+      document.getElementById('themeIcon').textContent = t === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeLabel').textContent = t === 'dark' ? '다크 모드' : '라이트 모드';
+      localStorage.setItem('viz-theme', t);
+      currentTheme = t;
+      if (typeof onThemeChange === 'function') onThemeChange();
+    }
+    function cycleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
+    applyTheme(currentTheme);
+
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { el.classList.add('reveal'); });
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+    var barsAnimated = false;
+    var barObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !barsAnimated) {
+          barsAnimated = true;
+          setTimeout(function() {
+            var bH = document.getElementById('barHosp');
+            var b30 = document.getElementById('bar30');
+            var b55 = document.getElementById('bar55');
+            var b60 = document.getElementById('bar60');
+            if (bH) bH.style.width = Math.round(34.2/70*100) + '%';  // 57대 vs 70 L/min (2대 병렬)
+            if (b30) b30.style.width = Math.round(18/35*100) + '%';
+            if (b55) b55.style.width = Math.round(33/35*100) + '%';
+            if (b60) b60.style.width = '100%';
+          }, 200);
+          barObs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    var capBars = document.getElementById('capBars');
+    if (capBars) barObs.observe(capBars);
+
+    function animateCounters() {
+      document.querySelectorAll('[data-count]').forEach(function(el) {
+        if (el.dataset.counted) return;
+        el.dataset.counted = '1';
+        var target = parseFloat(el.dataset.count);
+        var suffix = el.dataset.suffix || '';
+        var start = performance.now(), duration = 1200;
+        (function tick(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }
+    var counterEl = document.querySelector('[data-count]');
+    if (counterEl) {
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } });
+      }, { threshold: 0.3 });
+      cObs.observe(counterEl);
+    }
+
+    async function downloadImage() {
+      var menu = document.querySelector('.viz-menu');
+      if (menu) menu.style.display = 'none';
+      try {
+        var url = await htmlToImage.toPng(document.body, { quality: 1, pixelRatio: 2 });
+        var a = document.createElement('a');
+        a.href = url; a.download = 'dialysis-water-usage-report.png'; a.click();
+      } catch(e) { console.error(e); }
+      if (menu) menu.style.display = '';
+    }
+
+    function onThemeChange() {}
+  </script>
+</body>
+</html>

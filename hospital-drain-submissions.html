@@ -100,8 +100,10 @@
     .stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px;margin-bottom:48px;}
     .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:18px 14px;text-align:center;transition:box-shadow .2s;}
     .stat-card:hover{box-shadow:0 5px 18px rgba(212,99,58,.1);}
-    .stat-num{font-size:1.85rem;font-weight:800;color:var(--accent);letter-spacing:-.04em;line-height:1;margin-bottom:4px;}
+    .stat-num{font-size:1.85rem;font-weight:800;color:var(--accent);letter-spacing:-.04em;line-height:1;margin-bottom:2px;}
     .stat-num.pos{color:var(--pos);}.stat-num.neg{color:var(--neg);}.stat-num.warn{color:var(--warn);}
+    .stat-pct{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:-.01em;margin-bottom:4px;}
+    .stat-pct.pos{color:var(--pos);}.stat-pct.neg{color:var(--neg);}.stat-pct.warn{color:var(--warn);}
     .stat-label{font-size:.74rem;color:var(--text-secondary);font-weight:500;}
 
     /* ── Section headings ── */
@@ -416,18 +418,18 @@
       <div class="container">
         <div class="hero-badge animate"><span class="dot"></span>현장 점검 제출 내역</div>
         <h1 class="animate d1">병원 배관·드레인<br><span>현장 점검 결과</span></h1>
-        <p class="animate d2">Netlify Verified Submissions · 대전 / 광주 지역 팀별 정리</p>
+        <p class="animate d2">Netlify Verified Submissions · 대전 / 광주 지역 팀별 정리 · 최종 업데이트 2026-06-15</p>
       </div>
     </section>
 
     <section>
       <div class="container">
         <div class="stats-row animate d3">
-          <div class="stat-card"><div class="stat-num">22</div><div class="stat-label">총 제출 건수</div></div>
-          <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">광주 팀</div></div>
-          <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">대전 팀</div></div>
-          <div class="stat-card"><div class="stat-num neg">1</div><div class="stat-label">조치 필요</div></div>
-          <div class="stat-card"><div class="stat-num warn">6</div><div class="stat-label">특이사항</div></div>
+          <div class="stat-card"><div class="stat-num">32</div><div class="stat-pct">37.2%</div><div class="stat-label">총 점검 완료 (86곳)</div></div>
+          <div class="stat-card"><div class="stat-num">16</div><div class="stat-pct">35.6%</div><div class="stat-label">광주 팀 (45곳)</div></div>
+          <div class="stat-card"><div class="stat-num">16</div><div class="stat-pct">39.0%</div><div class="stat-label">대전 팀 (41곳)</div></div>
+          <div class="stat-card"><div class="stat-num neg">2</div><div class="stat-pct neg">6.3%</div><div class="stat-label">조치 필요</div></div>
+          <div class="stat-card"><div class="stat-num warn">9</div><div class="stat-pct warn">28.1%</div><div class="stat-label">특이사항</div></div>
         </div>
       </div>
     </section>
@@ -439,9 +441,9 @@
         <p class="section-sub" data-reveal>항목 클릭 시 세부 내용이 펼쳐집니다.</p>
 
         <div class="main-tabs" data-reveal>
-          <button class="main-tab active" onclick="switchMain('all',this)">전체 <span class="tab-badge">22</span></button>
-          <button class="main-tab" onclick="switchMain('gwangju',this)">광주 <span class="tab-badge">11</span></button>
-          <button class="main-tab" onclick="switchMain('daejeon',this)">대전 <span class="tab-badge">11</span></button>
+          <button class="main-tab active" onclick="switchMain('all',this)">전체 <span class="tab-badge">32</span></button>
+          <button class="main-tab" onclick="switchMain('gwangju',this)">광주 <span class="tab-badge">16</span></button>
+          <button class="main-tab" onclick="switchMain('daejeon',this)">대전 <span class="tab-badge">16</span></button>
           <button class="main-tab" onclick="switchMain('progress',this)">개인별 거래처 현황 <span class="tab-badge-rect" id="progBadge">—</span></button>
         </div>
 
@@ -452,27 +454,27 @@
             <div class="ovr-top">
               <div>
                 <div class="ovr-label">전체 점검 진행 현황</div>
-                <div class="ovr-count">22 <span>/ 86곳 점검 완료</span></div>
+                <div class="ovr-count">32 <span>/ 86곳 점검 완료</span></div>
               </div>
-              <div class="ovr-pct">25.6%</div>
+              <div class="ovr-pct">37.2%</div>
             </div>
             <div class="ovr-bar-wrap">
-              <div class="ovr-bar-fill" style="width:25.6%"></div>
+              <div class="ovr-bar-fill" style="width:37.2%"></div>
             </div>
             <div class="ovr-region-row">
               <div class="ovr-region-item">
                 <div class="ovr-region-label">광주</div>
                 <div class="ovr-region-bar-wrap">
-                  <div class="ovr-region-bar" style="width:24.4%;background:linear-gradient(90deg,#7DAE80,#A8CCA9)"></div>
+                  <div class="ovr-region-bar" style="width:35.6%;background:linear-gradient(90deg,#7DAE80,#A8CCA9)"></div>
                 </div>
-                <div class="ovr-region-num">11 / 45 · 24.4%</div>
+                <div class="ovr-region-num">16 / 45 · 35.6%</div>
               </div>
               <div class="ovr-region-item">
                 <div class="ovr-region-label">대전</div>
                 <div class="ovr-region-bar-wrap">
-                  <div class="ovr-region-bar" style="width:26.8%;background:linear-gradient(90deg,#D4633A,#E8896A)"></div>
+                  <div class="ovr-region-bar" style="width:39.0%;background:linear-gradient(90deg,#D4633A,#E8896A)"></div>
                 </div>
-                <div class="ovr-region-num">11 / 41 · 26.8%</div>
+                <div class="ovr-region-num">16 / 41 · 39.0%</div>
               </div>
             </div>
           </div>
@@ -496,10 +498,10 @@
         <!-- GWANGJU -->
         <div class="tab-panel" id="tab-gwangju">
           <div class="region-strip">
-            <div class="rstat"><div class="rstat-n">11</div><div class="rstat-l">총 병원 수</div></div>
-            <div class="rstat"><div class="rstat-n neg">1</div><div class="rstat-l">조치 필요</div></div>
-            <div class="rstat"><div class="rstat-n warn">3</div><div class="rstat-l">특이사항</div></div>
-            <div class="rstat"><div class="rstat-n pos">7</div><div class="rstat-l">이상없음</div></div>
+            <div class="rstat"><div class="rstat-n">16</div><div class="rstat-l">총 병원 수</div></div>
+            <div class="rstat"><div class="rstat-n neg">2</div><div class="rstat-l">조치 필요</div></div>
+            <div class="rstat"><div class="rstat-n warn">4</div><div class="rstat-l">특이사항</div></div>
+            <div class="rstat"><div class="rstat-n pos">8</div><div class="rstat-l">이상없음</div></div>
           </div>
           <div class="controls">
             <div class="search-wrap">
@@ -521,10 +523,10 @@
         <!-- DAEJEON -->
         <div class="tab-panel" id="tab-daejeon">
           <div class="region-strip">
-            <div class="rstat"><div class="rstat-n">11</div><div class="rstat-l">총 병원 수</div></div>
+            <div class="rstat"><div class="rstat-n">16</div><div class="rstat-l">총 병원 수</div></div>
             <div class="rstat"><div class="rstat-n neg">0</div><div class="rstat-l">조치 필요</div></div>
-            <div class="rstat"><div class="rstat-n warn">3</div><div class="rstat-l">특이사항</div></div>
-            <div class="rstat"><div class="rstat-n pos">8</div><div class="rstat-l">이상없음</div></div>
+            <div class="rstat"><div class="rstat-n warn">5</div><div class="rstat-l">특이사항</div></div>
+            <div class="rstat"><div class="rstat-n pos">11</div><div class="rstat-l">이상없음</div></div>
           </div>
           <div class="controls">
             <div class="search-wrap">
@@ -588,14 +590,14 @@
       <div class="container">
         <div class="summary-card" data-reveal>
           <h2>현장 점검 요약</h2>
-          <p>2026.5.19 ~ 6.8 수집 · 광주 11건 · 대전 11건<br>조치 필요 1건(해남종합병원 드레인 캡 누락), 특이사항 6건</p>
+          <p>2026.5.19 ~ 6.12 수집 · 광주 16건 · 대전 16건<br>조치 필요 2건(해남종합병원·논산백제병원), 특이사항 9건</p>
           <div class="summary-pills">
-            <span class="summary-pill">총 22건</span>
-            <span class="summary-pill">광주 팀 11건</span>
-            <span class="summary-pill">대전 팀 11건</span>
-            <span class="summary-pill">조치 필요 1건</span>
-            <span class="summary-pill">특이사항 6건</span>
-            <span class="summary-pill">이상없음 15건</span>
+            <span class="summary-pill">총 32건</span>
+            <span class="summary-pill">광주 팀 16건</span>
+            <span class="summary-pill">대전 팀 16건</span>
+            <span class="summary-pill">조치 필요 2건</span>
+            <span class="summary-pill">특이사항 9건</span>
+            <span class="summary-pill">이상없음 19건</span>
           </div>
         </div>
       </div>
@@ -628,7 +630,18 @@ var INSPECTIONS = [
   {region:"daejeon",hospital:"보령아산병원",date:"2026-05-19",inspector:"조정우",contact:"010-8803-5685",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:""},
   {region:"daejeon",hospital:"진천 참편한365내과",date:"2026-05-19",inspector:"류국환",contact:"043-533-3650",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"점검확인",noteType:"good",photo:""},
   {region:"daejeon",hospital:"이상주내과",date:"2026-05-19",inspector:"김정훈",contact:"010-9104-1833",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:"https://d33wubrfki0l68.cloudfront.net/5dd11de5-c733-4882-8207-57d176c463c2/image.jpg"},
-  {region:"daejeon",hospital:"을지대병원",date:"2026-06-08",inspector:"류국환",contact:"042-611-3044",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"캡을 씌우기는 적합하진 않고 테이핑 및 타이로 이중 체크 작업",noteType:"warn",photo:""}
+  {region:"daejeon",hospital:"을지대병원",date:"2026-06-08",inspector:"류국환",contact:"042-611-3044",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"캡을 씌우기는 적합하진 않고 테이핑 및 타이로 이중 체크 작업",noteType:"warn",photo:""},
+  // ─── 신규 (2026-06-09 ~ 06-12) ───
+  {region:"gwangju",hospital:"논산백제병원",date:"2026-06-10",inspector:"권민욱",contact:"010-2327-9662",drain:"부적합",hose:"부적합",tie:"부적합",overall:"즉시조치필요",note:"1. 배관들이 밖에 나와있음 2. drain 라인이 절연테이프로 연결된 장비들은 접착력이 약해져 떨어져 있는 경우가 많음 3. 마개로 drain 라인이 연결된 장비들도 일부 있음 4. 전체적으로 케이블타이로 연결되어 있지 않아 drain 라인이 빠질 위험이 높음",noteType:"issue",photo:""},
+  {region:"gwangju",hospital:"전북대학교병원",date:"2026-06-12",inspector:"권민욱",contact:"010-2327-9662",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"drain별 마개로 이루어져 있고, inlet 라인과 케이블타이로 묶어져있어 drain 라인이 빠질 위험이 낮음",noteType:"good",photo:""},
+  {region:"gwangju",hospital:"대자인병원",date:"2026-06-10",inspector:"이재훈",contact:"010-8608-2324",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:"https://d33wubrfki0l68.cloudfront.net/13b02d10-7898-4f5f-b227-61fc55f6c5c8/1000040635.jpg"},
+  {region:"gwangju",hospital:"홍영민내과",date:"2026-06-10",inspector:"이재훈",contact:"010-8608-2324",drain:"적합",hose:"적합",tie:"적합",overall:"일부주의",note:"배관 내경이 32mm 파이프로 되어 있음",noteType:"warn",photo:""},
+  {region:"gwangju",hospital:"바른정내과",date:"2026-06-10",inspector:"이재훈",contact:"010-8608-2324",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:""},
+  {region:"daejeon",hospital:"천안충무병원",date:"2026-06-12",inspector:"신상학",contact:"010-6505-1486",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"캡은 없으나 잘 고정되어있음. 이중 타이로 CDS와 고정",noteType:"warn",photo:"https://d33wubrfki0l68.cloudfront.net/52a28b4c-975f-4b71-999a-71786d85d3b3/IMG_0960.jpeg"},
+  {region:"daejeon",hospital:"유성선병원",date:"2026-06-12",inspector:"송원진",contact:"010-5617-4749",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:"https://d33wubrfki0l68.cloudfront.net/5954ad1f-ce72-4223-a682-81b872f7ecc1/20260612_095634.jpg"},
+  {region:"daejeon",hospital:"서울연합내과",date:"2026-06-10",inspector:"신상학",contact:"010-6505-1486",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"캡은 없으나 배수관 케이블타이로 잘 고정되어있음.",noteType:"warn",photo:"https://d33wubrfki0l68.cloudfront.net/2ac0afee-83b6-4707-b04a-087e21457dbf/IMG_0956.jpeg"},
+  {region:"daejeon",hospital:"서산조은내과",date:"2026-06-09",inspector:"신상학",contact:"010-6505-1486",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:"https://d33wubrfki0l68.cloudfront.net/8ed73877-565a-4304-aec4-37723690a2ab/IMG_0944.jpeg"},
+  {region:"daejeon",hospital:"장동석내과",date:"2026-06-09",inspector:"김정훈",contact:"010-9104-1833",drain:"적합",hose:"적합",tie:"적합",overall:"이상없음",note:"",noteType:"good",photo:"https://d33wubrfki0l68.cloudfront.net/520a66c5-a6ff-42d0-bff1-fe30ef44bd24/image.jpg"}
 ];
 
 /* ════════════════════════════════
@@ -648,7 +661,10 @@ var ALIASES = {
   '강진OK내과':'강진오케이내과',
   '지공군산의료원':'군산의료원',
   '사랑내과의원':'익산 사랑내과',
-  '순천향대천안병원':'순천향천안병원 신장실'
+  '순천향대천안병원':'순천향천안병원 신장실',
+  '전북대병원':'전북대학교병원',
+  '부여서울연합내과':'서울연합내과',
+  '충무병원':'천안충무병원'
 };
 
 function getInspStatus(name) {

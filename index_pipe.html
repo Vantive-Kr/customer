@@ -733,16 +733,13 @@
         payload.photos = photos;
         return fetch(GAS_URL, {
           method: 'POST',
+          mode:   'no-cors',   // GAS CORS 우회
           body:   JSON.stringify(payload)
         });
       })
-      .then(function(res) { return res.json(); })
-      .then(function(json) {
-        if (json.success) {
-          showSuccess();
-        } else {
-          throw new Error(json.error || '서버 오류');
-        }
+      .then(function() {
+        // no-cors 모드에서는 응답 본문을 읽을 수 없으므로 전송 완료 = 성공으로 처리
+        showSuccess();
       })
       .catch(function(err) {
         console.error(err);

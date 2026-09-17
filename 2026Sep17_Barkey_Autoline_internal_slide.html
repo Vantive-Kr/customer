@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autoline 대응 옵션 · Barkey S-line 내부 브리핑 · 슬라이드 · Vantive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{ box-sizing:border-box; }
+:root{
+  --plum:#72256B; --plum-deep:#58184F; --plum-soft:#A4599C;
+  --cream:#FFFAEB; --pine:#105742; --eucalyptus:#6CA07A; --sage:#CDDFD7;
+  --c1:#8C3184; --c2:#1A8767; --c3:#B07D1F; --c4:#3A6FB5; --c5:#C0505A;
+}
+html.theme-light{
+  --bg:#EDE6E0; --surface:#FFFFFF; --surface-alt:#FBF7F2;
+  --rule:rgba(27,18,25,0.14); --rule-soft:rgba(27,18,25,0.07);
+  --text:#1B1219; --text-secondary:#5E4A5C; --text-muted:#948094;
+  --accent:#72256B; --accent2:#105742;
+  --grid:rgba(27,18,25,0.10); --axis:rgba(27,18,25,0.30);
+}
+html.theme-dark{
+  --bg:#120810; --surface:#1F0F1D; --surface-alt:#2A1628;
+  --rule:rgba(243,239,228,0.16); --rule-soft:rgba(243,239,228,0.08);
+  --text:#F3EFE4; --text-secondary:#C9B4C6; --text-muted:#94808F;
+  --accent:#C77BBD; --accent2:#8FC49E;
+  --c1:#B05CA6; --c2:#34A574; --c3:#B5851F; --c4:#5589D2; --c5:#CE656E;
+  --grid:rgba(243,239,228,0.13); --axis:rgba(243,239,228,0.32);
+}
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--bg); color:var(--text);
+  font-family:'Noto Sans KR','Inter',-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased; word-break:keep-all;
+}
+.deck{ padding:26px 26px 90px; display:flex; flex-direction:column; align-items:center; gap:26px; }
+
+/* ---------- 슬라이드 ---------- */
+.slide{
+  position:relative; width:100%; max-width:1280px; aspect-ratio:16/9;
+  background:var(--surface); border:1px solid var(--rule);
+  border-radius:4px; overflow:hidden;
+  display:flex; flex-direction:column;
+  padding:46px 58px 52px;
+  container-type:inline-size;
+  box-shadow:0 1px 3px rgba(27,18,25,0.06);
+}
+.slide > *{ position:relative; z-index:1; }
+.slide-num{
+  position:absolute; right:26px; bottom:18px; z-index:2;
+  font-size:11px; font-weight:700; letter-spacing:0.14em; color:var(--text-muted);
+  font-variant-numeric:tabular-nums;
+}
+.slide-tag{
+  font-size:clamp(9px,0.87cqw,11px); font-weight:800; letter-spacing:0.18em; color:var(--accent);
+  text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:9px;
+}
+.slide-tag::before{ content:''; width:16px; height:2px; background:var(--accent); flex:none; }
+h2.st{ font-size:clamp(17px,3.15cqw,40px); line-height:1.24; font-weight:800; letter-spacing:-0.022em; margin:0 0 12px; }
+h2.st em{ font-style:normal; color:var(--accent); }
+p.sd{ font-size:clamp(12px,1.34cqw,17px); line-height:1.7; color:var(--text-secondary); margin:0 0 6px; max-width:62em; }
+p.sd b{ color:var(--text); font-weight:700; }
+.grow{ flex:1 1 auto; min-height:0; display:flex; flex-direction:column; justify-content:center; }
+.foot{ font-size:clamp(9.5px,1.03cqw,13px); line-height:1.65; color:var(--text-muted); border-top:1px solid var(--rule-soft); padding-top:12px; margin-top:14px; }
+.foot b{ color:var(--text-secondary); }
+
+/* ---------- 표지 / 섹션 ---------- */
+.cover{ background:linear-gradient(115deg,var(--plum-deep) 0%,var(--plum) 34%,#2E6A58 72%,var(--pine) 100%); border-color:transparent; color:#fff; justify-content:center; }
+.cover img{ height:42px; width:auto; align-self:flex-start; flex:none; filter:brightness(0) invert(1); opacity:0.96; margin-bottom:54px; }
+.cover .ctag{ font-size:clamp(9px,0.95cqw,12px); font-weight:800; letter-spacing:0.24em; color:rgba(255,255,255,0.72); margin-bottom:20px; }
+.cover h1{ font-size:clamp(17px,4.1cqw,52px); line-height:1.24; font-weight:800; letter-spacing:-0.025em; margin:0 0 28px; color:#fff; }
+.cover h1 span{ color:var(--sage); }
+.cover .cmeta{ display:flex; flex-wrap:wrap; gap:10px 30px; font-size:clamp(11px,1.1cqw,14px); color:rgba(255,255,255,0.8); border-top:1px solid rgba(255,255,255,0.26); padding-top:20px; max-width:80%; }
+.cover .slide-num{ color:rgba(255,255,255,0.5); }
+
+/* ---------- 큰 숫자 ---------- */
+.big{ text-align:center; }
+.big .bnum{ font-size:clamp(52px,11.8cqw,150px); line-height:1; font-weight:800; letter-spacing:-0.045em; color:var(--accent); font-variant-numeric:tabular-nums; }
+.big .bnum small{ font-size:0.30em; font-weight:700; letter-spacing:-0.01em; margin-left:4px; }
+.big .blab{ font-size:clamp(14px,1.58cqw,20px); font-weight:700; color:var(--text); margin-top:22px; }
+.big .bsub{ font-size:clamp(11px,1.18cqw,15px); color:var(--text-secondary); margin-top:12px; line-height:1.7; }
+
+/* ---------- KPI ---------- */
+.kpis{ display:grid; gap:0; grid-auto-flow:column; grid-auto-columns:1fr; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.kpis > div{ padding:26px 24px 28px; border-left:1px solid var(--rule-soft); }
+.kpis > div:first-child{ border-left:none; padding-left:0; }
+.klab{ font-size:clamp(9px,0.95cqw,12px); font-weight:800; letter-spacing:0.09em; color:var(--text-muted); margin-bottom:14px; text-transform:uppercase; }
+.kval{ font-size:clamp(24px,3.6cqw,46px); line-height:1; font-weight:800; letter-spacing:-0.03em; color:var(--accent); font-variant-numeric:tabular-nums; }
+.kval small{ font-size:0.40em; font-weight:700; margin-left:2px; letter-spacing:0; }
+.knote{ font-size:clamp(10px,1.03cqw,13px); color:var(--text-secondary); margin-top:13px; line-height:1.6; }
+.kpis.alt .kval{ color:var(--accent2); }
+
+/* ---------- 대비(좌우) ---------- */
+.vs{ display:grid; grid-template-columns:1fr 78px 1fr; align-items:center; }
+.vs-box{ text-align:center; padding:34px 26px; border:1px solid var(--rule); border-radius:3px; background:var(--surface-alt); }
+.vs-box .vnum{ font-size:clamp(38px,6.45cqw,82px); line-height:1; font-weight:800; letter-spacing:-0.04em; font-variant-numeric:tabular-nums; }
+.vs-box .vnum small{ font-size:0.32em; margin-left:3px; }
+.vs-box .vlab{ font-size:clamp(11px,1.18cqw,15px); font-weight:700; margin-top:18px; }
+.vs-box .vsub{ font-size:13px; color:var(--text-muted); margin-top:9px; line-height:1.6; }
+.vs-box.a .vnum{ color:var(--c2); } .vs-box.b .vnum{ color:var(--c1); }
+.vs-mid{ text-align:center; font-size:22px; font-weight:800; color:var(--text-muted); }
+
+/* ---------- 타임라인 ---------- */
+.tline{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:0; }
+.tline > div{ padding:0 22px 0 0; border-top:2px solid var(--rule); position:relative; padding-top:24px; }
+.tline > div::before{ content:''; position:absolute; top:-7px; left:0; width:12px; height:12px; border-radius:50%; background:var(--rule); }
+.tline > div.on{ border-top-color:var(--accent); }
+.tline > div.on::before{ background:var(--accent); }
+.twhen{ font-size:12px; font-weight:800; letter-spacing:0.08em; color:var(--accent); margin-bottom:10px; }
+.twhat{ font-size:clamp(12px,1.34cqw,17px); font-weight:700; line-height:1.4; margin-bottom:10px; }
+.tdesc{ font-size:clamp(10px,1.03cqw,13px); color:var(--text-secondary); line-height:1.65; }
+
+/* ---------- 표 ---------- */
+table.t{ width:100%; border-collapse:collapse; font-size:clamp(10px,1.18cqw,15px); }
+table.t th, table.t td{ padding:13px 12px; border-bottom:1px solid var(--rule-soft); text-align:center; }
+table.t thead th{ border-bottom:1px solid var(--rule); font-size:12px; font-weight:800; letter-spacing:0.06em; color:var(--text-secondary); text-transform:uppercase; }
+table.t thead th.hi{ color:var(--accent); }
+table.t .l{ text-align:left; font-weight:600; }
+table.t .n{ font-variant-numeric:tabular-nums; font-weight:700; white-space:nowrap; }
+table.t .hi{ background:var(--surface-alt); }
+table.t tfoot td{ border-top:1px solid var(--rule); border-bottom:none; font-weight:800; padding-top:15px; }
+table.t tbody tr.em td{ background:var(--surface-alt); }
+.tick{ display:inline-block; width:21px; height:21px; border-radius:50%; background:var(--pine); color:#fff; font-size:12px; line-height:21px; font-weight:800; }
+html.theme-dark .tick{ background:var(--eucalyptus); color:#10261C; }
+.dash{ color:var(--text-muted); opacity:0.45; }
+.sm{ font-size:12px; font-weight:400; color:var(--text-muted); display:block; margin-top:3px; }
+
+/* ---------- 차트 ---------- */
+.chart{ width:100%; }
+.chart svg{ display:block; width:100%; height:auto; overflow:visible; }
+.legend{ display:flex; flex-wrap:wrap; gap:6px 26px; margin-bottom:16px; }
+.legend span{ display:inline-flex; align-items:center; gap:8px; font-size:clamp(10px,1.03cqw,13px); font-weight:600; color:var(--text-secondary); }
+.legend i{ width:12px; height:12px; border-radius:2px; flex:none; }
+svg text{ font-family:'Noto Sans KR','Inter',sans-serif; }
+.ax{ fill:var(--text-muted); font-size:15px; }
+.ax-b{ fill:var(--text-secondary); font-size:15px; font-weight:700; }
+.vl{ fill:var(--text); font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }
+.vm{ fill:var(--text-muted); font-size:13px; font-variant-numeric:tabular-nums; }
+.gl{ stroke:var(--grid); stroke-width:1; }
+.axl{ stroke:var(--axis); stroke-width:1; }
+
+/* ---------- 회수율 바 ---------- */
+.rec{ display:grid; grid-template-columns:230px 1fr 92px; align-items:center; gap:0 22px; padding:17px 0; border-bottom:1px solid var(--rule-soft); }
+.rec:first-of-type{ border-top:1px solid var(--rule); }
+.rec-n{ font-size:clamp(12px,1.34cqw,17px); font-weight:700; } .rec-n small{ display:block; font-size:13px; font-weight:500; color:var(--text-muted); margin-top:3px; }
+.rec-b{ position:relative; height:22px; background:var(--rule-soft); border-radius:3px; }
+.rec-b i{ position:absolute; left:0; top:0; bottom:0; border-radius:3px; }
+.rec-b b{ position:absolute; top:-5px; bottom:-5px; left:100%; width:2px; background:var(--text); opacity:0.5; }
+.rec-v{ text-align:right; font-size:clamp(16px,2.05cqw,26px); font-weight:800; font-variant-numeric:tabular-nums; }
+
+/* ---------- 전환(from → to) ---------- */
+.shift{ display:grid; grid-template-columns:1fr 54px 1fr; align-items:center; padding:15px 0; border-bottom:1px solid var(--rule-soft); font-size:clamp(11px,1.26cqw,16px); }
+.shift:first-of-type{ border-top:1px solid var(--rule); }
+.shift .f{ color:var(--text-muted); } .shift .a{ text-align:center; color:var(--accent); font-weight:700; } .shift .t{ font-weight:700; }
+
+/* ---------- 카드 ---------- */
+.cards{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:26px; }
+.card{ border:1px solid var(--rule); border-radius:3px; padding:24px 24px 26px; background:var(--surface-alt); }
+.card.hi{ border-color:var(--accent); border-width:1.5px; background:var(--surface); }
+.ctit{ font-size:clamp(13px,1.42cqw,18px); font-weight:700; margin-bottom:8px; }
+.cali{ font-size:clamp(10px,1.03cqw,13px); font-weight:700; color:var(--accent); margin-bottom:13px; letter-spacing:-0.005em; }
+.cdes{ font-size:clamp(10px,1.1cqw,14px); line-height:1.72; color:var(--text-secondary); }
+.cdes b{ color:var(--text); }
+.badge{ display:inline-block; font-size:11px; font-weight:800; letter-spacing:0.07em; padding:3px 9px; border-radius:2px; background:var(--c5); color:#fff; margin-left:8px; vertical-align:2px; }
+
+/* ---------- 번호 목록 ---------- */
+.steps{ display:grid; gap:0; }
+.steps > div{ display:grid; grid-template-columns:62px 1fr; gap:0 18px; padding:19px 0; border-bottom:1px solid var(--rule-soft); }
+.steps > div:first-child{ border-top:1px solid var(--rule); }
+.snum{ font-size:clamp(17px,2.05cqw,26px); font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-0.02em; }
+.stit{ font-size:clamp(13px,1.42cqw,18px); font-weight:700; margin-bottom:6px; }
+.ssub{ font-size:clamp(10px,1.1cqw,14px); color:var(--text-secondary); line-height:1.65; }
+
+/* ---------- 콜아웃 ---------- */
+.callout{ border-left:3px solid var(--accent); padding:4px 0 4px 22px; font-size:clamp(11px,1.34cqw,17px); line-height:1.75; color:var(--text-secondary); }
+.callout b{ color:var(--text); font-weight:700; }
+
+/* ---------- 컨트롤 ---------- */
+.bar{
+  position:fixed; right:20px; bottom:20px; z-index:50; display:flex; align-items:center; gap:6px;
+  background:var(--surface); border:1px solid var(--rule); border-radius:999px; padding:6px 8px;
+  box-shadow:0 3px 14px rgba(27,18,25,0.14);
+}
+.bar button{
+  border:none; background:transparent; color:var(--text-secondary); cursor:pointer;
+  font-family:inherit; font-size:13px; font-weight:700; padding:6px 11px; border-radius:999px; line-height:1;
+}
+.bar button:hover{ background:var(--surface-alt); color:var(--text); }
+.bar .pos{ font-size:12px; font-weight:800; color:var(--text-muted); font-variant-numeric:tabular-nums; padding:0 8px; min-width:52px; text-align:center; }
+.skip{ position:absolute; left:-9999px; }
+.skip:focus{ left:12px; top:12px; z-index:99; background:var(--surface); padding:10px 16px; border:1px solid var(--accent); }
+
+/* ---------- 반응형 ---------- */
+  .big .bnum{ font-size:104px; } .kval{ font-size:34px; }
+  .vs-box .vnum{ font-size:58px; } .slide{ }
+}
+@media (max-width:900px){
+  .deck{ padding:14px 14px 80px; gap:14px; }
+  .slide{ padding:30px 26px 36px; aspect-ratio:auto; min-height:auto; }
+  .kpis, .cards, .tline{ grid-auto-flow:row; }
+  .kpis > div{ border-left:none; border-top:1px solid var(--rule-soft); padding-left:0; }
+  .kpis > div:first-child{ border-top:none; }
+  .tline > div{ padding-right:0; }
+  .vs{ grid-template-columns:1fr; gap:14px; } .vs-mid{ padding:4px 0; }
+  .rec{ grid-template-columns:130px 1fr 66px; gap:0 12px; }
+  .rec-v{ font-size:20px; }
+  .chart{ overflow-x:auto; } .chart svg{ min-width:660px; }
+  table.t{ font-size:13px; }
+  .cover img{ height:30px; margin-bottom:28px; }
+}
+
+/* ---------- 인쇄 ---------- */
+@media print{
+  @page{ size:1280px 720px; margin:0; }
+  html,body{ background:#fff; }
+  .deck{ padding:0; gap:0; }
+  .bar{ display:none; }
+  .slide{ max-width:none; width:1280px; height:720px; aspect-ratio:auto; border:none; border-radius:0; box-shadow:none; break-after:page; break-inside:avoid; }
+  .slide:last-child{ break-after:auto; }
+}
+
+</style>
+</head>
+<body>
+<a href="#s1" class="skip">본문으로 바로가기</a>
+<div class="deck" id="deck">
+<section class="slide cover" id="s1" aria-label="슬라이드 1">
+<img src="data:image/png;base64,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" alt="Vantive">
+<div class="ctag">INTERNAL BRIEFING</div>
+<h1>Autoline 대응 옵션과<br><span>Barkey S-line 참고 자료</span></h1>
+<div class="cmeta">
+  <div>2026년 9월</div>
+  <div>내부 직원 브리핑용 · 대외 배포 금지</div>
+  <div>근거 · 제안 조건 + Barkey 제조사 공식 자료</div>
+</div>
+<div class="slide-num">1 / 17</div></section>
+
+<section class="slide" id="s2" aria-label="슬라이드 2">
+<div class="slide-tag">브리핑 · 고객 제안 옵션</div>
+<h2 class="st">병원에는 <em>세 가지 옵션</em>만 제안합니다</h2>
+<div class="grow">
+<div class="cards">
+  <div class="card"><div class="ctit">옵션 1 · 부품 구매</div><div class="cali">Vantive Autoline · 430만원 (부가세 별도)</div><div class="cdes">필요할 때 <b>1회성으로 구매</b>합니다. Autoline 교체만 필요한 병원에 맞습니다.</div></div>
+  <div class="card hi"><div class="ctit">옵션 2 · Service Complete</div><div class="cali">Prismaflex 서비스 플랜 · 월 35만원 · 2년 계약</div><div class="cdes">Autoline이 포함된 <b>유일한 플랜</b>입니다. 계약기간 중 Autoline 1회와 <b>Vantive 엔지니어의 점검·수리</b>가 포함됩니다. 2년 총 840만원입니다.</div></div>
+  <div class="card"><div class="ctit">옵션 3 · Barkey 대리점 안내</div><div class="cali">Barkey 한국 대리점에 직접 문의</div><div class="cdes">대리점 문의만 안내합니다. <b>가격 노출이나 다른 언급은 하지 않습니다.</b></div></div>
+</div>
+</div>
+<div class="foot">본 자료는 <b>내부 직원 브리핑용</b>입니다. 고객에게 파일을 그대로 전달하지 않습니다. 모든 금액은 부가세 별도입니다.</div>
+<div class="slide-num">2 / 17</div></section>
+
+<section class="slide" id="s3" aria-label="슬라이드 3">
+<div class="slide-tag">브리핑 · 옵션 1 vs 옵션 2</div>
+<h2 class="st">Service Complete의 Autoline은 <em>계약기간 중 1회</em>입니다</h2>
+<div class="grow">
+<div class="vs">
+  <div class="vs-box b"><div class="vnum">430<small>만원</small></div><div class="vlab">옵션 1 · Autoline 부품 구매</div><div class="vsub">교체 1회당 · 부가세 별도<br>필요할 때마다 구매</div></div>
+  <div class="vs-mid">vs</div>
+  <div class="vs-box a"><div class="vnum">840<small>만원</small></div><div class="vlab">옵션 2 · Service Complete 2년</div><div class="vsub">월 35만원 × 24개월 · 부가세 별도<br>Autoline 보증 2년 1회 한정</div></div>
+</div>
+<div class="callout" style="margin-top:28px"><b>Autoline만 놓고 보면 옵션 1이 410만원 저렴합니다.</b> 플랜으로 받을 수 있는 Autoline은 2년에 1회뿐이고, 2회째부터는 별도 구매가 필요합니다. 따라서 Autoline 교체만 필요하면 옵션 1, <b>정기 예방점검·출장 수리까지 Vantive에 맡기고 월 고정 예산을 원하면</b> 옵션 2를 권합니다.</div>
+</div>
+<div class="foot">차액 410만원은 Service Complete의 다른 포함 항목(다음 두 장)으로 설명합니다. 세부 조건은 계약서 기준으로 최종 확인합니다.</div>
+<div class="slide-num">3 / 17</div></section>
+
+<section class="slide" id="s4" aria-label="슬라이드 4">
+<div class="slide-tag">브리핑 · Prismaflex 서비스 플랜 구성</div>
+<h2 class="st">Autoline은 <em>Service Complete에만</em> 포함됩니다</h2>
+<div class="grow">
+<table class="t" style="font-size:clamp(9px,1.05cqw,13.5px)">
+<thead><tr><th class="l">포함 항목</th><th style="width:15%">Standard Warranty</th><th style="width:15%">Service Essential</th><th class="hi" style="width:15%">Service Complete</th></tr></thead>
+<tbody><tr><td class="l">Vantive 기술전문가와 상담 가능한 서비스라인 제공</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr><tr><td class="l">시스템의 제조 규격에 의한 점검 및 테스트 제공</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr><tr><td class="l">제조업체로부터 승인된 정식 부품 제공 <span class="sm">일부 부품 제외</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr><tr><td class="l">시스템의 정상 가동을 위한 출장 수리 및 점검</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr><tr><td class="l">Preventive Maintenance Kit 교체를 포함한 정기 예방 점검 (연 1회)</td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr><tr><td class="l">정기 예방 점검 (연 1회)</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td class="hi"><span class="tick">✓</span></td></tr><tr class="em"><td class="l">Warmer Autoline 제공 <span class="sm">고장 발생 시, 계약기간 중 1회</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td class="hi"><span class="tick">✓</span></td></tr></tbody>
+<tfoot><tr><td class="l">관리비용 / 월 (부가세 별도)</td><td class="n">20만원</td><td class="n">25만원</td><td class="n hi" style="color:var(--accent)">35만원</td></tr></tfoot>
+</table>
+</div>
+<div class="foot">Standard Warranty와 Service Essential에는 Autoline이 포함되지 않으므로, Autoline 대응 옵션으로는 <b>Service Complete만</b> 제안합니다.</div>
+<div class="slide-num">4 / 17</div></section>
+
+<section class="slide" id="s5" aria-label="슬라이드 5">
+<div class="slide-tag">브리핑 · Service Complete 계약 시 달라지는 것</div>
+<h2 class="st">차액 410만원으로 <em>관리 주체가 바뀝니다</em></h2>
+<div class="grow">
+<div><div class="shift"><div class="f">병원 의공과에서 장비 점검</div><div class="a">→</div><div class="t">계약기간 동안 Vantive 엔지니어가 점검·서비스</div></div><div class="shift"><div class="f">고장 시 건별 출장·수리 비용 발생</div><div class="a">→</div><div class="t">출장 수리 및 점검 포함</div></div><div class="shift"><div class="f">예방 점검 별도 관리</div><div class="a">→</div><div class="t">PM Kit 교체 포함 정기 예방점검 연 1회 + 정기 예방점검 연 1회</div></div><div class="shift"><div class="f">부품 교체 시 건별 구매</div><div class="a">→</div><div class="t">제조사 승인 정식 부품 제공 (일부 부품 제외)</div></div><div class="shift"><div class="f">Autoline 고장 시 430만원 구매</div><div class="a">→</div><div class="t">계약기간 중 1회 제공 · 2회째부터 별도 구매</div></div></div>
+</div>
+<div class="foot">설명 포인트 — Autoline 가격만 비교하면 옵션 1이 유리하지만, Service Complete는 <b>장비 관리 전체를 Vantive가 맡는 계약</b>이라는 점을 함께 안내합니다.</div>
+<div class="slide-num">5 / 17</div></section>
+
+<section class="slide" id="s6" aria-label="슬라이드 6">
+<div class="slide-tag">브리핑 · 옵션 3 응대 기준</div>
+<h2 class="st">대리점 안내는 <em>한 문장으로 끝냅니다</em></h2>
+<div class="grow">
+<div class="callout" style="font-size:clamp(13px,1.6cqw,21px);margin-bottom:30px"><b>“Barkey 제품 관련 문의는 Barkey 한국 대리점으로 직접 확인 부탁드립니다.”</b></div>
+<div class="cards">
+  <div class="card hi"><div class="ctit">하는 것</div><div class="cdes">대리점에 직접 문의하시도록 안내<br>필요 시 대리점 연락 경로만 전달<br>옵션 1 · 2는 평소대로 설명</div></div>
+  <div class="card"><div class="ctit">하지 않는 것 <span class="badge">금지</span></div><div class="cdes"><b>가격 언급</b> (해외 유통가·추정가 포함)<br><b>제품 비교·추천·평가</b> (S-line 사양, 성능 포함)<br>대리점 조건이나 공급 가능 여부 추측</div></div>
+</div>
+</div>
+<div class="foot">이후 슬라이드의 S-line 사양·비교 내용은 <b>직원 이해용 배경 자료</b>입니다. 옵션 3 안내 시 고객에게 설명하지 않습니다.</div>
+<div class="slide-num">6 / 17</div></section>
+
+<section class="slide" id="s7" aria-label="슬라이드 7">
+<div class="slide-tag">요약</div>
+<div class="grow big">
+  <div class="bnum">1<small>대로 끝</small></div>
+  <div class="blab">컨트롤러 없이, 한 대로 가온까지</div>
+  <div class="bsub">Barkey S-line은 컨트롤러와 가온 슬리브가 하나로 된 일체형 가온기입니다.<br>같은 Barkey 가온 슬리브 방식을 더 단순한 구성으로 제공합니다.</div>
+</div>
+<div class="slide-num">7 / 17</div></section>
+
+<section class="slide" id="s8" aria-label="슬라이드 8">
+<div class="slide-tag">01 · 제품 개요</div>
+<h2 class="st">핵심 사양을 <em>숫자로 먼저</em></h2>
+<p class="sd">수액, 신선동결혈장(FFP), 혈액을 환자에게 들어가는 지점까지 데워 주는 인라인 가온기입니다.</p>
+<div class="grow">
+<div class="kpis">
+  <div><div class="klab">설정 온도</div><div class="kval">37<small>/39°C</small></div><div class="knote">둘 중 하나로 고정 · 원터치 작동</div></div>
+  <div><div class="klab">가온 슬리브</div><div class="kval">1.5<small>m</small></div><div class="knote">표준 I.V. 세트 4~5 mm 적용</div></div>
+  <div><div class="klab">무게</div><div class="kval">1.3<small>kg</small></div><div class="knote">일체형 · 폴대 거치</div></div>
+  <div><div class="klab">별도 소모품</div><div class="kval">0<small>개</small></div><div class="knote">기존 I.V. 세트를 그대로 사용</div></div>
+</div>
+</div>
+<div class="foot">전원 100~240 V · 소비 전력 115~139 VA · 연결선 3 m · CE 0123</div>
+<div class="slide-num">8 / 17</div></section>
+
+<section class="slide" id="s9" aria-label="슬라이드 9">
+<div class="slide-tag">02 · 특징</div>
+<h2 class="st">현장에서 <em>달라지는 네 가지</em></h2>
+<div class="grow">
+<div class="cards">
+  <div class="card"><div class="ctit">간단한 조작</div><div class="cali">원터치 · 온도값 고정</div><div class="cdes">목표 온도가 미리 정해져 있어 <b>설정 실수가 생기지 않습니다.</b> 교육이 짧습니다.</div></div>
+  <div class="card"><div class="ctit">소모품 없음</div><div class="cali">표준 I.V. 세트 그대로</div><div class="cdes">튜브를 슬리브에 끼우기만 하면 됩니다. <b>전용 디스포저블이 필요 없습니다.</b></div></div>
+  <div class="card"><div class="ctit">투석 적용</div><div class="cali">리턴 라인 가온</div><div class="cdes">제조사가 <b>투석액 리턴 라인 적용</b>을 명시하고 있습니다.</div></div>
+  <div class="card"><div class="ctit">위생 관리</div><div class="cali">매끈한 표면</div><div class="cdes">세척과 소독이 쉽고, <b>생체적합 소재</b>를 사용합니다.</div></div>
+</div>
+</div>
+<div class="slide-num">9 / 17</div></section>
+
+<section class="slide" id="s10" aria-label="슬라이드 10">
+<div class="slide-tag">03 · 안전</div>
+<h2 class="st">안전 장치는 <em>기본으로 들어 있습니다</em></h2>
+<div class="grow">
+<div class="steps">
+  <div><div class="snum">센서</div><div><div class="stit">온도 센서 내장</div><div class="ssub">가온 슬리브의 실제 온도를 화면에 계속 표시합니다.</div></div></div>
+  <div><div class="snum">알람</div><div><div class="stit">과온도 · 오류 알람</div><div class="ssub">이상이 생기면 시각 알람과 소리 알람이 함께 울립니다.</div></div></div>
+  <div><div class="snum">설정</div><div><div class="stit">고정된 목표 온도</div><div class="ssub">사용자가 온도를 잘못 바꿀 수 없어 운용이 안정적입니다.</div></div></div>
+  <div><div class="snum">전기</div><div><div class="stit">BF 제세동 보호 · 보호접지 Class I · IP X2</div><div class="ssub">체내·체외 환자 적용 기준을 충족합니다.</div></div></div>
+</div>
+</div>
+<div class="slide-num">10 / 17</div></section>
+
+<section class="slide" id="s11" aria-label="슬라이드 11">
+<div class="slide-tag">04 · 가온 성능</div>
+<h2 class="st">유량이 올라가면 <em>출구 온도는 내려갑니다</em></h2>
+<div class="grow">
+<div class="chart">
+<div class="legend"><span><i style="background:var(--c1)"></i>Barkey S-line</span><span><i style="background:var(--c2)"></i>비교 제품 A (제조사 자료 표기)</span></div>
+<svg viewBox="0 0 1000 350" role="img" aria-label="유량별 출구 수액 온도 비교">
+<title>유량별 출구 수액 온도 · 입구 수액 20°C · 주변 온도 20°C</title>
+<line class="axl" x1="70" y1="300.0" x2="960" y2="300.0"/>
+<text class="vm" x="60" y="304.0" text-anchor="end">20</text>
+<line class="gl" x1="70" y1="232.5" x2="960" y2="232.5"/>
+<text class="vm" x="60" y="236.5" text-anchor="end">25</text>
+<line class="gl" x1="70" y1="165.0" x2="960" y2="165.0"/>
+<text class="vm" x="60" y="169.0" text-anchor="end">30</text>
+<line class="gl" x1="70" y1="97.5" x2="960" y2="97.5"/>
+<text class="vm" x="60" y="101.5" text-anchor="end">35</text>
+<line class="gl" x1="70" y1="30.0" x2="960" y2="30.0"/>
+<text class="vm" x="60" y="34.0" text-anchor="end">40</text>
+<text class="ax" x="70.0" y="324" text-anchor="middle">0</text>
+<text class="ax" x="248.0" y="324" text-anchor="middle">5</text>
+<text class="ax" x="426.0" y="324" text-anchor="middle">10</text>
+<text class="ax" x="604.0" y="324" text-anchor="middle">15</text>
+<text class="ax" x="782.0" y="324" text-anchor="middle">20</text>
+<text class="ax" x="960.0" y="324" text-anchor="middle">25</text>
+<text class="vm" x="60" y="16" text-anchor="end">°C</text>
+<text class="ax" x="960" y="346" text-anchor="end">유량 (ml/min)</text>
+<line x1="70" y1="70.5" x2="960" y2="70.5" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.45"/>
+<text class="vm" x="960" y="62.5" text-anchor="end">체온 기준 37°C</text>
+<path d="M105.6,84.0 L141.2,111.0 L176.8,125.9 L248.0,151.5 L354.8,175.8 L426.0,189.3 L532.8,204.1 L604.0,212.2 L710.8,221.7 L782.0,225.8 L888.8,231.1 L960.0,232.5" fill="none" stroke="var(--c2)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M105.6,50.2 L176.8,62.4 L248.0,75.9 L354.8,93.5 L426.0,104.2 L532.8,116.4 L604.0,124.5 L710.8,134.0 L782.0,139.3 L888.8,146.1 L960.0,150.1" fill="none" stroke="var(--c1)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="105.6" cy="50.2" r="5" fill="var(--c1)"><title>S-line · 1 ml/min · 약 38°C</title></circle>
+<text class="vl" x="115.6" y="38.2" text-anchor="start">약 38°C</text>
+<circle cx="426.0" cy="104.2" r="5" fill="var(--c1)"><title>S-line · 10 ml/min · 약 34°C</title></circle>
+<text class="vl" x="436.0" y="92.2" text-anchor="start">약 34°C</text>
+<circle cx="960.0" cy="150.1" r="5" fill="var(--c1)"><title>S-line · 25 ml/min · 약 31°C</title></circle>
+<text class="vl" x="950.0" y="138.1" text-anchor="end">약 31°C</text>
+<circle cx="105.6" cy="84.0" r="5" fill="var(--c2)"><title>비교 제품 A · 1 ml/min · 약 36°C</title></circle>
+<text class="vl" x="115.6" y="110.0" text-anchor="start">약 36°C</text>
+<circle cx="426.0" cy="189.3" r="5" fill="var(--c2)"><title>비교 제품 A · 10 ml/min · 약 28°C</title></circle>
+<text class="vl" x="436.0" y="215.3" text-anchor="start">약 28°C</text>
+<circle cx="960.0" cy="232.5" r="5" fill="var(--c2)"><title>비교 제품 A · 25 ml/min · 약 25°C</title></circle>
+<text class="vl" x="950.0" y="258.5" text-anchor="end">약 25°C</text>
+</svg>
+</div>
+</div>
+<div class="foot">입구 수액 20°C · 주변 온도 20°C 조건. 곡선은 <b>S-line 제조사 전단지 그래프를 읽어 옮긴 근사치</b>입니다. 25 ml/min에서 약 31°C로, 유량이 높은 용도일수록 가온 효과가 줄어듭니다.</div>
+<div class="slide-num">11 / 17</div></section>
+
+<section class="slide" id="s12" aria-label="슬라이드 12">
+<div class="slide-tag">05 · 사양 비교 ① — S-line vs Autoline (Prismaflex용)</div>
+<h2 class="st">구성과 <em>운용</em></h2>
+<div class="grow">
+<table class="t">
+<thead><tr><th class="l" style="width:24%">항목</th><th style="width:34%">Barkey S-line</th><th>autocontrol 3 XPT + autoline 4R XPT</th></tr></thead>
+<tbody><tr><td class="l">구성</td><td class="hi">일체형 (컨트롤 + 슬리브)</td><td class="">컨트롤러 + 가온 슬리브 분리형</td></tr><tr><td class="l">설정 온도</td><td class="">+37°C 또는 +39°C 고정</td><td class="hi">+33 ~ +43°C 조절 (기본 +37°C)</td></tr><tr><td class="l">연결 가능 라인</td><td class="">1라인</td><td class="hi">컨트롤러 1대에 최대 2라인</td></tr><tr><td class="l">가온 슬리브 길이</td><td class="">1.5 m</td><td class="">1.5 m</td></tr><tr><td class="l">적용 튜브 직경</td><td class="">4.0 ~ 5.0 mm</td><td class="">5 mm / 7 mm</td></tr><tr><td class="l">전원</td><td class="hi">100 ~ 240 V, 50/60 Hz</td><td class="">230 V 또는 115 V, 50/60 Hz</td></tr><tr><td class="l">소비 전력</td><td class="">115 ~ 139 VA</td><td class="">200 VA(115 V) / 220 VA(230 V)</td></tr></tbody></table>
+</div>
+<div class="foot">음영 = 해당 항목에서 상대적으로 유리한 쪽</div>
+<div class="slide-num">12 / 17</div></section>
+
+<section class="slide" id="s13" aria-label="슬라이드 13">
+<div class="slide-tag">05 · 사양 비교 ② — S-line vs Autoline (Prismaflex용)</div>
+<h2 class="st">전원과 <em>온도 관리</em></h2>
+<div class="grow">
+<table class="t">
+<thead><tr><th class="l" style="width:24%">항목</th><th style="width:34%">Barkey S-line</th><th>autocontrol 3 XPT + autoline 4R XPT</th></tr></thead>
+<tbody><tr><td class="l">연결선</td><td class="">3 m</td><td class="">2 m (슬리브 ↔ 컨트롤러)</td></tr><tr><td class="l">무게</td><td class="hi">약 1.3 kg</td><td class="">컨트롤러 약 3.7 kg + 슬리브 약 350 g</td></tr><tr><td class="l">온도 센서</td><td class="">내장 온도 센서</td><td class="hi">독립 센서 3개</td></tr><tr><td class="l">과온도 알람</td><td class="">있음 (시각·음향)</td><td class="">있음 (설정값 +1°C, 시각·음향)</td></tr><tr><td class="l">온도 표시</td><td class="">실제 온도</td><td class="hi">설정 온도 + 실제 온도</td></tr><tr><td class="l">의료기기 등급 (EU)</td><td class="">IIa</td><td class="">IIb</td></tr><tr><td class="l">전기 보호 등급</td><td class="">Class I (보호접지)</td><td class="">Class II (이중절연)</td></tr></tbody></table>
+</div>
+<div class="foot">음영 = 해당 항목에서 상대적으로 유리한 쪽</div>
+<div class="slide-num">13 / 17</div></section>
+
+<section class="slide" id="s14" aria-label="슬라이드 14">
+<div class="slide-tag">05 · 사양 비교 ③ — S-line vs Autoline (Prismaflex용)</div>
+<h2 class="st">안전 등급과 <em>적용 범위</em></h2>
+<div class="grow">
+<table class="t">
+<thead><tr><th class="l" style="width:24%">항목</th><th style="width:34%">Barkey S-line</th><th>autocontrol 3 XPT + autoline 4R XPT</th></tr></thead>
+<tbody><tr><td class="l">환자 적용부</td><td class="">BF, 제세동 보호</td><td class="hi">CF</td></tr><tr><td class="l">방수 등급</td><td class="">IP X2</td><td class="">자료 미기재</td></tr><tr><td class="l">인증</td><td class="">CE 0123 · ISO 13485</td><td class="">CE 0123 · ISO 13485</td></tr><tr><td class="l">별도 소모품</td><td class="hi">없음</td><td class="">없음</td></tr><tr><td class="l">투석 리턴 라인 적용</td><td class="">가능 (제조사 명시)</td><td class="">가능 (제조사 명시)</td></tr><tr><td class="l">Prismaflex 전용 구성</td><td class="">확인 필요</td><td class="hi">Prismacomfort로 공급</td></tr><tr><td class="l">고유량 가온 성능</td><td class="">상대적으로 제한적</td><td class="hi">더 높은 유량에 대응 (제조사 설명)</td></tr></tbody></table>
+</div>
+<div class="foot">Prismaflex용 Barkey 구성(Prismacomfort)은 autocontrol 3XPT와 autoline XPT 4R low-flow(내경 4.3 mm) · high-flow(내경 6.0 mm)로 이루어집니다.</div>
+<div class="slide-num">14 / 17</div></section>
+
+<section class="slide" id="s15" aria-label="슬라이드 15">
+<div class="slide-tag">06 · 한눈에 보는 차이</div>
+<h2 class="st">단순함을 얻고, <em>조절 폭을 내려놓습니다</em></h2>
+<div class="grow">
+<div>
+  <div class="shift"><div class="f">컨트롤러 + 슬리브 분리 · 약 4 kg</div><div class="a">→</div><div class="t">일체형 · 약 1.3 kg</div></div>
+  <div class="shift"><div class="f">+33 ~ +43°C 자유 조절</div><div class="a">→</div><div class="t">+37 / +39°C 고정 · 설정 실수 없음</div></div>
+  <div class="shift"><div class="f">컨트롤러 1대로 2라인 동시 가온</div><div class="a">→</div><div class="t">1대 1라인</div></div>
+  <div class="shift"><div class="f">독립 센서 3개 · CF 적용부 · IIb</div><div class="a">→</div><div class="t">내장 센서 · BF 적용부 · IIa</div></div>
+  <div class="shift"><div class="f">고유량 대응 · Prismaflex 전용 구성</div><div class="a">→</div><div class="t">저유량 중심 · 장착 호환 확인 필요</div></div>
+</div>
+</div>
+<div class="slide-num">15 / 17</div></section>
+
+<section class="slide" id="s16" aria-label="슬라이드 16">
+<div class="slide-tag">07 · 권장 용도</div>
+<h2 class="st">주 가온기의 대체보다 <em>보조·저유량 대안</em>으로</h2>
+<div class="grow">
+<div class="cards">
+  <div class="card hi"><div class="ctit">잘 맞는 경우</div><div class="cali">단순 운용 · 저유량 가온</div><div class="cdes">일반 수액·수혈 라인의 <b>저체온 예방</b>, 이동이 잦은 병동, 온도 조절이 필요 없는 표준 프로토콜, 추가 장비를 빠르게 늘려야 할 때.</div></div>
+  <div class="card"><div class="ctit">먼저 확인이 필요한 경우 <span class="badge">확인</span></div><div class="cali">고유량 · 전용 장착</div><div class="cdes">CRRT 혈액 리턴 라인처럼 <b>유량이 높은 용도</b>, Prismaflex 본체 장착 호환성, 국내 허가 및 공급·A/S 경로.</div></div>
+</div>
+<div class="callout" style="margin-top:26px">Autoline이 맡던 역할을 그대로 옮기기보다, <b>용도를 나눠 S-line을 함께 쓰는 구성</b>을 권장합니다.</div>
+</div>
+<div class="slide-num">16 / 17</div></section>
+
+<section class="slide" id="s17" aria-label="슬라이드 17">
+<div class="slide-tag">08 · 다음 단계</div>
+<h2 class="st">다음 단계</h2>
+<div class="grow">
+<div class="steps">
+  <div><div class="snum">01</div><div><div class="stit">사용 용도와 유량 조건 확인</div><div class="ssub">적용 부서, 가온 대상 라인, 평소 유량 범위</div></div></div>
+  <div><div class="snum">02</div><div><div class="stit">장착 호환성 확인</div><div class="ssub">Prismaflex 및 기존 폴대·레일 거치 방식</div></div></div>
+  <div><div class="snum">03</div><div><div class="stit">국내 허가 · 공급 · A/S 경로 확인</div><div class="ssub">식약처 허가 여부, 수입처, 점검·수리 체계</div></div></div>
+  <div><div class="snum">04</div><div><div class="stit">현장 평가 후 도입 여부 결정</div><div class="ssub">데모 장비로 실제 라인에서 출구 온도 확인</div></div></div>
+</div>
+</div>
+<div class="foot">자료 출처 — Barkey S-line Flyer (ae-101-MV-0013-04 EN V2) · Barkey autocontrol 3 XPT + autoline 4R XPT Flyer (ac-200-MV-0013-02 EN V1) · Barkey Prismacomfort Service Manual (V5, 2016)<br>제조사 사양은 사전 고지 없이 변경될 수 있습니다. 옵션 금액은 부가세 별도이며, 본 자료는 내부 브리핑용입니다.</div>
+<div class="slide-num">17 / 17</div></section>
+</div>
+
+<nav class="bar" aria-label="슬라이드 이동">
+  <button onclick="go(-1)" aria-label="이전 슬라이드">‹ 이전</button>
+  <span class="pos" id="pos">1 / 17</span>
+  <button onclick="go(1)" aria-label="다음 슬라이드">다음 ›</button>
+  <button onclick="toggleTheme()" aria-label="테마 변경" title="테마 변경">◐</button>
+  <button onclick="window.print()" aria-label="인쇄 · PDF 저장" title="인쇄 · PDF로 저장">인쇄</button>
+</nav>
+
+<script>
+var N = 17;
+var cur = 1;
+
+function slides() { return Array.prototype.slice.call(document.querySelectorAll('.slide')); }
+
+function go(d) {
+  var t = Math.min(N, Math.max(1, cur + d));
+  var el = document.getElementById('s' + t);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function toggleTheme() {
+  var h = document.documentElement;
+  h.className = (h.className === 'theme-light') ? 'theme-dark' : 'theme-light';
+}
+
+// 현재 슬라이드 추적
+var io = new IntersectionObserver(function(es) {
+  es.forEach(function(e) {
+    if (e.isIntersecting) {
+      var i = slides().indexOf(e.target) + 1;
+      if (i > 0) { cur = i; document.getElementById('pos').textContent = i + ' / ' + N; }
+    }
+  });
+}, { threshold: 0.5 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  slides().forEach(function(s) { io.observe(s); });
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+  else if (e.key === 'Home') { e.preventDefault(); go(-N); }
+  else if (e.key === 'End') { e.preventDefault(); go(N); }
+});
+</script>
+</body>
+</html>

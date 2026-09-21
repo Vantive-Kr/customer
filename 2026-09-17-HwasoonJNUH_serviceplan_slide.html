@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>화순전남대학교병원 서비스 플랜 제안 · 슬라이드 · Vantive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{ box-sizing:border-box; }
+:root{
+  --plum:#72256B; --plum-deep:#58184F; --plum-soft:#A4599C;
+  --cream:#FFFAEB; --pine:#105742; --eucalyptus:#6CA07A; --sage:#CDDFD7;
+  --c1:#8C3184; --c2:#1A8767; --c3:#B07D1F; --c4:#3A6FB5; --c5:#C0505A;
+}
+html.theme-light{
+  --bg:#EDE6E0; --surface:#FFFFFF; --surface-alt:#FBF7F2;
+  --rule:rgba(27,18,25,0.14); --rule-soft:rgba(27,18,25,0.07);
+  --text:#1B1219; --text-secondary:#5E4A5C; --text-muted:#948094;
+  --accent:#72256B; --accent2:#105742;
+  --grid:rgba(27,18,25,0.10); --axis:rgba(27,18,25,0.30);
+}
+html.theme-dark{
+  --bg:#120810; --surface:#1F0F1D; --surface-alt:#2A1628;
+  --rule:rgba(243,239,228,0.16); --rule-soft:rgba(243,239,228,0.08);
+  --text:#F3EFE4; --text-secondary:#C9B4C6; --text-muted:#94808F;
+  --accent:#C77BBD; --accent2:#8FC49E;
+  --c1:#B05CA6; --c2:#34A574; --c3:#B5851F; --c4:#5589D2; --c5:#CE656E;
+  --grid:rgba(243,239,228,0.13); --axis:rgba(243,239,228,0.32);
+}
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--bg); color:var(--text);
+  font-family:'Noto Sans KR','Inter',-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased; word-break:keep-all;
+}
+.deck{ padding:26px 26px 90px; display:flex; flex-direction:column; align-items:center; gap:26px; }
+
+/* ---------- 슬라이드 ---------- */
+.slide{
+  position:relative; width:100%; max-width:1280px; aspect-ratio:16/9;
+  background:var(--surface); border:1px solid var(--rule);
+  border-radius:4px; overflow:hidden;
+  display:flex; flex-direction:column;
+  padding:46px 58px 52px;
+  container-type:inline-size;
+  box-shadow:0 1px 3px rgba(27,18,25,0.06);
+}
+.slide > *{ position:relative; z-index:1; }
+.slide-num{
+  position:absolute; right:26px; bottom:18px; z-index:2;
+  font-size:11px; font-weight:700; letter-spacing:0.14em; color:var(--text-muted);
+  font-variant-numeric:tabular-nums;
+}
+.slide-tag{
+  font-size:clamp(9px,0.87cqw,11px); font-weight:800; letter-spacing:0.18em; color:var(--accent);
+  text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:9px;
+}
+.slide-tag::before{ content:''; width:16px; height:2px; background:var(--accent); flex:none; }
+h2.st{ font-size:clamp(17px,3.15cqw,40px); line-height:1.24; font-weight:800; letter-spacing:-0.022em; margin:0 0 12px; }
+h2.st em{ font-style:normal; color:var(--accent); }
+p.sd{ font-size:clamp(12px,1.34cqw,17px); line-height:1.7; color:var(--text-secondary); margin:0 0 6px; max-width:62em; }
+p.sd b{ color:var(--text); font-weight:700; }
+.grow{ flex:1 1 auto; min-height:0; display:flex; flex-direction:column; justify-content:center; }
+.foot{ font-size:clamp(9.5px,1.03cqw,13px); line-height:1.65; color:var(--text-muted); border-top:1px solid var(--rule-soft); padding-top:12px; margin-top:14px; }
+.foot b{ color:var(--text-secondary); }
+
+/* ---------- 표지 / 섹션 ---------- */
+.cover{ background:linear-gradient(115deg,var(--plum-deep) 0%,var(--plum) 34%,#2E6A58 72%,var(--pine) 100%); border-color:transparent; color:#fff; justify-content:center; }
+.cover img{ height:42px; width:auto; align-self:flex-start; flex:none; filter:brightness(0) invert(1); opacity:0.96; margin-bottom:54px; }
+.cover .ctag{ font-size:clamp(9px,0.95cqw,12px); font-weight:800; letter-spacing:0.24em; color:rgba(255,255,255,0.72); margin-bottom:20px; }
+.cover h1{ font-size:clamp(17px,4.1cqw,52px); line-height:1.24; font-weight:800; letter-spacing:-0.025em; margin:0 0 28px; color:#fff; }
+.cover h1 span{ color:var(--sage); }
+.cover .cmeta{ display:flex; flex-wrap:wrap; gap:10px 30px; font-size:clamp(11px,1.1cqw,14px); color:rgba(255,255,255,0.8); border-top:1px solid rgba(255,255,255,0.26); padding-top:20px; max-width:80%; }
+.cover .slide-num{ color:rgba(255,255,255,0.5); }
+
+/* ---------- 큰 숫자 ---------- */
+.big{ text-align:center; }
+.big .bnum{ font-size:clamp(52px,11.8cqw,150px); line-height:1; font-weight:800; letter-spacing:-0.045em; color:var(--accent); font-variant-numeric:tabular-nums; }
+.big .bnum small{ font-size:0.30em; font-weight:700; letter-spacing:-0.01em; margin-left:4px; }
+.big .blab{ font-size:clamp(14px,1.58cqw,20px); font-weight:700; color:var(--text); margin-top:22px; }
+.big .bsub{ font-size:clamp(11px,1.18cqw,15px); color:var(--text-secondary); margin-top:12px; line-height:1.7; }
+
+/* ---------- KPI ---------- */
+.kpis{ display:grid; gap:0; grid-auto-flow:column; grid-auto-columns:1fr; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.kpis > div{ padding:26px 24px 28px; border-left:1px solid var(--rule-soft); }
+.kpis > div:first-child{ border-left:none; padding-left:0; }
+.klab{ font-size:clamp(9px,0.95cqw,12px); font-weight:800; letter-spacing:0.09em; color:var(--text-muted); margin-bottom:14px; text-transform:uppercase; }
+.kval{ font-size:clamp(24px,3.6cqw,46px); line-height:1; font-weight:800; letter-spacing:-0.03em; color:var(--accent); font-variant-numeric:tabular-nums; }
+.kval small{ font-size:0.40em; font-weight:700; margin-left:2px; letter-spacing:0; }
+.knote{ font-size:clamp(10px,1.03cqw,13px); color:var(--text-secondary); margin-top:13px; line-height:1.6; }
+.kpis.alt .kval{ color:var(--accent2); }
+
+/* ---------- 대비(좌우) ---------- */
+.vs{ display:grid; grid-template-columns:1fr 78px 1fr; align-items:center; }
+.vs-box{ text-align:center; padding:34px 26px; border:1px solid var(--rule); border-radius:3px; background:var(--surface-alt); }
+.vs-box .vnum{ font-size:clamp(38px,6.45cqw,82px); line-height:1; font-weight:800; letter-spacing:-0.04em; font-variant-numeric:tabular-nums; }
+.vs-box .vnum small{ font-size:0.32em; margin-left:3px; }
+.vs-box .vlab{ font-size:clamp(11px,1.18cqw,15px); font-weight:700; margin-top:18px; }
+.vs-box .vsub{ font-size:13px; color:var(--text-muted); margin-top:9px; line-height:1.6; }
+.vs-box.a .vnum{ color:var(--c2); } .vs-box.b .vnum{ color:var(--c1); }
+.vs-mid{ text-align:center; font-size:22px; font-weight:800; color:var(--text-muted); }
+
+/* ---------- 타임라인 ---------- */
+.tline{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:0; }
+.tline > div{ padding:0 22px 0 0; border-top:2px solid var(--rule); position:relative; padding-top:24px; }
+.tline > div::before{ content:''; position:absolute; top:-7px; left:0; width:12px; height:12px; border-radius:50%; background:var(--rule); }
+.tline > div.on{ border-top-color:var(--accent); }
+.tline > div.on::before{ background:var(--accent); }
+.twhen{ font-size:12px; font-weight:800; letter-spacing:0.08em; color:var(--accent); margin-bottom:10px; }
+.twhat{ font-size:clamp(12px,1.34cqw,17px); font-weight:700; line-height:1.4; margin-bottom:10px; }
+.tdesc{ font-size:clamp(10px,1.03cqw,13px); color:var(--text-secondary); line-height:1.65; }
+
+/* ---------- 표 ---------- */
+table.t{ width:100%; border-collapse:collapse; font-size:clamp(10px,1.18cqw,15px); }
+table.t th, table.t td{ padding:13px 12px; border-bottom:1px solid var(--rule-soft); text-align:center; }
+table.t thead th{ border-bottom:1px solid var(--rule); font-size:12px; font-weight:800; letter-spacing:0.06em; color:var(--text-secondary); text-transform:uppercase; }
+table.t thead th.hi{ color:var(--accent); }
+table.t .l{ text-align:left; font-weight:600; }
+table.t .n{ font-variant-numeric:tabular-nums; font-weight:700; white-space:nowrap; }
+table.t .hi{ background:var(--surface-alt); }
+table.t tfoot td{ border-top:1px solid var(--rule); border-bottom:none; font-weight:800; padding-top:15px; }
+table.t tbody tr.em td{ background:var(--surface-alt); }
+.tick{ display:inline-block; width:21px; height:21px; border-radius:50%; background:var(--pine); color:#fff; font-size:12px; line-height:21px; font-weight:800; }
+html.theme-dark .tick{ background:var(--eucalyptus); color:#10261C; }
+.dash{ color:var(--text-muted); opacity:0.45; }
+.sm{ font-size:12px; font-weight:400; color:var(--text-muted); display:block; margin-top:3px; }
+
+/* ---------- 차트 ---------- */
+.chart{ width:100%; }
+.chart svg{ display:block; width:100%; height:auto; overflow:visible; }
+.legend{ display:flex; flex-wrap:wrap; gap:6px 26px; margin-bottom:16px; }
+.legend span{ display:inline-flex; align-items:center; gap:8px; font-size:clamp(10px,1.03cqw,13px); font-weight:600; color:var(--text-secondary); }
+.legend i{ width:12px; height:12px; border-radius:2px; flex:none; }
+svg text{ font-family:'Noto Sans KR','Inter',sans-serif; }
+.ax{ fill:var(--text-muted); font-size:15px; }
+.ax-b{ fill:var(--text-secondary); font-size:15px; font-weight:700; }
+.vl{ fill:var(--text); font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }
+.vm{ fill:var(--text-muted); font-size:13px; font-variant-numeric:tabular-nums; }
+.gl{ stroke:var(--grid); stroke-width:1; }
+.axl{ stroke:var(--axis); stroke-width:1; }
+
+/* ---------- 회수율 바 ---------- */
+.rec{ display:grid; grid-template-columns:230px 1fr 92px; align-items:center; gap:0 22px; padding:17px 0; border-bottom:1px solid var(--rule-soft); }
+.rec:first-of-type{ border-top:1px solid var(--rule); }
+.rec-n{ font-size:clamp(12px,1.34cqw,17px); font-weight:700; } .rec-n small{ display:block; font-size:13px; font-weight:500; color:var(--text-muted); margin-top:3px; }
+.rec-b{ position:relative; height:22px; background:var(--rule-soft); border-radius:3px; }
+.rec-b i{ position:absolute; left:0; top:0; bottom:0; border-radius:3px; }
+.rec-b b{ position:absolute; top:-5px; bottom:-5px; left:100%; width:2px; background:var(--text); opacity:0.5; }
+.rec-v{ text-align:right; font-size:clamp(16px,2.05cqw,26px); font-weight:800; font-variant-numeric:tabular-nums; }
+
+/* ---------- 전환(from → to) ---------- */
+.shift{ display:grid; grid-template-columns:1fr 54px 1fr; align-items:center; padding:15px 0; border-bottom:1px solid var(--rule-soft); font-size:clamp(11px,1.26cqw,16px); }
+.shift:first-of-type{ border-top:1px solid var(--rule); }
+.shift .f{ color:var(--text-muted); } .shift .a{ text-align:center; color:var(--accent); font-weight:700; } .shift .t{ font-weight:700; }
+
+/* ---------- 카드 ---------- */
+.cards{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:26px; }
+.card{ border:1px solid var(--rule); border-radius:3px; padding:24px 24px 26px; background:var(--surface-alt); }
+.card.hi{ border-color:var(--accent); border-width:1.5px; background:var(--surface); }
+.ctit{ font-size:clamp(13px,1.42cqw,18px); font-weight:700; margin-bottom:8px; }
+.cali{ font-size:clamp(10px,1.03cqw,13px); font-weight:700; color:var(--accent); margin-bottom:13px; letter-spacing:-0.005em; }
+.cdes{ font-size:clamp(10px,1.1cqw,14px); line-height:1.72; color:var(--text-secondary); }
+.cdes b{ color:var(--text); }
+.badge{ display:inline-block; font-size:11px; font-weight:800; letter-spacing:0.07em; padding:3px 9px; border-radius:2px; background:var(--c5); color:#fff; margin-left:8px; vertical-align:2px; }
+
+/* ---------- 번호 목록 ---------- */
+.steps{ display:grid; gap:0; }
+.steps > div{ display:grid; grid-template-columns:62px 1fr; gap:0 18px; padding:19px 0; border-bottom:1px solid var(--rule-soft); }
+.steps > div:first-child{ border-top:1px solid var(--rule); }
+.snum{ font-size:clamp(17px,2.05cqw,26px); font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-0.02em; }
+.stit{ font-size:clamp(13px,1.42cqw,18px); font-weight:700; margin-bottom:6px; }
+.ssub{ font-size:clamp(10px,1.1cqw,14px); color:var(--text-secondary); line-height:1.65; }
+
+/* ---------- 콜아웃 ---------- */
+.callout{ border-left:3px solid var(--accent); padding:4px 0 4px 22px; font-size:clamp(11px,1.34cqw,17px); line-height:1.75; color:var(--text-secondary); }
+.callout b{ color:var(--text); font-weight:700; }
+
+/* ---------- 컨트롤 ---------- */
+.bar{
+  position:fixed; right:20px; bottom:20px; z-index:50; display:flex; align-items:center; gap:6px;
+  background:var(--surface); border:1px solid var(--rule); border-radius:999px; padding:6px 8px;
+  box-shadow:0 3px 14px rgba(27,18,25,0.14);
+}
+.bar button{
+  border:none; background:transparent; color:var(--text-secondary); cursor:pointer;
+  font-family:inherit; font-size:13px; font-weight:700; padding:6px 11px; border-radius:999px; line-height:1;
+}
+.bar button:hover{ background:var(--surface-alt); color:var(--text); }
+.bar .pos{ font-size:12px; font-weight:800; color:var(--text-muted); font-variant-numeric:tabular-nums; padding:0 8px; min-width:52px; text-align:center; }
+.skip{ position:absolute; left:-9999px; }
+.skip:focus{ left:12px; top:12px; z-index:99; background:var(--surface); padding:10px 16px; border:1px solid var(--accent); }
+
+/* ---------- 반응형 ---------- */
+  .big .bnum{ font-size:104px; } .kval{ font-size:34px; }
+  .vs-box .vnum{ font-size:58px; } .slide{ }
+}
+@media (max-width:900px){
+  .deck{ padding:14px 14px 80px; gap:14px; }
+  .slide{ padding:30px 26px 36px; aspect-ratio:auto; min-height:auto; }
+  .kpis, .cards, .tline{ grid-auto-flow:row; }
+  .kpis > div{ border-left:none; border-top:1px solid var(--rule-soft); padding-left:0; }
+  .kpis > div:first-child{ border-top:none; }
+  .tline > div{ padding-right:0; }
+  .vs{ grid-template-columns:1fr; gap:14px; } .vs-mid{ padding:4px 0; }
+  .rec{ grid-template-columns:130px 1fr 66px; gap:0 12px; }
+  .rec-v{ font-size:20px; }
+  .chart{ overflow-x:auto; } .chart svg{ min-width:660px; }
+  table.t{ font-size:13px; }
+  .cover img{ height:30px; margin-bottom:28px; }
+}
+
+/* ---------- 인쇄 ---------- */
+@media print{
+  @page{ size:1280px 720px; margin:0; }
+  html,body{ background:#fff; }
+  .deck{ padding:0; gap:0; }
+  .bar{ display:none; }
+  .slide{ max-width:none; width:1280px; height:720px; aspect-ratio:auto; border:none; border-radius:0; box-shadow:none; break-after:page; break-inside:avoid; }
+  .slide:last-child{ break-after:auto; }
+}
+
+</style>
+</head>
+<body>
+<a href="#s1" class="skip">본문으로 바로가기</a>
+<div class="deck" id="deck">
+<section class="slide cover" id="s1" aria-label="슬라이드 1">
+<img src="data:image/png;base64,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" alt="Vantive">
+<div class="ctag">SERVICE PLAN PROPOSAL</div>
+<h1>화순전남대학교병원<br><span>혈액투석 시스템 서비스 플랜 제안</span></h1>
+<div class="cmeta">
+  <div>2026년 9월 17일</div>
+  <div>대상 · Artis Evosys 17대 + AK 98 1대</div>
+  <div>근거 · 2025.01 – 2026.08 서비스 기록 전수</div>
+</div>
+<div class="slide-num">1 / 18</div></section>
+<section class="slide " id="s2" aria-label="슬라이드 2">
+<div class="slide-tag">The one number</div>
+<div class="grow big">
+  <div class="bnum">1,002<small>만원</small></div>
+  <div class="blab">지난 20개월, 워런티가 대신 낸 금액입니다</div>
+  <div class="bsub">교체 부품 정가 1,744만 원 중 70%가 무상 처리됐습니다.<br>2026년 9월, Artis Evosys 17대 전량의 워런티가 종료됩니다.</div>
+</div>
+<div class="slide-num">2 / 18</div></section>
+<section class="slide " id="s3" aria-label="슬라이드 3">
+<div class="slide-tag">01 · 20개월 실적</div>
+<h2 class="st">숫자로 먼저 보시겠습니다</h2>
+<p class="sd">2025년 1월 ~ 2026년 8월, 귀 원에 제공된 서비스 기록 전수입니다.</p>
+<div class="grow">
+<div class="kpis">
+  <div><div class="klab">설치 장비</div><div class="kval">18<small>대</small></div><div class="knote">Artis Evosys 17 · AK 98 1</div></div>
+  <div><div class="klab">서비스 건수</div><div class="kval">20<small>건</small></div><div class="knote">현장 방문 18회 · 부품 21개</div></div>
+  <div><div class="klab">교체 부품 정가</div><div class="kval">1,744<small>만원</small></div><div class="knote">부가세 별도 · 기술료 제외</div></div>
+  <div><div class="klab">워런티 무상 처리</div><div class="kval">70<small>%</small></div><div class="knote">14건 · 1,002만 원</div></div>
+</div>
+</div>
+<div class="foot">금액은 <b>2026년 부품 정가(부가세 별도)</b> 환산치입니다. 실제 지불하신 부품비는 742만 원입니다.</div>
+<div class="slide-num">3 / 18</div></section>
+<section class="slide " id="s4" aria-label="슬라이드 4">
+<div class="slide-tag">02 · 전환점</div>
+<h2 class="st">워런티는 이미 한 번 끝났고,<br><em>그 결과가 데이터에 남아 있습니다</em></h2>
+<div class="grow">
+<div class="tline">
+  <div><div class="twhen">2025년 8월 이전</div><div class="twhat">전 장비 워런티 구간</div><div class="tdesc">부품·출장·수리 전액 무상. 이 기간 발생한 4건 모두 청구액 0원.</div></div>
+  <div class="on"><div class="twhen">2025년 9월</div><div class="twhat">1차 종료<br>FX025709 · FX032468</div><div class="tdesc">종료 직후 같은 달에 4건이 유상 전환.</div></div>
+  <div class="on"><div class="twhen">2026년 3월</div><div class="twhat">같은 2대에서 추가 2건</div><div class="tdesc">1회 방문에 부품만 348만 원.</div></div>
+  <div class="on"><div class="twhen">2026년 9월 · 현재</div><div class="twhat">Artis 17대 전량 종료</div><div class="tdesc">잔여 워런티는 AK 98 1대뿐. 이 시점부터 전건 유상.</div></div>
+</div>
+</div>
+<div class="slide-num">4 / 18</div></section>
+<section class="slide " id="s5" aria-label="슬라이드 5">
+<div class="slide-tag">03 · 실측</div>
+<h2 class="st">먼저 끝난 2대가 <em>12개월 동안 쓴 금액</em></h2>
+<div class="grow">
+<div class="kpis">
+  <div><div class="klab">2대 합계 · 실제 청구</div><div class="kval">862<small>만원</small></div><div class="knote">부품 742 + 기술료 120 (방문 4회)</div></div>
+  <div><div class="klab">대당 연간 환산</div><div class="kval">431<small>만원</small></div><div class="knote">실제 청구 기준 · 부가세 별도</div></div>
+  <div><div class="klab">단일 방문 최대</div><div class="kval">378<small>만원</small></div><div class="knote">2026.03.27 · 부품 2종 + 기술료</div></div>
+</div>
+</div>
+<div class="foot">431만 원은 가장 손이 많이 간 2대의 실측치입니다. 17대 평균으로 그대로 확대하면 과대추정이므로, 뒤에서 <b>17대 전체 기준의 보수적 추정치</b>를 따로 보여드립니다.</div>
+<div class="slide-num">5 / 18</div></section>
+<section class="slide " id="s6" aria-label="슬라이드 6">
+<div class="slide-tag">04 · 발생 패턴</div>
+<h2 class="st">고장은 평균으로 오지 않고, <em>몰려서 옵니다</em></h2>
+<div class="grow">
+<div class="chart">
+  <div class="legend"><span><i style="background:var(--c2)"></i>통상 월 (1~2건)</span><span><i style="background:var(--c1)"></i>집중 발생 월 (4건 이상)</span></div>
+  <svg viewBox="0 0 1000 320" role="img" aria-label="월별 교체 부품 정가 합계와 서비스 건수">
+<title>월별 교체 부품 정가 합계 (만원) · 2025.01–2026.08</title>
+<line class="axl" x1="46" y1="268.0" x2="992" y2="268.0"/>
+<text class="vm" x="38" y="271.5" text-anchor="end">0</text>
+<line class="gl" x1="46" y1="198.9" x2="992" y2="198.9"/>
+<text class="vm" x="38" y="202.4" text-anchor="end">200</text>
+<line class="gl" x1="46" y1="129.7" x2="992" y2="129.7"/>
+<text class="vm" x="38" y="133.2" text-anchor="end">400</text>
+<line class="gl" x1="46" y1="60.6" x2="992" y2="60.6"/>
+<text class="vm" x="38" y="64.1" text-anchor="end">600</text>
+<line class="gl" x1="613.6" y1="12" x2="613.6" y2="268" stroke-dasharray="3 4"/>
+<text class="ax-b" x="329.8" y="12" text-anchor="middle">2025</text>
+<text class="ax-b" x="802.8" y="12" text-anchor="middle">2026</text>
+<rect x="56.4" y="237.9" width="26.5" height="30.1" rx="4" fill="var(--c2)"><title>2025-01 · 87.0만원 · 2건</title></rect>
+<text class="vl" x="69.7" y="230.9" text-anchor="middle">87</text>
+<text class="vm" x="69.7" y="283.0" text-anchor="middle">2건</text>
+<text class="ax" x="69.7" y="301.0" text-anchor="middle">01</text>
+<rect x="103.7" y="227.6" width="26.5" height="40.4" rx="4" fill="var(--c2)"><title>2025-02 · 117.0만원 · 1건</title></rect>
+<text class="vl" x="116.9" y="220.6" text-anchor="middle">117</text>
+<text class="vm" x="116.9" y="283.0" text-anchor="middle">1건</text>
+<text class="ax" x="116.9" y="301.0" text-anchor="middle">02</text>
+<circle cx="164.2" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-03 · 발생 없음</title></circle>
+<text class="vm" x="164.2" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="164.2" y="301.0" text-anchor="middle">03</text>
+<rect x="198.3" y="261.8" width="26.5" height="6.2" rx="4" fill="var(--c2)"><title>2025-04 · 18.0만원 · 1건</title></rect>
+<text class="vl" x="211.5" y="254.8" text-anchor="middle">18</text>
+<text class="vm" x="211.5" y="283.0" text-anchor="middle">1건</text>
+<text class="ax" x="211.5" y="301.0" text-anchor="middle">04</text>
+<circle cx="258.9" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-05 · 발생 없음</title></circle>
+<text class="vm" x="258.9" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="258.9" y="301.0" text-anchor="middle">05</text>
+<circle cx="306.1" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-06 · 발생 없음</title></circle>
+<text class="vm" x="306.1" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="306.1" y="301.0" text-anchor="middle">06</text>
+<circle cx="353.4" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-07 · 발생 없음</title></circle>
+<text class="vm" x="353.4" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="353.4" y="301.0" text-anchor="middle">07</text>
+<circle cx="400.8" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-08 · 발생 없음</title></circle>
+<text class="vm" x="400.8" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="400.8" y="301.0" text-anchor="middle">08</text>
+<rect x="434.8" y="66.1" width="26.5" height="201.9" rx="4" fill="var(--c1)"><title>2025-09 · 584.0만원 · 6건</title></rect>
+<text class="vl" x="448.0" y="59.1" text-anchor="middle">584</text>
+<text class="vm" x="448.0" y="283.0" text-anchor="middle">6건</text>
+<text class="ax" x="448.0" y="301.0" text-anchor="middle">09</text>
+<rect x="482.1" y="254.4" width="26.5" height="13.6" rx="4" fill="var(--c2)"><title>2025-10 · 39.3만원 · 1건</title></rect>
+<text class="vl" x="495.3" y="247.4" text-anchor="middle">39</text>
+<text class="vm" x="495.3" y="283.0" text-anchor="middle">1건</text>
+<text class="ax" x="495.3" y="301.0" text-anchor="middle">10</text>
+<circle cx="542.6" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-11 · 발생 없음</title></circle>
+<text class="vm" x="542.6" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="542.6" y="301.0" text-anchor="middle">11</text>
+<circle cx="589.9" cy="265.0" r="2.4" fill="var(--axis)"><title>2025-12 · 발생 없음</title></circle>
+<text class="vm" x="589.9" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="589.9" y="301.0" text-anchor="middle">12</text>
+<rect x="624.0" y="254.4" width="26.5" height="13.6" rx="4" fill="var(--c2)"><title>2026-01 · 39.3만원 · 1건</title></rect>
+<text class="vl" x="637.2" y="247.4" text-anchor="middle">39</text>
+<text class="vm" x="637.2" y="283.0" text-anchor="middle">1건</text>
+<text class="ax" x="637.2" y="301.0" text-anchor="middle">01</text>
+<circle cx="684.5" cy="265.0" r="2.4" fill="var(--axis)"><title>2026-02 · 발생 없음</title></circle>
+<text class="vm" x="684.5" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="684.5" y="301.0" text-anchor="middle">02</text>
+<rect x="718.6" y="57.5" width="26.5" height="210.5" rx="4" fill="var(--c1)"><title>2026-03 · 608.8만원 · 4건</title></rect>
+<text class="vl" x="731.8" y="50.5" text-anchor="middle">609</text>
+<text class="vm" x="731.8" y="283.0" text-anchor="middle">4건</text>
+<text class="ax" x="731.8" y="301.0" text-anchor="middle">03</text>
+<rect x="765.9" y="227.6" width="26.5" height="40.4" rx="4" fill="var(--c2)"><title>2026-04 · 117.0만원 · 1건</title></rect>
+<text class="vl" x="779.1" y="220.6" text-anchor="middle">117</text>
+<text class="vm" x="779.1" y="283.0" text-anchor="middle">1건</text>
+<text class="ax" x="779.1" y="301.0" text-anchor="middle">04</text>
+<rect x="813.2" y="235.3" width="26.5" height="32.7" rx="4" fill="var(--c2)"><title>2026-05 · 94.5만원 · 2건</title></rect>
+<text class="vl" x="826.4" y="228.3" text-anchor="middle">94</text>
+<text class="vm" x="826.4" y="283.0" text-anchor="middle">2건</text>
+<text class="ax" x="826.4" y="301.0" text-anchor="middle">05</text>
+<circle cx="873.8" cy="265.0" r="2.4" fill="var(--axis)"><title>2026-06 · 발생 없음</title></circle>
+<text class="vm" x="873.8" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="873.8" y="301.0" text-anchor="middle">06</text>
+<circle cx="921.0" cy="265.0" r="2.4" fill="var(--axis)"><title>2026-07 · 발생 없음</title></circle>
+<text class="vm" x="921.0" y="283.0" text-anchor="middle" opacity="0.45">0</text>
+<text class="ax" x="921.0" y="301.0" text-anchor="middle">07</text>
+<rect x="955.1" y="254.4" width="26.5" height="13.6" rx="4" fill="var(--c2)"><title>2026-08 · 39.3만원 · 1건</title></rect>
+<text class="vl" x="968.3" y="247.4" text-anchor="middle">39</text>
+<text class="vm" x="968.3" y="283.0" text-anchor="middle">1건</text>
+<text class="ax" x="968.3" y="301.0" text-anchor="middle">08</text>
+<text class="vm" x="38" y="20" text-anchor="end">만원</text>
+</svg>
+</div>
+</div>
+<div class="foot">막대 위 = 부품 정가 합계(만원), 축 아래 = 그달의 서비스 건수. <b>2025년 9월(584만·6건)</b>과 <b>2026년 3월(609만·4건)</b> 두 달이 20개월 총액의 68%입니다.</div>
+<div class="slide-num">6 / 18</div></section>
+<section class="slide " id="s7" aria-label="슬라이드 7">
+<div class="slide-tag">05 · 예산 관점</div>
+<h2 class="st">그래서 <em>예산을 세울 수가 없습니다</em></h2>
+<div class="grow">
+<div class="vs">
+  <div class="vs-box a"><div class="vnum">10<small>개월</small></div><div class="vlab">부품비 0원인 달</div><div class="vsub">20개월 중 절반은<br>아무 일도 일어나지 않습니다</div></div>
+  <div class="vs-mid">↔</div>
+  <div class="vs-box b"><div class="vnum">609<small>만원</small></div><div class="vlab">한 달에 나온 최대 금액</div><div class="vsub">2026년 3월 · 4건 동시<br>월평균 87만 원의 <b>7배</b></div></div>
+</div>
+</div>
+<div class="foot">1대가 하루 멈추면 통상 <b>3개 세션의 재배치</b>가 필요합니다. 비용보다 먼저 스케줄이 흔들립니다.</div>
+<div class="slide-num">7 / 18</div></section>
+<section class="slide " id="s8" aria-label="슬라이드 8">
+<div class="slide-tag">06 · 추세</div>
+<h2 class="st">그리고 추세는 <em>올라가고 있습니다</em></h2>
+<p class="sd">2025년 한 해와 2026년 8월까지의 실적을 같은 기준(연환산)으로 맞춰 비교했습니다.</p>
+<div class="grow">
+<div class="kpis alt">
+  <div><div class="klab">2025년 실적 · 12개월</div><div class="kval">845<small>만원</small></div><div class="knote">11건 · 방문 10회</div></div>
+  <div><div class="klab">2026년 · 8.12까지 연환산</div><div class="kval">1,458<small>만원</small></div><div class="knote">9건(7.4개월) → 연 14.6건</div></div>
+  <div><div class="klab">전년 대비</div><div class="kval" style="color:var(--c5)">+72<small>%</small></div><div class="knote">부품 금액 기준</div></div>
+</div>
+</div>
+<div class="foot">장비가 4년차에 접어들며 펌프·센서 계열 마모성 교체가 늘어나는 전형적 패턴입니다. <b>워런티 종료와 고장률 상승이 같은 해에 겹칩니다.</b></div>
+<div class="slide-num">8 / 18</div></section>
+<section class="slide " id="s9" aria-label="슬라이드 9">
+<div class="slide-tag">07 · 고장 패턴</div>
+<h2 class="st">무엇이 고장나는가 — <em>5개 부품이 3분의 2</em></h2>
+<div class="grow">
+<div class="chart">
+  <div class="legend"><span><i style="background:var(--c1)"></i>상위 5개 품목 (반복 발생)</span><span><i style="background:var(--c2)"></i>기타 품목 (1회성)</span></div>
+  <svg viewBox="0 0 1180 367" role="img" aria-label="가로 막대 차트">
+<text class="ax-b" x="0" y="23.1">GEAR PUMP MOTOR A/E</text>
+<rect x="330" y="11.6" width="658.7" height="15.5" rx="4" fill="var(--c1)"><title>GEAR PUMP MOTOR A/E · 468.0만원 · 4개 · 단가 117.0</title></rect>
+<text class="vl" x="997.7" y="23.1">468.0</text>
+<text class="vm" x="1178" y="23.1" text-anchor="end">4개 · 단가 117.0</text>
+<text class="ax-b" x="0" y="54.0">FLOW PUMP HEAD A/E</text>
+<rect x="330" y="42.6" width="650.3" height="15.5" rx="4" fill="var(--c1)"><title>FLOW PUMP HEAD A/E · 462.0만원 · 2개 · 단가 231.0</title></rect>
+<text class="vl" x="989.3" y="54.0">462.0</text>
+<text class="vm" x="1178" y="54.0" text-anchor="end">2개 · 단가 231.0</text>
+<text class="ax-b" x="0" y="85.0">CONDUCTIVITY CELL N.PROBE</text>
+<rect x="330" y="73.6" width="453.2" height="15.5" rx="4" fill="var(--c1)"><title>CONDUCTIVITY CELL N.PROBE · 322.0만원 · 2개 · 단가 161.0</title></rect>
+<text class="vl" x="792.2" y="85.0">322.0</text>
+<text class="vm" x="1178" y="85.0" text-anchor="end">2개 · 단가 161.0</text>
+<text class="ax-b" x="0" y="116.0">AIR BUBBLE DETECTOR</text>
+<rect x="330" y="104.6" width="266.0" height="15.5" rx="4" fill="var(--c1)"><title>AIR BUBBLE DETECTOR · 189.0만원 · 3개 · 단가 63.0</title></rect>
+<text class="vl" x="605.0" y="116.0">189.0</text>
+<text class="vm" x="1178" y="116.0" text-anchor="end">3개 · 단가 63.0</text>
+<text class="ax-b" x="0" y="147.1">KEYBOARD IEC</text>
+<rect x="330" y="135.6" width="165.9" height="15.5" rx="4" fill="var(--c1)"><title>KEYBOARD IEC · 117.9만원 · 3개 · 단가 39.3</title></rect>
+<text class="vl" x="504.9" y="147.1">117.9</text>
+<text class="vm" x="1178" y="147.1" text-anchor="end">3개 · 단가 39.3</text>
+<text class="ax-b" x="0" y="178.1">BICART HOLDER AE</text>
+<rect x="330" y="166.6" width="74.6" height="15.5" rx="4" fill="var(--c2)"><title>BICART HOLDER AE · 53.0만원 · 1개</title></rect>
+<text class="vl" x="413.6" y="178.1">53.0</text>
+<text class="vm" x="1178" y="178.1" text-anchor="end">1개</text>
+<text class="ax-b" x="0" y="209.1">BUBBLE TRAP BARBS AE</text>
+<rect x="330" y="197.6" width="44.3" height="15.5" rx="4" fill="var(--c2)"><title>BUBBLE TRAP BARBS AE · 31.5만원 · 1개</title></rect>
+<text class="vl" x="383.3" y="209.1">31.5</text>
+<text class="vm" x="1178" y="209.1" text-anchor="end">1개</text>
+<text class="ax-b" x="0" y="240.1">125 MM LOCKABLE WHEEL</text>
+<rect x="330" y="228.6" width="41.9" height="15.5" rx="4" fill="var(--c2)"><title>125 MM LOCKABLE WHEEL · 29.8만원 · 1개</title></rect>
+<text class="vl" x="380.9" y="240.1">29.8</text>
+<text class="vm" x="1178" y="240.1" text-anchor="end">1개</text>
+<text class="ax-b" x="0" y="271.1">TWIN ACTUATOR DEHP FREE</text>
+<rect x="330" y="259.6" width="40.8" height="15.5" rx="4" fill="var(--c2)"><title>TWIN ACTUATOR DEHP FREE · 29.0만원 · 1개</title></rect>
+<text class="vl" x="379.8" y="271.1">29.0</text>
+<text class="vm" x="1178" y="271.1" text-anchor="end">1개</text>
+<text class="ax-b" x="0" y="302.1">2WAY BODY W/O CHAMFER</text>
+<rect x="330" y="290.6" width="33.8" height="15.5" rx="4" fill="var(--c2)"><title>2WAY BODY W/O CHAMFER · 24.0만원 · 2개</title></rect>
+<text class="vl" x="372.8" y="302.1">24.0</text>
+<text class="vm" x="1178" y="302.1" text-anchor="end">2개</text>
+<text class="ax-b" x="0" y="333.1">MALE CONC CONN (PPSU)</text>
+<rect x="330" y="321.6" width="25.3" height="15.5" rx="4" fill="var(--c2)"><title>MALE CONC CONN (PPSU) · 18.0만원 · 1개</title></rect>
+<text class="vl" x="364.3" y="333.1">18.0</text>
+<text class="vm" x="1178" y="333.1" text-anchor="end">1개</text>
+<line class="axl" x1="330" y1="0" x2="330" y2="341"/>
+<text class="vm" x="330" y="359">단위 만원</text>
+</svg>
+</div>
+</div>
+<div class="foot">상위 5개 품목이 <b>21개 중 14개(67%)</b>, 금액으로는 <b>1,559만 원(89%)</b>. 반복 품목은 예방정비로 관리 가능하고, 고액 단품(FLOW PUMP HEAD 231만)은 한 건이 분기 예산을 넘깁니다.</div>
+<div class="slide-num">9 / 18</div></section>
+<section class="slide " id="s10" aria-label="슬라이드 10">
+<div class="slide-tag">08 · 장비별</div>
+<h2 class="st">어느 장비인가 — 17대 중 10대,<br><em>그러나 다음은 알 수 없습니다</em></h2>
+<div class="grow">
+<div class="chart">
+  <div class="legend"><span><i style="background:var(--c5)"></i>워런티 종료 · 유상 청구 발생</span><span><i style="background:var(--c4)"></i>워런티 구간에서 발생 (무상)</span></div>
+  <svg viewBox="0 0 1180 356" role="img" aria-label="가로 막대 차트">
+<text class="ax-b" x="0" y="24.2">FX025709</text>
+<rect x="200" y="11.9" width="769.2" height="16.5" rx="4" fill="var(--c5)"><title>FX025709 · 562.0만원 · 4건 · 유상 전환</title></rect>
+<text class="vl" x="978.2" y="24.2">562.0</text>
+<text class="vm" x="1178" y="24.2" text-anchor="end">4건 · 유상 전환</text>
+<text class="ax-b" x="0" y="57.2">FX038724</text>
+<rect x="200" y="44.9" width="517.1" height="16.5" rx="4" fill="var(--c4)"><title>FX038724 · 377.8만원 · 3건</title></rect>
+<text class="vl" x="726.1" y="57.2">377.8</text>
+<text class="vm" x="1178" y="57.2" text-anchor="end">3건</text>
+<text class="ax-b" x="0" y="90.2">FX038723</text>
+<rect x="200" y="77.9" width="306.6" height="16.5" rx="4" fill="var(--c4)"><title>FX038723 · 224.0만원 · 2건</title></rect>
+<text class="vl" x="515.6" y="90.2">224.0</text>
+<text class="vm" x="1178" y="90.2" text-anchor="end">2건</text>
+<text class="ax-b" x="0" y="123.2">FX032468</text>
+<rect x="200" y="110.9" width="246.4" height="16.5" rx="4" fill="var(--c5)"><title>FX032468 · 180.0만원 · 2건 · 유상 전환</title></rect>
+<text class="vl" x="455.4" y="123.2">180.0</text>
+<text class="vm" x="1178" y="123.2" text-anchor="end">2건 · 유상 전환</text>
+<text class="ax-b" x="0" y="156.2">FX027394</text>
+<rect x="200" y="143.9" width="184.8" height="16.5" rx="4" fill="var(--c4)"><title>FX027394 · 135.0만원 · 2건</title></rect>
+<text class="vl" x="393.8" y="156.2">135.0</text>
+<text class="vm" x="1178" y="156.2" text-anchor="end">2건</text>
+<text class="ax-b" x="0" y="189.2">FX038726</text>
+<rect x="200" y="176.9" width="96.9" height="16.5" rx="4" fill="var(--c4)"><title>FX038726 · 70.8만원 · 2건</title></rect>
+<text class="vl" x="305.9" y="189.2">70.8</text>
+<text class="vm" x="1178" y="189.2" text-anchor="end">2건</text>
+<text class="ax-b" x="0" y="222.2">FX042303</text>
+<rect x="200" y="209.9" width="93.5" height="16.5" rx="4" fill="var(--c4)"><title>FX042303 · 68.3만원 · 2건</title></rect>
+<text class="vl" x="302.5" y="222.2">68.3</text>
+<text class="vm" x="1178" y="222.2" text-anchor="end">2건</text>
+<text class="ax-b" x="0" y="255.2">FX021696</text>
+<rect x="200" y="242.9" width="86.2" height="16.5" rx="4" fill="var(--c4)"><title>FX021696 · 63.0만원 · 1건</title></rect>
+<text class="vl" x="295.2" y="255.2">63.0</text>
+<text class="vm" x="1178" y="255.2" text-anchor="end">1건</text>
+<text class="ax-b" x="0" y="288.1">FX038725</text>
+<rect x="200" y="275.9" width="53.8" height="16.5" rx="4" fill="var(--c4)"><title>FX038725 · 39.3만원 · 1건</title></rect>
+<text class="vl" x="262.8" y="288.1">39.3</text>
+<text class="vm" x="1178" y="288.1" text-anchor="end">1건</text>
+<text class="ax-b" x="0" y="321.1">FX025658</text>
+<rect x="200" y="308.9" width="32.9" height="16.5" rx="4" fill="var(--c4)"><title>FX025658 · 24.0만원 · 1건</title></rect>
+<text class="vl" x="241.8" y="321.1">24.0</text>
+<text class="vm" x="1178" y="321.1" text-anchor="end">1건</text>
+<line class="axl" x1="200" y1="0" x2="200" y2="330"/>
+<text class="vm" x="200" y="348">단위 만원</text>
+</svg>
+</div>
+</div>
+<div class="foot">무발생 7대는 표시하지 않았습니다. 20개월간 조용했던 장비가 다음 20개월에도 조용할 근거는 없습니다 — 실제로 FX038725는 2026년 8월에 첫 서비스가 발생했습니다. <b>장비 단위가 아니라 17대를 하나의 묶음으로 커버하는 것이 합리적입니다.</b></div>
+<div class="slide-num">10 / 18</div></section>
+<section class="slide " id="s11" aria-label="슬라이드 11">
+<div class="slide-tag">09 · 앞으로의 비용</div>
+<h2 class="st">건별 유상으로 갈 경우 <em>연간 얼마인가</em></h2>
+<p class="sd">기술료는 2026.01.01 개정 요율 <b>Class I 기본 300,000원</b>(정규시간 2시간·국내 출장 이동비 포함)을 적용했습니다.</p>
+<div class="grow">
+<table class="t">
+  <thead><tr><th class="l">산출 기준</th><th>부품</th><th>기술료</th><th>연간 합계</th><th>대당 월</th></tr></thead>
+  <tbody>
+    <tr><td class="l">보수 기준 · 20개월 전체 평균<span class="sm">연 11회 방문 · 12건</span></td><td class="n">1,047만</td><td class="n">324만</td><td class="n">1,371만</td><td class="n">6.7만</td></tr>
+    <tr class="em"><td class="l">기준 시나리오 · 2026년 실적 연환산<span class="sm">연 13회 방문 · 14.6건 · 노후화 반영</span></td><td class="n">1,458만</td><td class="n">389만</td><td class="n">1,847만</td><td class="n">9.1만</td></tr>
+    <tr><td class="l">상한 참고 · 워런티 종료 2대 실측 확대<span class="sm">대당 431만 × 17대 · 과대추정 가능</span></td><td class="n">6,307만</td><td class="n">포함</td><td class="n">7,327만</td><td class="n">35.9만</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="foot">모두 부가세 별도. 다음 장의 세 가지는 <b>이 표에 포함되지 않은</b> 추가 비용입니다.</div>
+<div class="slide-num">11 / 18</div></section>
+<section class="slide " id="s12" aria-label="슬라이드 12">
+<div class="slide-tag">10 · 숨은 비용</div>
+<h2 class="st">앞의 표에 <em>들어 있지 않은 것</em></h2>
+<div class="grow">
+<div class="cards">
+  <div class="card"><div class="ctit">정규시간 외 할증<span class="badge">미포함</span></div><div class="cdes">투석실은 이른 아침에 가동을 시작합니다. 평일 18–22시 <b>시간당 225,000원</b>, 평일 22시–익일 06시와 <b>토·일·공휴일 전 시간</b>은 <b>시간당 300,000원</b>. 주말 2시간 출동 1회면 60만 원입니다.</div></div>
+  <div class="card"><div class="ctit">2시간 초과 작업분<span class="badge">미포함</span></div><div class="cdes">기본 기술료 300,000원은 <b>정규시간 2시간 작업분</b>입니다. 초과분은 시간당 150,000원이 추가됩니다. 펌프 헤드·컨덕티비티 셀 교체는 통상 2시간을 넘깁니다.</div></div>
+  <div class="card"><div class="ctit">가동 중단 손실<span class="badge">미포함</span></div><div class="cdes">부품 수급이 필요한 건은 당일 복구가 어렵습니다. <b>1대 정지 = 하루 3세션 재배치.</b> 앞의 표는 순수 서비스 청구액이며 진료 기회손실은 포함하지 않았습니다.</div></div>
+</div>
+</div>
+<div class="slide-num">12 / 18</div></section>
+<section class="slide " id="s13" aria-label="슬라이드 13">
+<div class="slide-tag">11 · 서비스 플랜</div>
+<h2 class="st">월 정액으로 <em>전환하는 방법</em></h2>
+<div class="grow">
+<table class="t">
+  <thead><tr><th class="l">포함 서비스</th><th>Standard<br>Warranty</th><th>Service<br>Essential</th><th class="hi">Service<br>Complete</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Vantive 기술전문가 상담 서비스라인</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr>
+    <tr><td class="l">장비 정상가동을 위한 출장 및 수리</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr>
+    <tr><td class="l">제조업체 승인 순정 부품 제공 <span style="color:var(--text-muted);font-weight:400">*소모성 제외</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr>
+    <tr><td class="l">Routine Maintenance — 초여과필터 교체·소독 등 기능점검 <b>(연 4회)</b></td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td><td class="hi"><span class="tick">✓</span></td></tr>
+    <tr><td class="l">Preventive Maintenance — PM kit 교체 등 <b>(2년 1회)</b></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td class="hi"><span class="tick">✓</span></td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td class="l">관리비용 · 월 · 1대 <span style="font-weight:400;color:var(--text-muted)">(부가세 별도)</span></td><td class="n">20만원</td><td class="n">25만원</td><td class="n hi">30만원</td></tr>
+    <tr><td class="l">Artis 17대 · 연간</td><td class="n">4,080만원</td><td class="n">5,100만원</td><td class="n hi">6,120만원</td></tr>
+  </tfoot>
+</table>
+</div>
+<div class="slide-num">13 / 18</div></section>
+<section class="slide " id="s14" aria-label="슬라이드 14">
+<div class="slide-tag">12 · 검증</div>
+<h2 class="st">포함된 서비스를 <em>건별로 사면 얼마인가</em></h2>
+<div class="grow">
+<div class="chart">
+  <div class="legend">
+    <span><i style="background:var(--c1)"></i>수리 부품</span><span><i style="background:var(--c5)"></i>수리 기술료</span>
+    <span><i style="background:var(--c2)"></i>정기점검 연 4회</span><span><i style="background:var(--c4)"></i>초여과필터</span>
+    <span><i style="background:var(--c3)"></i>PM kit (부품+작업)</span>
+  </div>
+  <svg viewBox="0 0 1000 408" role="img" aria-label="플랜별 정가 환산 가치와 구독료 비교">
+<line class="axl" x1="120" y1="284.0" x2="980" y2="284.0"/>
+<text class="vm" x="112" y="287.5" text-anchor="end">0</text>
+<line class="gl" x1="120" y1="205.9" x2="980" y2="205.9"/>
+<text class="vm" x="112" y="209.4" text-anchor="end">10</text>
+<line class="gl" x1="120" y1="127.8" x2="980" y2="127.8"/>
+<text class="vm" x="112" y="131.2" text-anchor="end">20</text>
+<line class="gl" x1="120" y1="49.6" x2="980" y2="49.6"/>
+<text class="vm" x="112" y="53.1" text-anchor="end">30</text>
+<text class="vm" x="112" y="26" text-anchor="end">만원/월·대</text>
+<rect x="150" y="228.5" width="132" height="53.5" rx="3" fill="var(--c1)"><title>Standard Warranty · 수리 부품 7.1만원/월</title></rect>
+<text class="vl" x="216.0" y="260.3" text-anchor="middle" fill="#fff">7.1</text>
+<rect x="150" y="213.7" width="132" height="12.8" rx="3" fill="var(--c5)"><title>Standard Warranty · 수리 기술료 1.9만원/월</title></rect>
+<line x1="132" y1="127.8" x2="300" y2="127.8" stroke="var(--text)" stroke-width="2.5" stroke-dasharray="7 4"/>
+<text class="vl" x="306" y="131.8">구독료 20</text>
+<text class="ax-b" x="216.0" y="308" text-anchor="middle">Standard Warranty</text>
+<text class="vl" x="216.0" y="328" text-anchor="middle">가치 9.0 / 구독료 20</text>
+<text class="vm" x="216.0" y="346" text-anchor="middle">회수율 45%</text>
+<rect x="390" y="228.5" width="132" height="53.5" rx="3" fill="var(--c1)"><title>Service Essential · 수리 부품 7.1만원/월</title></rect>
+<text class="vl" x="456.0" y="260.3" text-anchor="middle" fill="#fff">7.1</text>
+<rect x="390" y="213.7" width="132" height="12.8" rx="3" fill="var(--c5)"><title>Service Essential · 수리 기술료 1.9만원/월</title></rect>
+<rect x="390" y="135.6" width="132" height="76.1" rx="3" fill="var(--c2)"><title>Service Essential · 정기점검 연 4회 10.0만원/월</title></rect>
+<text class="vl" x="456.0" y="178.6" text-anchor="middle" fill="#fff">10.0</text>
+<rect x="390" y="111.3" width="132" height="22.2" rx="3" fill="var(--c4)"><title>Service Essential · 초여과필터 3.1만원/월</title></rect>
+<text class="vl" x="456.0" y="127.5" text-anchor="middle" fill="#fff">3.1</text>
+<line x1="372" y1="88.7" x2="540" y2="88.7" stroke="var(--text)" stroke-width="2.5" stroke-dasharray="7 4"/>
+<text class="vl" x="546" y="92.7">구독료 25</text>
+<text class="ax-b" x="456.0" y="308" text-anchor="middle">Service Essential</text>
+<text class="vl" x="456.0" y="328" text-anchor="middle">가치 22.1 / 구독료 25</text>
+<text class="vm" x="456.0" y="346" text-anchor="middle">회수율 88%</text>
+<rect x="630" y="228.5" width="132" height="53.5" rx="3" fill="var(--c1)"><title>Service Complete · 수리 부품 7.1만원/월</title></rect>
+<text class="vl" x="696.0" y="260.3" text-anchor="middle" fill="#fff">7.1</text>
+<rect x="630" y="213.7" width="132" height="12.8" rx="3" fill="var(--c5)"><title>Service Complete · 수리 기술료 1.9만원/월</title></rect>
+<rect x="630" y="135.6" width="132" height="76.1" rx="3" fill="var(--c2)"><title>Service Complete · 정기점검 연 4회 10.0만원/월</title></rect>
+<text class="vl" x="696.0" y="178.6" text-anchor="middle" fill="#fff">10.0</text>
+<rect x="630" y="111.3" width="132" height="22.2" rx="3" fill="var(--c4)"><title>Service Complete · 초여과필터 3.1만원/월</title></rect>
+<text class="vl" x="696.0" y="127.5" text-anchor="middle" fill="#fff">3.1</text>
+<rect x="630" y="60.6" width="132" height="48.8" rx="3" fill="var(--c3)"><title>Service Complete · PM kit(부품+작업) 6.5만원/월</title></rect>
+<text class="vl" x="696.0" y="90.0" text-anchor="middle" fill="#fff">6.5</text>
+<line x1="612" y1="49.6" x2="780" y2="49.6" stroke="var(--text)" stroke-width="2.5" stroke-dasharray="7 4"/>
+<text class="vl" x="786" y="53.6">구독료 30</text>
+<text class="ax-b" x="696.0" y="308" text-anchor="middle">Service Complete</text>
+<text class="vl" x="696.0" y="328" text-anchor="middle">가치 28.6 / 구독료 30</text>
+<text class="vm" x="696.0" y="346" text-anchor="middle">회수율 95%</text>
+<text class="vm" x="120" y="376">점선 = 플랜 구독료(정가) · 막대 = 포함 서비스의 정가 환산 가치</text>
+</svg>
+</div>
+</div>
+<div class="foot">수리 부분은 09절 <b>기준 시나리오</b>(2026년 실적 연환산)를 사용했습니다. 모든 금액 부가세 별도.</div>
+<div class="slide-num">14 / 18</div></section>
+<section class="slide " id="s15" aria-label="슬라이드 15">
+<div class="slide-tag">13 · 결론</div>
+<h2 class="st">가장 비싼 플랜이 <em>가장 남는 플랜입니다</em></h2>
+<div class="grow">
+<div>
+  <div class="rec"><div class="rec-n">Standard Warranty<small>월 20만원</small></div><div class="rec-b"><i style="width:45%;background:var(--c5)"></i><b></b></div><div class="rec-v">45%</div></div>
+  <div class="rec"><div class="rec-n">Service Essential<small>월 25만원</small></div><div class="rec-b"><i style="width:88%;background:var(--c3)"></i><b></b></div><div class="rec-v">88%</div></div>
+  <div class="rec"><div class="rec-n">Service Complete<small>월 30만원</small></div><div class="rec-b"><i style="width:95%;background:var(--c2)"></i><b></b></div><div class="rec-v">95%</div></div>
+</div>
+<div class="callout" style="margin-top:26px">
+  <b>업그레이드 5만 원의 경제성</b> — Standard Warranty → Essential은 월 +5만 원에 정기점검 연 4회(정가 월 10만)와 초여과필터(월 3.1만)가 붙어 <b>증분 회수율 262%</b>. Essential → Complete는 월 +5만 원에 PM kit 교체(월 6.5만 상당)가 붙어 <b>130%</b>. 두 번의 업그레이드 모두 내는 돈보다 받는 것이 큽니다.
+</div>
+</div>
+<div class="foot">세로선 = 구독료 100%. Complete의 남은 5%는 <b>변동비를 고정비로 바꾸는 대가</b>입니다 — 그 대가로 609만 원짜리 달이 사라집니다.</div>
+<div class="slide-num">15 / 18</div></section>
+<section class="slide " id="s16" aria-label="슬라이드 16">
+<div class="slide-tag">14 · 제안</div>
+<h2 class="st">제안 — Artis Evosys 17대,<br><em>Service Complete</em></h2>
+<div class="grow">
+<div class="cards">
+  <div class="card hi"><div class="ctit">권고안 · 전 대수 Service Complete</div><div class="cali">17대 × 월 30만원 · 연 6,120만원 (부가세 별도)</div><div class="cdes">정가 회수율 <b>95%</b>로 3개 플랜 중 최고. 정기점검 연 4회(총 68회 방문)와 PM kit 교체가 포함되어, 지금까지 별도 관리되지 않던 예방정비가 계약 안으로 들어옵니다. <b>AK 98은 워런티 종료 시점에 동일 조건으로 편입.</b></div></div>
+  <div class="card"><div class="ctit">대안 · 혼합 구성</div><div class="cali">이력 상위 5대 Complete + 나머지 12대 Essential · 연 5,400만원</div><div class="cdes">예산 제약이 있을 때의 절충안입니다. FX025709 · FX038724 · FX038723 · FX032468 · FX027394를 Complete로 구성합니다. 다만 무발생 장비가 다음 해에도 무발생일 보장이 없어, 장기적으로는 전 대수 단일 플랜이 관리상 단순합니다.</div></div>
+</div>
+</div>
+<div class="slide-num">16 / 18</div></section>
+<section class="slide " id="s17" aria-label="슬라이드 17">
+<div class="slide-tag">15 · 도입 효과</div>
+<h2 class="st">도입하면 <em>달라지는 것</em></h2>
+<div class="grow">
+<div>
+  <div class="shift"><div class="f">한 달 0원, 다음 달 609만 원</div><div class="a">→</div><div class="t">매월 동일 · 연간 예산 확정</div></div>
+  <div class="shift"><div class="f">고장 발생 후 대응 (사후)</div><div class="a">→</div><div class="t">연 4회 정기점검 · 계획된 시간에 교체 (사전)</div></div>
+  <div class="shift"><div class="f">건별 견적 → 품의 → 발주 (리드타임)</div><div class="a">→</div><div class="t">계약 내 즉시 처리 · 행정 절차 제거</div></div>
+  <div class="shift"><div class="f">야간·주말 출동 시 시간당 22.5~30만원 별도</div><div class="a">→</div><div class="t">정액 포함 · 할증 리스크 제거</div></div>
+  <div class="shift"><div class="f">초여과필터 교체·소독 주기 개별 관리</div><div class="a">→</div><div class="t">연 4회 표준 프로토콜 · 점검 기록 문서화</div></div>
+</div>
+</div>
+<div class="slide-num">17 / 18</div></section>
+<section class="slide " id="s18" aria-label="슬라이드 18">
+<div class="slide-tag">16 · 다음 단계</div>
+<h2 class="st">다음 단계</h2>
+<div class="grow">
+<div class="steps">
+  <div><div class="snum">01</div><div><div class="stit">본 분석 결과 검토 및 플랜 선택</div><div class="ssub">전 대수 Complete / 혼합 구성 중 결정</div></div></div>
+  <div><div class="snum">02</div><div><div class="stit">대상 장비 목록 확정</div><div class="ssub">Artis Evosys 17대 Serial 확인 · AK 98 편입 시점 협의</div></div></div>
+  <div><div class="snum">03</div><div><div class="stit">계약 조건 협의</div><div class="ssub">계약 기간, 정기점검 일정(연 4회 방문 스케줄), 대응 시간 기준</div></div></div>
+  <div><div class="snum">04</div><div><div class="stit">계약 체결 및 초회 정기점검 실시</div><div class="ssub">전 대수 기준선 점검으로 시작</div></div></div>
+</div>
+</div>
+<div class="foot">데이터 출처 — 화순전남대학교병원 계정(JDE 71068378) SR 전수 2025.01.01–2026.08.12 · 2026v1 Spare Parts Price List · TS Korea Labor Rate (2026.01.01 개정) · Vantive Service Package(ARTIS).<br>모든 금액은 부가세 별도이며 부품 가격은 환율에 따라 변동될 수 있습니다. 중환자실 CRRT 소모품(AUTOLINE)은 본 제안 범위에서 제외했습니다.</div>
+<div class="slide-num">18 / 18</div></section>
+</div>
+
+<nav class="bar" aria-label="슬라이드 이동">
+  <button onclick="go(-1)" aria-label="이전 슬라이드">‹ 이전</button>
+  <span class="pos" id="pos">1 / 18</span>
+  <button onclick="go(1)" aria-label="다음 슬라이드">다음 ›</button>
+  <button onclick="toggleTheme()" aria-label="테마 변경" title="테마 변경">◐</button>
+  <button onclick="window.print()" aria-label="인쇄 · PDF 저장" title="인쇄 · PDF로 저장">인쇄</button>
+</nav>
+
+<script>
+var N = 18;
+var cur = 1;
+
+function slides() { return Array.prototype.slice.call(document.querySelectorAll('.slide')); }
+
+function go(d) {
+  var t = Math.min(N, Math.max(1, cur + d));
+  var el = document.getElementById('s' + t);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function toggleTheme() {
+  var h = document.documentElement;
+  h.className = (h.className === 'theme-light') ? 'theme-dark' : 'theme-light';
+}
+
+// 현재 슬라이드 추적
+var io = new IntersectionObserver(function(es) {
+  es.forEach(function(e) {
+    if (e.isIntersecting) {
+      var i = slides().indexOf(e.target) + 1;
+      if (i > 0) { cur = i; document.getElementById('pos').textContent = i + ' / ' + N; }
+    }
+  });
+}, { threshold: 0.5 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  slides().forEach(function(s) { io.observe(s); });
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+  else if (e.key === 'Home') { e.preventDefault(); go(-N); }
+  else if (e.key === 'End') { e.preventDefault(); go(N); }
+});
+</script>
+</body>
+</html>
